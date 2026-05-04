@@ -5,7 +5,6 @@
 
   "headers": [
     {
-      "//": "Site-wide security headers. Apply to every response.",
       "source": "/(.*)",
       "headers": [
         {
@@ -29,14 +28,12 @@
           "value": "geolocation=(self), camera=(), microphone=(), payment=(self), interest-cohort=()"
         },
         {
-          "//": "Site-wide CSP. As of 2026-05-04 all inline <script> blocks have been externalised (index.html, home-v1, home-v2 → js/home.js; contact.html → js/contact.js; filter-cartridge.html → js/filter-cartridge.js; warranty-registration.html → js/warranty-registration.js), so script-src is now 'self' only — no 'unsafe-inline'. Inline style attributes still exist for cosmetic markup, so style-src keeps 'unsafe-inline'. JSON-LD blocks (<script type=\"application/ld+json\">) are inert data and not subject to script-src. Multiple Content-Security-Policy headers are AND-ed by browsers, so the stricter overlay below for /pages/stockists-v(3|4) gets enforced too.",
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com https://sdks.shopifycdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://res.cloudinary.com; connect-src 'self' https://docs.google.com https://*.googleusercontent.com https://api.cloudinary.com https://formspree.io https://nominatim.openstreetmap.org https://ipapi.co https://*.myshopify.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io https://buy.stripe.com; upgrade-insecure-requests"
         }
       ]
     },
     {
-      "//": "Strict CSP overlay for the stockist-locator pages — these load nothing inline that we don't control, so they get the tight policy. Browser AND-s this with the site-wide policy above. /pages/where-to-buy is the live production locator (v4 swapped in May 2026); /pages/stockists-v(3|4) are the test forks kept for iteration.",
       "source": "/pages/(where-to-buy|stockists-v(3|4))\\.html",
       "headers": [
         {
@@ -46,7 +43,6 @@
       ]
     },
     {
-      "//": "Long-cache the vendored Leaflet/PapaParse copies and the snapshot CSV — they're static and version-controlled.",
       "source": "/vendor/(.*)",
       "headers": [
         {
