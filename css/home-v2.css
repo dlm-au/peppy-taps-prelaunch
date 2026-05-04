@@ -1,0 +1,443 @@
+/* ============================================
+   Homepage v2 — overrides for /pages/home-v2.html
+   Loads AFTER styles.css so these rules win at equal
+   specificity. Scoped to .page-home-v2 so the live
+   /index.html is untouched.
+   ============================================ */
+
+/* ─── Stockist locator — homepage embed constraints ──────
+   The locator's mobile CSS in stockists.css uncaps .st-results
+   so the full list scrolls naturally on /pages/where-to-buy.html.
+   On the homepage that's catastrophic — 312 cards stack to ~46,000px
+   tall. Force a fixed-height scrollable list inside the embed. */
+.page-home-v2 #stockistResults {
+    max-height: 320px !important;
+    overflow-y: auto !important;
+    padding-right: 4px;
+}
+@media (max-width: 600px) {
+    .page-home-v2 #stockistResults {
+        max-height: 260px !important;
+    }
+}
+
+/* ─── Anchor jumps respect the fixed nav ──────────────
+   The nav is position:fixed and ~80px tall on desktop, ~64px on
+   mobile. Without scroll-margin-top, jumping to #dealers etc. lands
+   the section header underneath the nav. */
+.page-home-v2 #collections,
+.page-home-v2 #comparison,
+.page-home-v2 #dealers,
+.page-home-v2 #support,
+.page-home-v2 #faq,
+.page-home-v2 #about,
+.page-home-v2 #trade,
+.page-home-v2 #inspiration {
+    scroll-margin-top: 92px;
+}
+@media (max-width: 768px) {
+    .page-home-v2 #collections,
+    .page-home-v2 #comparison,
+    .page-home-v2 #dealers,
+    .page-home-v2 #support,
+    .page-home-v2 #faq,
+    .page-home-v2 #about,
+    .page-home-v2 #trade,
+    .page-home-v2 #inspiration {
+        scroll-margin-top: 76px;
+    }
+}
+
+/* ─── Hero ──────────────────────────────────────────────
+   Beef up the hero overlay so the italic "All in One Tap"
+   in the headline keeps contrast over the bright lifestyle
+   image, and add a more functional secondary line under
+   the brand-voice headline so first-time visitors get the
+   product in two seconds. */
+.page-home-v2 .hero-video-overlay {
+    background:
+        linear-gradient(180deg,
+            rgba(8, 18, 38, 0.55) 0%,
+            rgba(8, 18, 38, 0.32) 38%,
+            rgba(8, 18, 38, 0.55) 78%,
+            rgba(8, 18, 38, 0.72) 100%);
+}
+.page-home-v2 .hero-functional-line {
+    display: block;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: var(--font-sans);
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    line-height: 1.4;
+    margin: 0 auto 18px;
+    max-width: 640px;
+}
+
+/* Mobile hero polish — the desktop H1 size was clamping to 2.5rem at
+   narrow widths, which is too large on a 375px viewport (the headline
+   "Convenience, Sustainability & Aesthetics" wrapped awkwardly across
+   3-4 lines around the desktop <br>). Drop the size and hide the
+   desktop-positioned BR so the title wraps naturally for the viewport. */
+@media (max-width: 600px) {
+    .page-home-v2 .hero-title {
+        font-size: clamp(1.85rem, 8.5vw, 2.4rem);
+        line-height: 1.12;
+        letter-spacing: -0.015em;
+    }
+    .page-home-v2 .hero-title br { display: none; }
+}
+
+/* ─── Products section (merged with audience cards) ─────
+   The new layout puts the audience cards as section
+   headers introducing the Signature and Flagship
+   collections, with the relevant product cards directly
+   underneath each. Removes the duplicate "decision moment"
+   the old standalone audience section created. */
+.page-home-v2 .collection-block {
+    margin-top: clamp(40px, 5vw, 64px);
+}
+.page-home-v2 .collection-block:first-child {
+    margin-top: 0;
+}
+.page-home-v2 .collection-block-header {
+    margin-bottom: 24px;
+}
+/* Slim lifestyle banner above each collection's header — restores some
+   of the visual punch the old standalone audience cards had. Desktop
+   only; on mobile we lean on the featured product card instead. */
+.page-home-v2 .collection-block-banner {
+    display: none;
+    height: 220px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 24px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 0 8px 24px rgba(15, 25, 45, 0.10);
+}
+.page-home-v2 .collection-block-banner--signature {
+    background-image:
+        linear-gradient(90deg, rgba(8, 18, 38, 0.55) 0%, rgba(8, 18, 38, 0.05) 55%, transparent 100%),
+        url('../img/mockup/peppy-mock-7.jpg');
+    /* Y slightly above centre (40%) — small nudge so the top of the
+       tap arc clears the crop without losing too much counter/sink
+       below. */
+    background-position: center 40%;
+}
+.page-home-v2 .collection-block-banner--flagship {
+    background-image:
+        linear-gradient(270deg, rgba(8, 18, 38, 0.55) 0%, rgba(8, 18, 38, 0.05) 55%, transparent 100%),
+        url('../img/mockup/peppy-mock-3.png');
+    background-position: center;
+}
+.page-home-v2 .collection-block-banner-title {
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    padding: clamp(20px, 3vw, 40px);
+    margin: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    max-width: 50%;
+}
+.page-home-v2 .collection-block-banner--flagship .collection-block-banner-title {
+    margin-left: auto;
+    text-align: right;
+    justify-content: flex-end;
+}
+@media (min-width: 901px) {
+    .page-home-v2 .collection-block-banner {
+        display: block;
+    }
+    /* When the banner is shown, the duplicate text title in the header
+       below feels redundant — keep the eyebrow + intro only. */
+    .page-home-v2 .collection-block-header .collection-block-title {
+        display: none;
+    }
+}
+.page-home-v2 .collection-block-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin: 0 0 8px;
+}
+.page-home-v2 .collection-block-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0 0 8px;
+    line-height: 1.15;
+}
+.page-home-v2 .collection-block-text {
+    font-size: 0.98rem;
+    color: var(--color-text-secondary);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 560px;
+}
+
+/* ─── Featured + grid hybrid for mobile ─────────────────
+   The 2-up product grid feels cramped at narrow widths
+   for $3-5k items. v2 promotes the FIRST card in each
+   collection block to a full-width hero card on mobile,
+   followed by the rest as standard 2-up. Desktop layout
+   is unchanged. */
+@media (max-width: 600px) {
+    .page-home-v2 .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .page-home-v2 .products-grid--3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .page-home-v2 .products-grid .product-card:first-child {
+        grid-column: 1 / -1;
+    }
+    .page-home-v2 .products-grid .product-card:first-child .product-card-image {
+        aspect-ratio: 4/3;
+    }
+    .page-home-v2 .products-grid .product-card:first-child .product-card-name {
+        font-size: 1.2rem;
+    }
+    .page-home-v2 .products-grid .product-card:first-child .product-card-desc {
+        font-size: 0.88rem;
+    }
+    .page-home-v2 .products-grid .product-card:first-child .product-card-price {
+        font-size: 1rem;
+    }
+}
+
+/* ─── Comparison: stacked cards instead of horizontal table ─
+   The desktop table works fine; on mobile it overflows the
+   viewport and gets clipped (last column literally hidden).
+   v2 hides the table on narrow widths and renders the same
+   data as a vertical stack, one card per product. */
+.page-home-v2 .comparison-cards {
+    display: none;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+.page-home-v2 .comparison-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius);
+    padding: 20px 18px;
+    box-shadow: 0 2px 6px rgba(15, 25, 45, 0.04);
+}
+.page-home-v2 .comparison-card.is-popular {
+    border-color: var(--color-accent);
+    box-shadow: 0 6px 18px rgba(29, 58, 95, 0.10);
+    position: relative;
+}
+.page-home-v2 .comparison-card.is-popular::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: -10px;
+    left: 18px;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+.page-home-v2 .comparison-card-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border-light);
+}
+.page-home-v2 .comparison-card-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0;
+}
+.page-home-v2 .comparison-card-price {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-accent);
+}
+.page-home-v2 .comparison-card-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.page-home-v2 .comparison-card-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+}
+.page-home-v2 .comparison-card-features li.is-absent {
+    opacity: 0.45;
+    text-decoration: line-through;
+}
+.page-home-v2 .comparison-card-features svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+.page-home-v2 .comparison-card-features .check-icon {
+    color: var(--color-accent);
+}
+.page-home-v2 .comparison-card-features .dash-icon {
+    color: var(--color-text-muted);
+}
+/* "Best for…" tagline at the top of each comparison card. */
+.page-home-v2 .comparison-card-bestfor {
+    font-size: 0.86rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    margin: 0 0 14px;
+}
+.page-home-v2 .comparison-card-bestfor strong {
+    font-weight: 600;
+    color: var(--color-accent);
+}
+/* "View product" CTA at the bottom of each comparison card. */
+.page-home-v2 .comparison-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 16px;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: var(--radius);
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.15s, gap 0.2s var(--ease-out);
+}
+.page-home-v2 .comparison-card-cta:hover {
+    background: #14283f;
+    gap: 12px;
+}
+.page-home-v2 .comparison-card.is-popular .comparison-card-cta {
+    background: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+    .page-home-v2 .comparison-wrapper {
+        display: none;        /* hide the table */
+    }
+    .page-home-v2 .comparison-cards {
+        display: flex;        /* show the stacked cards */
+    }
+}
+
+/* ─── Sticky mobile bottom CTA bar ──────────────────────
+   Two-button bar that appears at the bottom of the
+   viewport on mobile after first scroll. Gives "Find a
+   stockist" a permanent home without competing for hero
+   real estate, and gives a fast "Compare" shortcut for
+   the choosing-a-tap moment. Hidden on desktop where the
+   nav is always in reach. */
+.page-home-v2 .mobile-sticky-cta {
+    display: none;
+}
+@media (max-width: 768px) {
+    .page-home-v2 .mobile-sticky-cta {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        gap: 8px;
+        padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(8, 18, 38, 0.96);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-top: 1px solid rgba(240, 226, 197, 0.18);
+        transform: translateY(100%);
+        transition: transform 0.3s var(--ease-out);
+    }
+    .page-home-v2 .mobile-sticky-cta.is-shown {
+        transform: translateY(0);
+    }
+    .page-home-v2 .mobile-sticky-cta-btn {
+        flex: 1;
+        text-align: center;
+        padding: 12px 14px;
+        border-radius: 6px;
+        font-family: var(--font-sans);
+        font-size: 0.86rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        transition: background 0.15s, transform 0.1s;
+    }
+    .page-home-v2 .mobile-sticky-cta-btn--primary {
+        background: var(--color-accent-light);
+        color: var(--color-accent);
+        flex: 1.4;
+    }
+    .page-home-v2 .mobile-sticky-cta-btn--primary:hover,
+    .page-home-v2 .mobile-sticky-cta-btn--primary:active {
+        background: #fff;
+    }
+    .page-home-v2 .mobile-sticky-cta-btn--secondary {
+        background: transparent;
+        color: rgba(240, 226, 197, 0.92);
+        border: 1px solid rgba(240, 226, 197, 0.45);
+    }
+    .page-home-v2 .mobile-sticky-cta-btn--secondary:hover,
+    .page-home-v2 .mobile-sticky-cta-btn--secondary:active {
+        background: rgba(240, 226, 197, 0.10);
+    }
+    /* Pad the bottom of the page so the sticky bar doesn't
+       cover the footer when scrolled to the very bottom. */
+    .page-home-v2 .footer {
+        padding-bottom: 80px;
+    }
+}
+
+/* ─── Cookie banner: compact on mobile ─────────────────
+   The default banner takes ~30% of the first mobile
+   viewport. Compact variant keeps the same legal copy
+   but in a slim bottom strip with smaller text and a
+   tighter button. Cookie-banner.js adds .cookie-banner
+   class — we just override its mobile layout. */
+@media (max-width: 768px) {
+    .page-home-v2 .cookie-banner,
+    .page-home-v2 #cookieBanner {
+        padding: 10px 12px calc(10px + env(safe-area-inset-bottom)) !important;
+        font-size: 0.78rem !important;
+        line-height: 1.35 !important;
+        gap: 8px !important;
+    }
+    .page-home-v2 .cookie-banner .cookie-banner-text,
+    .page-home-v2 #cookieBanner .cookie-banner-text {
+        font-size: 0.78rem !important;
+        line-height: 1.35 !important;
+    }
+    .page-home-v2 .cookie-banner .btn,
+    .page-home-v2 #cookieBanner .btn,
+    .page-home-v2 .cookie-banner button,
+    .page-home-v2 #cookieBanner button {
+        padding: 7px 14px !important;
+        font-size: 0.78rem !important;
+    }
+}

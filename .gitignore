@@ -1,0 +1,25 @@
+# macOS junk
+.DS_Store
+
+# Editor / IDE settings
+.vscode/
+.idea/
+
+# Claude Code workspace settings (per-environment)
+.claude/
+
+# Local dev artefacts
+*.bak
+desktop-v*.png
+
+# One-off scraped reference images (not site assets)
+scraped-img/
+
+# Node (in case a build step gets added later)
+node_modules/
+npm-debug.log*
+
+# Python (brochure generator scratch space)
+__pycache__/
+*.pyc
+.venv/

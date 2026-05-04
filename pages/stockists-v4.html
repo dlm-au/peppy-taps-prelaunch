@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stockists v4 (polished) | Peppy Taps</title>
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="description" content="Standalone test page for the new Google-Sheet-backed stockist locator.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org; connect-src 'self' https://docs.google.com https://*.googleusercontent.com https://ipapi.co https://nominatim.openstreetmap.org; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <link rel="icon" type="image/png" href="../img/logo/peppy-logo-black.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css?v=110">
+    <link rel="stylesheet" href="../css/cart.css">
+
+    <!-- Leaflet + cluster plugin (local pinned vendor copies) -->
+    <link rel="stylesheet" href="../vendor/leaflet/leaflet.css">
+    <link rel="stylesheet" href="../vendor/leaflet.markercluster/MarkerCluster.css">
+    <link rel="stylesheet" href="../vendor/leaflet.markercluster/MarkerCluster.Default.css">
+
+    <!-- Locator-specific styles, shared with /pages/where-to-buy.html -->
+    <link rel="stylesheet" href="../css/stockists.css?v=1">
+
+    <style>
+        /* ─── Test page chrome (mirrors where-to-buy.html idiom) ── */
+        .st-page {
+            padding: 120px 0 80px;
+            background: var(--color-bg);
+        }
+        .st-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .st-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .st-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+        .st-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--color-text);
+            margin: 0 0 12px;
+        }
+        .st-sub {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        .st-test-banner {
+            background: #fff8e0;
+            border: 1px solid #f0d97a;
+            color: #6b4f00;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            margin: 0 auto 24px;
+            max-width: 720px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="page-stockists-test">
+
+    <!-- ─── Nav (mirrors where-to-buy.html) ───────────────── -->
+    <nav class="nav scrolled" id="nav" data-fixed-nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="nav-logo-img"></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-links">
+                    <a href="../index.html#collections" class="nav-link">Collections</a>
+                    <a href="configurator.html" class="nav-link">Configure</a>
+                    <a href="../index.html#support" class="nav-link">Support</a>
+                    <a href="where-to-buy.html" class="nav-link">Where to Buy</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="become-a-retailer.html" class="nav-link nav-link--trade">Become a Retailer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ─── Page ────────────────────────────────────────── -->
+    <main class="st-page">
+        <div class="st-container">
+
+            <div class="st-test-banner" style="background:#ffe9c2; border-color:#e5a93b;">
+                <strong>v4 — polished</strong> · v3 is at <a href="stockists-v3.html" style="color:inherit;text-decoration:underline;">stockists-v3.html</a>; v2 is at <a href="stockists-v2.html" style="color:inherit;text-decoration:underline;">stockists-v2.html</a>; the known-good build is at <a href="stockists-test.html" style="color:inherit;text-decoration:underline;">stockists-test.html</a>
+            </div>
+
+            <header class="st-header">
+                <p class="st-eyebrow">Where to Buy</p>
+                <h1 class="st-title">Find a Stockist Near You</h1>
+                <p class="st-sub">Peppy Taps are stocked at independent showrooms, plumbing merchants and major retailers across Australia.</p>
+            </header>
+
+            <div class="st-locator">
+                <aside class="st-side" id="stockistSide">
+                    <div class="st-search-box">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                        <input type="text" id="stockistSearch" placeholder="Postcode or suburb" aria-label="Search by postcode or suburb">
+                        <button class="btn btn--small" id="stockistSearchBtn">Search</button>
+                    </div>
+                    <button type="button" class="st-geo-btn" id="stockistGeoBtn" aria-label="Use my current location">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M22 12h-3M5 12H2M19.07 4.93l-2.12 2.12M7.05 16.95l-2.12 2.12M19.07 19.07l-2.12-2.12M7.05 7.05L4.93 4.93"/></svg>
+                        <span>Use my current location</span>
+                    </button>
+                </aside>
+                <div id="stockistMap" role="application" aria-label="Map of Peppy Taps stockists across Australia"></div>
+                <section class="st-list-panel" aria-label="Stockist results">
+                    <!-- v4: snapshot fallback banner (shown only when live Sheet is unreachable) -->
+                    <div class="st-snapshot-banner" id="stockistSnapshotBanner" role="status">
+                        <span id="stockistSnapshotBannerText">Showing cached stockist list — live data temporarily unavailable.</span>
+                    </div>
+                    <div class="st-filter" role="tablist" aria-label="Filter stockists">
+                        <button type="button" class="st-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+                        <button type="button" class="st-filter-btn" data-filter="showroom" role="tab" aria-selected="false">Showrooms only</button>
+                    </div>
+                    <div class="st-refine" id="stockistRefine">
+                        <div class="st-count-row">
+                            <output class="st-count" id="stockistCount" aria-live="polite" aria-atomic="true">Loading…</output>
+                            <button type="button" class="st-refine-pill" id="stockistRefineToggle" aria-expanded="false" aria-controls="stockistListFilterWrap">
+                                <span class="st-refine-label">Refine</span>
+                                <svg class="st-refine-chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                            </button>
+                        </div>
+                        <div class="st-list-filter" id="stockistListFilterWrap">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                            <input type="text" id="stockistListFilter" placeholder="Refine search…" aria-label="Refine the visible stockist list">
+                        </div>
+                    </div>
+                    <div class="st-results" id="stockistResults">
+                        <div class="stockist-empty"><p>Loading stockists…</p></div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ─── Footer (mirrors where-to-buy.html) ───────────── -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="footer-logo-img"></a>
+                    <p class="footer-tagline">Where great design meets everyday ease. Convenience, sustainability and aesthetics — all in one tap.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <a href="product.html">Signature 5 in 1</a>
+                    <a href="signature-4in1.html">Signature 4 in 1</a>
+                    <a href="signature-pullout.html">Signature Pull Out 4 in 1</a>
+                    <a href="flagship-4in1.html">Flagship 4 in 1</a>
+                    <a href="flagship-pullout.html">Flagship Pull Out 4 in 1</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="about.html">About Peppy Taps</a>
+                    <a href="where-to-buy.html">Where to Buy</a>
+                    <a href="become-a-retailer.html">Become a Retailer</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+<div class="footer-bottom">
+                <p>&copy; 2026 Peppy Taps. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ─── v4: debug overlay (?debug=1) ───────────────────── -->
+    <aside class="st-debug" id="stockistDebug" aria-label="Stockist locator diagnostics">
+        <div class="st-debug-head">
+            <span class="st-debug-title">Locator diagnostics</span>
+            <button type="button" class="st-debug-close" id="stockistDebugClose" aria-label="Close diagnostics overlay">✕</button>
+        </div>
+        <div id="stockistDebugBody"></div>
+    </aside>
+
+    <!-- ─── Libraries (local pinned vendor copies) ─────────── -->
+    <script src="../vendor/leaflet/leaflet.js"></script>
+    <script src="../vendor/leaflet.markercluster/leaflet.markercluster.js"></script>
+    <script src="../vendor/papaparse/papaparse.min.js"></script>
+
+    <!-- Site JS -->
+    <script src="../js/main.js?v=7"></script>
+    <script src="../js/stockists-v4.js?v=4"></script>
+</body>
+</html>

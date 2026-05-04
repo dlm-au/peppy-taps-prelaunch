@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing | Peppy Taps</title>
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="description" content="Internal hub of Peppy Taps testing & preview pages.">
+    <link rel="icon" type="image/png" href="../img/logo/peppy-logo-black.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css?v=110">
+    <link rel="stylesheet" href="../css/cart.css">
+
+    <style>
+        .tp-page {
+            padding: 120px 0 80px;
+            background: var(--color-bg);
+            min-height: 70vh;
+        }
+        .tp-container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .tp-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .tp-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+        .tp-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--color-text);
+            margin: 0 0 12px;
+        }
+        .tp-sub {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        .tp-banner {
+            background: #fff8e0;
+            border: 1px solid #f0d97a;
+            color: #6b4f00;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            margin: 0 auto 32px;
+            max-width: 720px;
+            text-align: center;
+        }
+
+        .tp-section {
+            margin-bottom: 48px;
+        }
+        .tp-section-title {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            margin: 0 0 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        .tp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .tp-item {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius);
+            background: #fff;
+            overflow: hidden;
+            transition: border-color 0.15s, transform 0.15s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .tp-item:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-1px);
+        }
+        .tp-item-status {
+            flex-shrink: 0;
+            width: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f1e8;
+            color: var(--color-accent);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-align: center;
+        }
+        .tp-item-status--frozen {
+            background: #e8eef5;
+            color: #1d3a5f;
+        }
+        .tp-item-status--iterating {
+            background: #1d3a5f;
+            color: #f0e2c5;
+        }
+        .tp-item-body {
+            flex: 1;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .tp-item-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin: 0;
+        }
+        .tp-item-url {
+            font-family: monospace;
+            font-size: 0.72rem;
+            color: var(--color-text-muted);
+            margin: 0;
+        }
+        .tp-item-desc {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            margin: 4px 0 0;
+            line-height: 1.5;
+        }
+
+        .tp-empty {
+            padding: 24px;
+            background: #fff;
+            border: 1px dashed var(--color-border-light);
+            border-radius: var(--radius);
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body class="page-testing">
+
+    <!-- Nav (mirrors where-to-buy.html) -->
+    <nav class="nav scrolled" id="nav" data-fixed-nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="nav-logo-img"></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-links">
+                    <a href="../index.html#collections" class="nav-link">Collections</a>
+                    <a href="configurator.html" class="nav-link">Configure</a>
+                    <a href="../index.html#support" class="nav-link">Support</a>
+                    <a href="where-to-buy.html" class="nav-link">Where to Buy</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="become-a-retailer.html" class="nav-link nav-link--trade">Become a Retailer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="tp-page">
+        <div class="tp-container">
+
+            <div class="tp-banner">
+                <strong>Internal page</strong> — these are work-in-progress and preview builds. Not linked from public navigation.
+            </div>
+
+            <header class="tp-header">
+                <p class="tp-eyebrow">Internal</p>
+                <h1 class="tp-title">Testing &amp; Preview Pages</h1>
+                <p class="tp-sub">A central index of every preview build, A/B test, and work-in-progress page on the site.</p>
+            </header>
+
+            <!-- ─── Stockist locator ─────────────────────── -->
+            <section class="tp-section">
+                <h2 class="tp-section-title">Stockist Locator</h2>
+                <div class="tp-list">
+
+                    <a href="stockists-test.html" class="tp-item">
+                        <div class="tp-item-status tp-item-status--frozen">v1<br>Frozen</div>
+                        <div class="tp-item-body">
+                            <h3 class="tp-item-name">Stockists v1 (frozen)</h3>
+                            <p class="tp-item-url">/pages/stockists-test.html</p>
+                            <p class="tp-item-desc">First working build of the DIY stockist locator. Google Sheet → Leaflet, navy markers, polished popup. Kept as a fallback while v2 is iterated on.</p>
+                        </div>
+                    </a>
+
+                    <a href="stockists-v2.html" class="tp-item">
+                        <div class="tp-item-status">v2<br>Previous</div>
+                        <div class="tp-item-body">
+                            <h3 class="tp-item-name">Stockists v2</h3>
+                            <p class="tp-item-url">/pages/stockists-v2.html</p>
+                            <p class="tp-item-desc">Previous build. Adds: "Use my location" geolocation, sidebar refine pill, state-grouped default list, all-stockists distance ranking, hover preview tooltips, mobile bottom-sheet, normalised AU phone formatting.</p>
+                        </div>
+                    </a>
+
+                    <a href="stockists-v3.html" class="tp-item">
+                        <div class="tp-item-status">v3<br>Previous</div>
+                        <div class="tp-item-body">
+                            <h3 class="tp-item-name">Stockists v3 (local-first list)</h3>
+                            <p class="tp-item-url">/pages/stockists-v3.html</p>
+                            <p class="tp-item-desc">Hardening fork of v2. Vendored Leaflet/Papa locally, added CSP meta tag, strict row validation with diagnostics, Australia coordinate bounds, Nominatim throttling + cache, IP/state locality auto-detect on first load. Replaced mobile bottom-sheet with stacked layout.</p>
+                        </div>
+                    </a>
+
+                    <a href="stockists-v4.html" class="tp-item">
+                        <div class="tp-item-status tp-item-status--iterating">v4<br>Live</div>
+                        <div class="tp-item-body">
+                            <h3 class="tp-item-name">Stockists v4 (live)</h3>
+                            <p class="tp-item-url">/pages/stockists-v4.html · production at /pages/where-to-buy.html</p>
+                            <p class="tp-item-desc">Now powering the public Where to Buy page. UX/reliability polish on top of v3: URL state persistence (?q / ?state), CSV snapshot fallback when the live Sheet is down, owner debug overlay (?debug=1), Apple Maps deep links on iOS, focusable result cards, live-region count. CSS is shared with /pages/where-to-buy.html via /css/stockists.css.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- ─── Homepage ──────────────────────────────── -->
+            <section class="tp-section">
+                <h2 class="tp-section-title">Homepage</h2>
+                <div class="tp-list">
+                    <a href="home-v2.html" class="tp-item">
+                        <div class="tp-item-status tp-item-status--iterating">v2<br>Live</div>
+                        <div class="tp-item-body">
+                            <h3 class="tp-item-name">Homepage v2 (live)</h3>
+                            <p class="tp-item-url">/pages/home-v2.html · production at /index.html</p>
+                            <p class="tp-item-desc">Now powering the public homepage at /. Mobile-first buying-funnel restructure: section reorder (Products, Comparison, and Stockist moved up), audience cards merged into the products section as collection headers, filter cartridge removed from collections grid, comparison table replaced with stacked cards on mobile, sticky bottom CTA bar (Find a Stockist + Compare), hero with functional sub-headline + darker overlay + smaller mobile size, featured + 2-up product hybrid on mobile, lifestyle banners per collection on desktop.</p>
+                        </div>
+                    </a>
+
+                    <a href="home-v1.html" class="tp-item">
+                        <div class="tp-item-status">v1<br>Previous</div>
+                        <div class="tp-item-body">
+                            <h3 class="tp-item-name">Homepage v1 (previous)</h3>
+                            <p class="tp-item-url">/pages/home-v1.html</p>
+                            <p class="tp-item-desc">Snapshot of the previous /index.html before the v2 swap (May 2026). Section order was Hero → Trust → Audience cards → Why Peppy → Products → Comparison → Features → Inspiration → Testimonials → Finishes → Support → Consumables → FAQ → Stockist → About → Trade → Newsletter. Kept as a reference / rollback point.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="footer-logo-img"></a>
+                    <p class="footer-tagline">Where great design meets everyday ease. Convenience, sustainability and aesthetics — all in one tap.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <a href="product.html">Signature 5 in 1</a>
+                    <a href="signature-4in1.html">Signature 4 in 1</a>
+                    <a href="signature-pullout.html">Signature Pull Out 4 in 1</a>
+                    <a href="flagship-4in1.html">Flagship 4 in 1</a>
+                    <a href="flagship-pullout.html">Flagship Pull Out 4 in 1</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="about.html">About Peppy Taps</a>
+                    <a href="where-to-buy.html">Where to Buy</a>
+                    <a href="become-a-retailer.html">Become a Retailer</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Peppy Taps. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js?v=7"></script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections | Peppy Taps</title>
+    <link rel="canonical" href="https://www.peppytaps.com.au/pages/collections">
+    <meta name="description" content="Browse the full Peppy Taps collection — Signature and Flagship ranges of premium filtered boiling, chilled and sparkling water taps. Five finishes, multiple configurations.">
+    <link rel="icon" type="image/png" href="../img/logo/peppy-logo-black.svg">
+    <meta property="og:title" content="Collections | Peppy Taps">
+    <meta property="og:description" content="Browse the full Peppy Taps collection — Signature and Flagship ranges of premium filtered boiling, chilled and sparkling water taps.">
+    <meta property="og:image" content="../img/lifestyle/hero1.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.peppytaps.com.au/pages/collections">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css?v=110">
+    <link rel="stylesheet" href="../css/cart.css">
+    <style>
+        /* ─── Collections page ─────────────────────────────────────── */
+        .col-page {
+            padding: 120px 0 80px;
+            background: var(--color-bg);
+        }
+        .col-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .col-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .col-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+        .col-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--color-text);
+            margin: 0 0 22px;
+            letter-spacing: -0.015em;
+        }
+        .col-intro {
+            font-size: 1.05rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Collection group — used per range (Signature / Flagship / Accessories) */
+        .col-group {
+            margin-bottom: 96px;
+        }
+        .col-group:last-of-type { margin-bottom: 64px; }
+
+        .col-group-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .col-group-head-text {
+            max-width: 640px;
+        }
+        .col-group-eyebrow {
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin: 0 0 8px;
+        }
+        .col-group-head h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+            font-weight: 500;
+            color: var(--color-text);
+            margin: 0 0 10px;
+            letter-spacing: -0.01em;
+        }
+        .col-group-head p {
+            color: var(--color-text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        .col-group-count {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            white-space: nowrap;
+            padding-bottom: 2px;
+        }
+
+        /* Product grid — extends the existing .product-card pattern */
+        .col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .col-grid--2 { grid-template-columns: repeat(2, 1fr); }
+        .col-grid--1 { grid-template-columns: minmax(0, 360px); justify-content: center; }
+
+        /* Card extension: add water-function chips + finish swatches under
+           the existing product-card-info block. We re-use .product-card. */
+        .col-card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+        .col-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            font-size: 0.72rem;
+            color: var(--color-text-secondary);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            letter-spacing: 0.01em;
+        }
+        .col-chip--accent {
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+            background: transparent;
+        }
+
+        .col-finishes {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            font-size: 0.78rem;
+            color: var(--color-text-secondary);
+        }
+        .col-finish-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+        .col-finish-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .col-finish-dot--chrome { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); }
+        .col-finish-dot--matte-black { background: #1a1a1a; }
+        .col-finish-dot--gunmetal { background: #4a4f55; }
+        .col-finish-dot--nickel { background: linear-gradient(135deg, #c8c4ba, #a3a094); }
+        .col-finish-dot--brass { background: linear-gradient(135deg, #d4b07e, #a87c4a); }
+
+        /* ─── Bottom CTA band ──────────────────────────────────────── */
+        .col-cta-band {
+            background: var(--color-dark);
+            color: var(--color-bg);
+            border-radius: var(--radius);
+            padding: 56px 48px;
+            text-align: center;
+            margin-top: 32px;
+        }
+        .col-cta-band h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3vw, 2rem);
+            font-weight: 500;
+            color: var(--color-bg);
+            margin: 0 0 12px;
+            letter-spacing: -0.01em;
+        }
+        .col-cta-band p {
+            color: rgba(250, 250, 248, 0.78);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 auto 28px;
+            max-width: 580px;
+        }
+        .col-cta-band-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .col-cta-band .btn--primary {
+            background: var(--color-bg);
+            color: var(--color-dark);
+            border-color: var(--color-bg);
+        }
+        .col-cta-band .btn--primary:hover {
+            background: transparent;
+            color: var(--color-bg);
+        }
+        .col-cta-band .btn--secondary {
+            background: transparent;
+            color: var(--color-bg);
+            border-color: rgba(250, 250, 248, 0.5);
+        }
+        .col-cta-band .btn--secondary:hover {
+            background: rgba(250, 250, 248, 0.08);
+            border-color: var(--color-bg);
+        }
+
+        /* ─── Responsive ───────────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .col-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .col-page { padding: 100px 0 64px; }
+            .col-grid, .col-grid--2 { grid-template-columns: 1fr; gap: 20px; }
+            .col-grid--1 { grid-template-columns: 1fr; }
+            .col-group { margin-bottom: 64px; }
+            .col-group-head {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .col-cta-band { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav" data-fixed-nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="nav-logo-img"></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-links">
+                    <a href="collections.html" class="nav-link">Collections</a>
+                    <a href="configurator.html" class="nav-link">Configure</a>
+                    <a href="../index.html#support" class="nav-link">Support</a>
+                    <a href="../index.html#dealers" class="nav-link">Where to Buy</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="become-a-retailer.html" class="nav-link nav-link--trade">Become a Retailer</a>
+                    <button class="nav-cart" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="col-page">
+        <div class="col-container">
+
+            <!-- ─── Header ──────────────────────────────────────── -->
+            <div class="col-header">
+                <p class="col-eyebrow">The Peppy Taps range</p>
+                <h1 class="col-title">Every function, beautifully designed</h1>
+                <p class="col-intro">From the flagship 4-in-1 essentials to the Signature 5-in-1 with chilled
+                    sparkling water — every Peppy Tap is engineered for Australian kitchens and finished
+                    in five premium colours.</p>
+            </div>
+
+            <!-- ─── SIGNATURE COLLECTION ────────────────────────── -->
+            <section class="col-group">
+                <div class="col-group-head">
+                    <div class="col-group-head-text">
+                        <p class="col-group-eyebrow">Signature collection</p>
+                        <h2>Our most refined system</h2>
+                        <p>Our premium range — touch-control panel, integrated digital interface, and the
+                        only system in our line-up that delivers chilled sparkling water on demand.</p>
+                    </div>
+                    <span class="col-group-count">3 products · from $2,999</span>
+                </div>
+
+                <div class="col-grid">
+                    <article class="product-card">
+                        <a href="product.html" class="product-card-link">
+                            <div class="product-card-image">
+                                <img src="../img/products/sig5in1-chrome.png" alt="Signature 5 in 1 Chrome" class="product-card-img" loading="lazy">
+                                <div class="product-card-badge">5 in 1</div>
+                            </div>
+                            <div class="product-card-info">
+                                <h3 class="product-card-name">Signature 5 in 1</h3>
+                                <p class="product-card-desc">Boiling + Chilled + Sparkling + Hot &amp; Cold Mains</p>
+                                <p class="product-card-price">From $4,999</p>
+                                <div class="col-card-meta">
+                                    <span class="col-chip col-chip--accent">98°C boiling</span>
+                                    <span class="col-chip">Chilled</span>
+                                    <span class="col-chip">Sparkling</span>
+                                </div>
+                                <div class="col-finishes">
+                                    <span class="col-finish-dots">
+                                        <span class="col-finish-dot col-finish-dot--chrome"></span>
+                                        <span class="col-finish-dot col-finish-dot--matte-black"></span>
+                                        <span class="col-finish-dot col-finish-dot--gunmetal"></span>
+                                        <span class="col-finish-dot col-finish-dot--nickel"></span>
+                                        <span class="col-finish-dot col-finish-dot--brass"></span>
+                                    </span>
+                                    <span>5 finishes</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="product-card">
+                        <a href="signature-pullout.html" class="product-card-link">
+                            <div class="product-card-image">
+                                <img src="../img/products/sigpullout-gunmetal.png" alt="Signature Pull Out 4 in 1 Gun Metal Grey" class="product-card-img" loading="lazy">
+                            </div>
+                            <div class="product-card-info">
+                                <h3 class="product-card-name">Signature Pull Out 4 in 1</h3>
+                                <p class="product-card-desc">Boiling + Chilled + Hot &amp; Cold with retractable hose</p>
+                                <p class="product-card-price">From $3,499</p>
+                                <div class="col-card-meta">
+                                    <span class="col-chip col-chip--accent">98°C boiling</span>
+                                    <span class="col-chip">Chilled</span>
+                                    <span class="col-chip">Pull-out hose</span>
+                                </div>
+                                <div class="col-finishes">
+                                    <span class="col-finish-dots">
+                                        <span class="col-finish-dot col-finish-dot--chrome"></span>
+                                        <span class="col-finish-dot col-finish-dot--matte-black"></span>
+                                        <span class="col-finish-dot col-finish-dot--gunmetal"></span>
+                                        <span class="col-finish-dot col-finish-dot--nickel"></span>
+                                        <span class="col-finish-dot col-finish-dot--brass"></span>
+                                    </span>
+                                    <span>5 finishes</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="product-card">
+                        <a href="signature-4in1.html" class="product-card-link">
+                            <div class="product-card-image">
+                                <img src="../img/products/sig4in1-nickel.png" alt="Signature 4 in 1 Brushed Nickel" class="product-card-img" loading="lazy">
+                            </div>
+                            <div class="product-card-info">
+                                <h3 class="product-card-name">Signature 4 in 1</h3>
+                                <p class="product-card-desc">Boiling + Chilled or Ambient + Hot &amp; Cold Mains</p>
+                                <p class="product-card-price">From $2,999</p>
+                                <div class="col-card-meta">
+                                    <span class="col-chip col-chip--accent">98°C boiling</span>
+                                    <span class="col-chip">Chilled or Ambient</span>
+                                </div>
+                                <div class="col-finishes">
+                                    <span class="col-finish-dots">
+                                        <span class="col-finish-dot col-finish-dot--chrome"></span>
+                                        <span class="col-finish-dot col-finish-dot--matte-black"></span>
+                                        <span class="col-finish-dot col-finish-dot--gunmetal"></span>
+                                        <span class="col-finish-dot col-finish-dot--nickel"></span>
+                                        <span class="col-finish-dot col-finish-dot--brass"></span>
+                                    </span>
+                                    <span>5 finishes</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ─── FLAGSHIP COLLECTION ─────────────────────────── -->
+            <section class="col-group">
+                <div class="col-group-head">
+                    <div class="col-group-head-text">
+                        <p class="col-group-eyebrow">Flagship collection</p>
+                        <h2>Streamlined essentials</h2>
+                        <p>The same Peppy Taps engineering, in a cleaner form. No touch panel — just clean
+                        lever-control filtered boiling and chilled water. Built for kitchens where the
+                        tap should disappear into the design.</p>
+                    </div>
+                    <span class="col-group-count">2 products · from $2,499</span>
+                </div>
+
+                <div class="col-grid col-grid--2">
+                    <article class="product-card">
+                        <a href="flagship-pullout.html" class="product-card-link">
+                            <div class="product-card-image">
+                                <img src="../img/products/pullout-nickel-transparent.png" alt="Flagship Pull Out 4 in 1 Brushed Nickel" class="product-card-img" loading="lazy">
+                                <div class="product-card-badge">Pull-out</div>
+                            </div>
+                            <div class="product-card-info">
+                                <h3 class="product-card-name">Flagship Pull Out 4 in 1</h3>
+                                <p class="product-card-desc">Boiling + Ambient + Hot &amp; Cold Mains with retractable hose</p>
+                                <p class="product-card-price">From $2,999</p>
+                                <div class="col-card-meta">
+                                    <span class="col-chip col-chip--accent">98°C boiling</span>
+                                    <span class="col-chip">Ambient</span>
+                                    <span class="col-chip">Pull-out hose</span>
+                                </div>
+                                <div class="col-finishes">
+                                    <span class="col-finish-dots">
+                                        <span class="col-finish-dot col-finish-dot--chrome"></span>
+                                        <span class="col-finish-dot col-finish-dot--matte-black"></span>
+                                        <span class="col-finish-dot col-finish-dot--gunmetal"></span>
+                                        <span class="col-finish-dot col-finish-dot--nickel"></span>
+                                        <span class="col-finish-dot col-finish-dot--brass"></span>
+                                    </span>
+                                    <span>5 finishes</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="product-card">
+                        <a href="flagship-4in1.html" class="product-card-link">
+                            <div class="product-card-image">
+                                <img src="../img/products/flagship-matte-black.png" alt="Flagship 4 in 1 Matte Black" class="product-card-img" loading="lazy">
+                            </div>
+                            <div class="product-card-info">
+                                <h3 class="product-card-name">Flagship 4 in 1</h3>
+                                <p class="product-card-desc">Boiling + Ambient or Chilled + Hot &amp; Cold Mains</p>
+                                <p class="product-card-price">From $2,499</p>
+                                <div class="col-card-meta">
+                                    <span class="col-chip col-chip--accent">98°C boiling</span>
+                                    <span class="col-chip">Chilled or Ambient</span>
+                                </div>
+                                <div class="col-finishes">
+                                    <span class="col-finish-dots">
+                                        <span class="col-finish-dot col-finish-dot--chrome"></span>
+                                        <span class="col-finish-dot col-finish-dot--matte-black"></span>
+                                        <span class="col-finish-dot col-finish-dot--gunmetal"></span>
+                                        <span class="col-finish-dot col-finish-dot--nickel"></span>
+                                        <span class="col-finish-dot col-finish-dot--brass"></span>
+                                    </span>
+                                    <span>5 finishes</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ─── ACCESSORIES & PARTS ─────────────────────────── -->
+            <section class="col-group">
+                <div class="col-group-head">
+                    <div class="col-group-head-text">
+                        <p class="col-group-eyebrow">Accessories &amp; parts</p>
+                        <h2>Keep your tap performing</h2>
+                        <p>Replacement filter cartridges to maintain your water quality — recommended
+                        every 12 months for optimal performance.</p>
+                    </div>
+                    <span class="col-group-count">1 product · from $179</span>
+                </div>
+
+                <div class="col-grid col-grid--1">
+                    <article class="product-card">
+                        <a href="filter-cartridge.html" class="product-card-link">
+                            <div class="product-card-image">
+                                <img src="../img/products/filter-cartridge.png" alt="2CB5-S Filter Cartridge" class="product-card-img product-card-img--small" loading="lazy">
+                            </div>
+                            <div class="product-card-info">
+                                <h3 class="product-card-name">2CB5-S Filter Cartridge</h3>
+                                <p class="product-card-desc">Replacement filter for all Peppy Taps systems</p>
+                                <p class="product-card-price">From $179</p>
+                                <div class="col-card-meta">
+                                    <span class="col-chip">12-month lifespan</span>
+                                    <span class="col-chip">Fits all models</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ─── Bottom CTA ─────────────────────────────────── -->
+            <section class="col-cta-band">
+                <h2>Not sure which one?</h2>
+                <p>Compare every feature side-by-side, or use our 4-step configurator to build the
+                exact system that fits your kitchen.</p>
+                <div class="col-cta-band-actions">
+                    <a href="../index.html#comparison" class="btn btn--secondary">Compare features</a>
+                    <a href="configurator.html" class="btn btn--primary">Configure your system</a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="footer-logo-img"></a>
+                    <p class="footer-tagline">Where great design meets everyday ease. Convenience, sustainability and aesthetics — all in one tap.</p>
+                    <div class="footer-contact">
+                        <p><a href="tel:0391220716"><strong>03 9122 0716</strong></a></p>
+                        <p><a href="mailto:enquiries@peppytaps.com.au">enquiries@peppytaps.com.au</a></p>
+                        <p>Mon-Fri 9:00am - 5:00pm AEST</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/peppy_taps?igsh=MWZ6cnQ4NjhzbG8ycw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+                        <a href="https://www.facebook.com/share/1DsyMeRPXq/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <a href="product.html">Signature 5 in 1</a>
+                    <a href="signature-4in1.html">Signature 4 in 1</a>
+                    <a href="signature-pullout.html">Signature Pull Out 4 in 1</a>
+                    <a href="flagship-4in1.html">Flagship 4 in 1</a>
+                    <a href="flagship-pullout.html">Flagship Pull Out 4 in 1</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="installation-videos.html">Installation Videos</a>
+                    <a href="#">Performance Data Sheets</a>
+                    <a href="https://cdn.shopify.com/s/files/1/0601/8010/3213/files/Peppy_Taps_Brochure_d8ff4309-aee3-4751-a33b-5e633e140252.pdf?v=1774414558" target="_blank" rel="noopener">Product Brochure</a>
+                    <a href="faqs.html">FAQs</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="about.html">About Peppy Taps</a>
+                    <a href="where-to-buy.html">Where to Buy</a>
+                    <a href="become-a-retailer.html">Become a Retailer</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="warranty.html">Warranty</a>
+                </div>
+            </div>
+<div class="footer-bottom">
+                <p>&copy; 2026 Peppy Taps. All rights reserved. Registered Design No: 202410381</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/shopify-cart.js?v=2"></script>
+    <script src="../js/main.js?v=7"></script>
+    <!-- Cookie banner disabled for build — flip back on by un-commenting: <script src="../js/cookie-banner.js?v=1"></script> -->
+</body>
+</html>

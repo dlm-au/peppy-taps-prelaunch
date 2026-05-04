@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warranty Registration | Peppy Taps</title>
+    <link rel="canonical" href="https://www.peppytaps.com.au/pages/warranty-registration">
+    <meta name="description" content="Register your Peppy Tap to activate your 2-year residential warranty, get 12-month filter change reminders, and faster claims support.">
+    <link rel="icon" type="image/png" href="../img/logo/peppy-logo-black.svg">
+    <meta property="og:title" content="Warranty Registration | Peppy Taps">
+    <meta property="og:description" content="Activate your warranty and unlock filter change reminders in under two minutes.">
+    <meta property="og:image" content="../img/lifestyle/hero1.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.peppytaps.com.au/pages/warranty-registration">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css?v=110">
+    <link rel="stylesheet" href="../css/cart.css">
+    <style>
+        /* ─── Warranty registration page ──────────────────────────────
+           Reuses the contact-page form styling pattern but layered with
+           progressive sections (Your Details → Product → Installation
+           → Receipt) and a "why register" benefits strip up top. */
+        .reg-page {
+            padding: 120px 0 80px;
+            background: var(--color-bg);
+        }
+        .reg-container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .reg-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .reg-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        .reg-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--color-text);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+        .reg-subtitle {
+            font-size: 1.05rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ─── Why register strip ───────────────────────── */
+        .reg-benefits {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 0 0 48px;
+        }
+        .reg-benefit {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            text-align: center;
+        }
+        .reg-benefit-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--color-accent);
+            margin: 0 auto 10px;
+        }
+        .reg-benefit-text {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* ─── Form ───────────────────────── */
+        .reg-form-wrap {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 40px;
+        }
+        .reg-section {
+            padding: 28px 0;
+            border-top: 1px solid var(--color-border);
+        }
+        .reg-section:first-of-type {
+            padding-top: 0;
+            border-top: none;
+        }
+        .reg-section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+        .reg-section-num {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .reg-section-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--color-text);
+            margin: 0;
+        }
+        .reg-section-desc {
+            font-size: 0.88rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            margin: 0 0 20px;
+        }
+
+        .reg-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .reg-form .form-row--3 { grid-template-columns: 2fr 1fr 1fr; }
+        .reg-form .form-field {
+            margin-bottom: 16px;
+        }
+        .reg-form .form-field--full { grid-column: 1 / -1; }
+        .reg-form label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+        .reg-form label .req {
+            color: var(--color-accent);
+            margin-left: 2px;
+        }
+        .reg-form label .hint {
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.78rem;
+            margin-left: 6px;
+        }
+        .reg-form input[type="text"],
+        .reg-form input[type="email"],
+        .reg-form input[type="tel"],
+        .reg-form input[type="date"],
+        .reg-form select,
+        .reg-form textarea {
+            width: 100%;
+            padding: 11px 14px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            transition: border-color 0.2s, background 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .reg-form select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%231a1a1a' stroke-width='1.5' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+        }
+        .reg-form input:focus,
+        .reg-form select:focus,
+        .reg-form textarea:focus {
+            outline: none;
+            border-color: var(--color-text);
+            background: var(--color-surface);
+        }
+        .reg-form textarea {
+            min-height: 90px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        /* SKU display — read-only, auto-filled */
+        .reg-sku-display {
+            background: var(--color-bg);
+            border: 1px dashed var(--color-border);
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-family: 'Courier New', monospace;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+        }
+        .reg-sku-display strong {
+            color: var(--color-text);
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        /* ─── File upload ─── */
+        .reg-file-wrap {
+            border: 2px dashed var(--color-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            background: var(--color-bg);
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+        }
+        .reg-file-wrap:hover,
+        .reg-file-wrap.is-dragover {
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+        }
+        .reg-file-wrap input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            width: 100%;
+            cursor: pointer;
+        }
+        .reg-file-icon {
+            width: 28px;
+            height: 28px;
+            color: var(--color-text-muted);
+            margin: 0 auto 8px;
+        }
+        .reg-file-prompt {
+            font-size: 0.9rem;
+            color: var(--color-text);
+            margin: 0;
+        }
+        .reg-file-hint {
+            font-size: 0.78rem;
+            color: var(--color-text-muted);
+            margin: 4px 0 0;
+        }
+        .reg-file-name {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            margin: 8px 0 0;
+            display: none;
+        }
+        .reg-file-wrap.has-file .reg-file-prompt,
+        .reg-file-wrap.has-file .reg-file-hint { display: none; }
+        .reg-file-wrap.has-file .reg-file-name { display: block; }
+
+        /* ─── Footer / submit ─── */
+        .reg-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 8px 0 16px;
+            font-size: 0.88rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            cursor: pointer;
+        }
+        .reg-checkbox input { margin-top: 3px; flex-shrink: 0; }
+        .reg-checkbox a { color: var(--color-accent); }
+        .reg-checkbox a:hover { text-decoration: underline; }
+        .reg-form-status {
+            margin-top: 16px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            min-height: 22px;
+        }
+        .reg-form-status[data-tone="success"] { color: #2d7a5a; }
+        .reg-form-status[data-tone="error"]   { color: #c23b3b; }
+        .reg-form-status[data-tone="info"]    { color: var(--color-text-secondary); }
+        .reg-submit {
+            width: 100%;
+            padding: 16px 24px !important;
+            font-size: 0.95rem !important;
+        }
+
+        /* ─── Help footer ─── */
+        .reg-help {
+            margin-top: 32px;
+            padding: 24px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .reg-help h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin: 0 0 8px;
+        }
+        .reg-help p {
+            font-size: 0.88rem;
+            color: var(--color-text-secondary);
+            margin: 0 0 14px;
+            line-height: 1.5;
+        }
+        .reg-help-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .reg-help-actions .btn { padding: 9px 18px; font-size: 0.8rem; }
+
+        /* Honeypot */
+        .form-hp {
+            position: absolute !important;
+            left: -10000px !important;
+            top: auto !important;
+            width: 1px !important;
+            height: 1px !important;
+            overflow: hidden !important;
+        }
+
+        @media (max-width: 768px) {
+            .reg-benefits { grid-template-columns: repeat(2, 1fr); }
+            .reg-form-wrap { padding: 28px 22px; }
+            .reg-form .form-row,
+            .reg-form .form-row--3 { grid-template-columns: 1fr; gap: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav" data-fixed-nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="nav-logo-img"></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-links">
+                    <a href="../index.html#collections" class="nav-link">Collections</a>
+                    <a href="configurator.html" class="nav-link">Configure</a>
+                    <a href="../index.html#support" class="nav-link">Support</a>
+                    <a href="../index.html#dealers" class="nav-link">Where to Buy</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="become-a-retailer.html" class="nav-link nav-link--trade">Become a Retailer</a>
+                    <button class="nav-cart" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="reg-page">
+        <div class="reg-container">
+
+            <!-- ─── Header ─── -->
+            <div class="reg-header">
+                <p class="reg-eyebrow">Warranty Registration</p>
+                <h1 class="reg-title">Register your Peppy Tap</h1>
+                <p class="reg-subtitle">Activate your 2-year residential warranty, set up filter change reminders, and
+                make any future claims faster. Takes about two minutes.</p>
+            </div>
+
+            <!-- ─── Why register ─── -->
+            <div class="reg-benefits">
+                <div class="reg-benefit">
+                    <svg class="reg-benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 4l10 6v8c0 6-4 10-10 10s-10-4-10-10v-8z"/>
+                        <path d="M12 16l3 3 6-6"/>
+                    </svg>
+                    <p class="reg-benefit-text">2-year warranty activated</p>
+                </div>
+                <div class="reg-benefit">
+                    <svg class="reg-benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="16" cy="16" r="12"/>
+                        <path d="M16 8v8l5 3"/>
+                    </svg>
+                    <p class="reg-benefit-text">12-month filter reminders</p>
+                </div>
+                <div class="reg-benefit">
+                    <svg class="reg-benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 8h24v18H4z"/>
+                        <path d="M4 12l12 8 12-8"/>
+                    </svg>
+                    <p class="reg-benefit-text">Faster claims if needed</p>
+                </div>
+                <div class="reg-benefit">
+                    <svg class="reg-benefit-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 4l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z"/>
+                    </svg>
+                    <p class="reg-benefit-text">Optional: news &amp; offers</p>
+                </div>
+            </div>
+
+            <!-- ─── Form ─── -->
+            <div class="reg-form-wrap">
+                <!-- Replace data-formspree-url with your real Formspree endpoint
+                     when ready. Until then the form falls back to a friendly demo
+                     message. -->
+                <form class="reg-form" id="warrantyForm"
+                      data-formspree-url="REPLACE_WITH_FORMSPREE_URL"
+                      enctype="multipart/form-data" novalidate>
+
+                    <!-- ── Section 1: Your Details ── -->
+                    <div class="reg-section">
+                        <div class="reg-section-head">
+                            <span class="reg-section-num">Step 1</span>
+                            <h2 class="reg-section-title">Your details</h2>
+                        </div>
+                        <p class="reg-section-desc">As they appear on your sales receipt.</p>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="reg-name">Full name <span class="req">*</span></label>
+                                <input type="text" id="reg-name" name="name" required autocomplete="name">
+                            </div>
+                            <div class="form-field">
+                                <label for="reg-email">Email <span class="req">*</span></label>
+                                <input type="email" id="reg-email" name="email" required autocomplete="email">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="reg-phone">Phone</label>
+                                <input type="tel" id="reg-phone" name="phone" autocomplete="tel">
+                            </div>
+                            <div class="form-field">
+                                <label for="reg-postcode">Postcode <span class="req">*</span></label>
+                                <input type="text" id="reg-postcode" name="postcode" required
+                                       autocomplete="postal-code" inputmode="numeric"
+                                       pattern="[0-9]{4}" maxlength="4">
+                            </div>
+                        </div>
+
+                        <div class="form-field form-field--full">
+                            <label for="reg-address">Installation address <span class="hint">— street, suburb</span></label>
+                            <input type="text" id="reg-address" name="address" autocomplete="street-address"
+                                   placeholder="e.g. 60 Lakewood Boulevard, Carrum Downs">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="reg-state">State</label>
+                                <select id="reg-state" name="state">
+                                    <option value="">Select…</option>
+                                    <option value="VIC">VIC</option>
+                                    <option value="NSW">NSW</option>
+                                    <option value="QLD">QLD</option>
+                                    <option value="WA">WA</option>
+                                    <option value="SA">SA</option>
+                                    <option value="TAS">TAS</option>
+                                    <option value="ACT">ACT</option>
+                                    <option value="NT">NT</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="reg-abn">ACN / ABN <span class="hint">— if applicable</span></label>
+                                <input type="text" id="reg-abn" name="abn" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Section 2: Your Product ── -->
+                    <div class="reg-section">
+                        <div class="reg-section-head">
+                            <span class="reg-section-num">Step 2</span>
+                            <h2 class="reg-section-title">Your product</h2>
+                        </div>
+                        <p class="reg-section-desc">Tell us which Peppy Tap you've installed. We'll auto-fill the SKU.</p>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="reg-product">Product <span class="req">*</span></label>
+                                <select id="reg-product" name="product" required>
+                                    <option value="">Select your product…</option>
+                                    <option value="Signature 5 in 1"            data-prefix="5IN1BCSELEC">Signature 5 in 1</option>
+                                    <option value="Signature 4 in 1"            data-prefix="4IN1BAELEC">Signature 4 in 1 — Boiling + Ambient</option>
+                                    <option value="Signature Pull Out 4 in 1"   data-prefix="4IN1BAELECPO">Signature Pull Out 4 in 1</option>
+                                    <option value="Flagship 4 in 1"             data-prefix="4IN1BA">Flagship 4 in 1 — Boiling + Ambient</option>
+                                    <option value="Flagship Pull Out 4 in 1"    data-prefix="4IN1BAPO">Flagship Pull Out 4 in 1</option>
+                                    <option value="2CB5-S Filter Cartridge"     data-prefix="EV961722">2CB5-S Filter Cartridge</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="reg-finish">Finish <span class="req">*</span></label>
+                                <select id="reg-finish" name="finish" required>
+                                    <option value="">Select finish…</option>
+                                    <option value="Chrome"             data-suffix="CH">Chrome</option>
+                                    <option value="Matte Black"        data-suffix="MB">Matte Black</option>
+                                    <option value="Gun Metal Grey"     data-suffix="GMG">Gun Metal Grey</option>
+                                    <option value="Brushed Nickel"     data-suffix="BN">Brushed Nickel</option>
+                                    <option value="Brushed Brass Gold" data-suffix="BBG">Brushed Brass Gold</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-field form-field--full">
+                            <label>SKU <span class="hint">— auto-filled from product &amp; finish</span></label>
+                            <div class="reg-sku-display" id="regSkuDisplay">
+                                <span style="color: var(--color-text-muted)">Choose a product and finish to see the SKU</span>
+                            </div>
+                            <input type="hidden" name="sku" id="regSkuInput">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="reg-serial">Serial number <span class="req">*</span></label>
+                                <input type="text" id="reg-serial" name="serial_number" required
+                                       placeholder="From the data plate on the unit">
+                            </div>
+                            <div class="form-field">
+                                <label for="reg-purchase-date">Purchase date <span class="req">*</span></label>
+                                <input type="date" id="reg-purchase-date" name="purchase_date" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="reg-retailer">Purchased from <span class="req">*</span></label>
+                                <select id="reg-retailer" name="retailer" required>
+                                    <option value="">Select retailer…</option>
+                                    <option value="Harvey Norman">Harvey Norman</option>
+                                    <option value="Reece">Reece</option>
+                                    <option value="Tradelink">Tradelink</option>
+                                    <option value="Direct from Peppy Taps">Direct from Peppy Taps</option>
+                                    <option value="Other">Other (specify in invoice number)</option>
+                                </select>
+                            </div>
+                            <div class="form-field">
+                                <label for="reg-invoice">Invoice number <span class="req">*</span></label>
+                                <input type="text" id="reg-invoice" name="invoice_number" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Section 3: Installation ── -->
+                    <div class="reg-section">
+                        <div class="reg-section-head">
+                            <span class="reg-section-num">Step 3</span>
+                            <h2 class="reg-section-title">Installation details</h2>
+                        </div>
+                        <p class="reg-section-desc">Required to keep your warranty valid — Peppy Taps must be installed
+                        by a licensed plumber. If installation is still pending, you can come back and update later.</p>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="reg-install-date">Installation date</label>
+                                <input type="date" id="reg-install-date" name="install_date">
+                            </div>
+                            <div class="form-field">
+                                <label for="reg-plumber-license">Plumber's licence number</label>
+                                <input type="text" id="reg-plumber-license" name="plumber_license">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="reg-plumber-name">Plumber / company name</label>
+                                <input type="text" id="reg-plumber-name" name="plumber_name">
+                            </div>
+                            <div class="form-field">
+                                <label for="reg-plumber-phone">Plumber phone</label>
+                                <input type="tel" id="reg-plumber-phone" name="plumber_phone">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── Section 4: Receipt upload ── -->
+                    <div class="reg-section">
+                        <div class="reg-section-head">
+                            <span class="reg-section-num">Step 4</span>
+                            <h2 class="reg-section-title">Proof of purchase</h2>
+                        </div>
+                        <p class="reg-section-desc">A photo or PDF of your receipt speeds up any future warranty
+                        claim. Optional but recommended.</p>
+
+                        <div class="reg-file-wrap" id="regFileWrap">
+                            <input type="file" id="reg-receipt" name="receipt"
+                                   accept="image/jpeg,image/png,image/heic,application/pdf">
+                            <svg class="reg-file-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 4h10l6 6v18H8V4z"/>
+                                <path d="M18 4v6h6"/>
+                                <path d="M16 14v8M12 18l4-4 4 4"/>
+                            </svg>
+                            <p class="reg-file-prompt">Click to upload, or drag &amp; drop</p>
+                            <p class="reg-file-hint">JPG, PNG, HEIC or PDF — max 12MB</p>
+                            <p class="reg-file-name" id="regFileName"></p>
+                        </div>
+                    </div>
+
+                    <!-- ── Section 5: Consents ── -->
+                    <div class="reg-section">
+                        <label class="reg-checkbox">
+                            <input type="checkbox" name="terms_acknowledged" value="yes" required>
+                            <span>I confirm that this Peppy Taps system was installed by a licensed plumber on a
+                            mains-water connection, and I've read the <a href="warranty.html">warranty terms</a>
+                            and <a href="privacy.html">privacy policy</a>. <span class="req">*</span></span>
+                        </label>
+
+                        <label class="reg-checkbox">
+                            <input type="checkbox" name="filter_reminders" value="yes" checked>
+                            <span>Send me a friendly email reminder when my filter is due for replacement
+                            (every 12 months).</span>
+                        </label>
+
+                        <label class="reg-checkbox">
+                            <input type="checkbox" name="marketing_opt_in" value="yes">
+                            <span>Send me design inspiration, product news and exclusive offers from Peppy Taps.</span>
+                        </label>
+
+                        <!-- Honeypot -->
+                        <div class="form-hp" aria-hidden="true">
+                            <label>Don't fill this out
+                                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+                            </label>
+                        </div>
+                        <input type="hidden" name="_subject" id="regSubject" value="New warranty registration — Peppy Taps">
+                        <input type="hidden" name="form_type" value="Warranty registration">
+
+                        <button type="submit" class="btn btn--primary reg-submit">Register my warranty</button>
+
+                        <p class="reg-form-status" id="regFormStatus" role="status" aria-live="polite"></p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ─── Help ─── -->
+            <div class="reg-help">
+                <h3>Need help finding your serial number?</h3>
+                <p>The serial number is on the data plate attached to the boiler or chiller unit under your sink.
+                If you can't find it, give us a call and we'll walk you through it.</p>
+                <div class="reg-help-actions">
+                    <a href="tel:0391220716" class="btn btn--outline">Call 03 9122 0716</a>
+                    <a href="contact.html" class="btn btn--outline">Send a message</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="footer-logo-img"></a>
+                    <p class="footer-tagline">Where great design meets everyday ease. Convenience, sustainability and aesthetics — all in one tap.</p>
+                    <div class="footer-contact">
+                        <p><a href="tel:0391220716"><strong>03 9122 0716</strong></a></p>
+                        <p><a href="mailto:enquiries@peppytaps.com.au">enquiries@peppytaps.com.au</a></p>
+                        <p>Mon-Fri 9:00am - 5:00pm AEST</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/peppy_taps?igsh=MWZ6cnQ4NjhzbG8ycw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+                        <a href="https://www.facebook.com/share/1DsyMeRPXq/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <a href="product.html">Signature 5 in 1</a>
+                    <a href="signature-4in1.html">Signature 4 in 1</a>
+                    <a href="signature-pullout.html">Signature Pull Out 4 in 1</a>
+                    <a href="flagship-4in1.html">Flagship 4 in 1</a>
+                    <a href="flagship-pullout.html">Flagship Pull Out 4 in 1</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="installation-videos.html">Installation Videos</a>
+                    <a href="#">Performance Data Sheets</a>
+                    <a href="https://cdn.shopify.com/s/files/1/0601/8010/3213/files/Peppy_Taps_Brochure_d8ff4309-aee3-4751-a33b-5e633e140252.pdf?v=1774414558" target="_blank" rel="noopener">Product Brochure</a>
+                    <a href="faqs.html">FAQs</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="about.html">About Peppy Taps</a>
+                    <a href="where-to-buy.html">Where to Buy</a>
+                    <a href="become-a-retailer.html">Become a Retailer</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="warranty.html">Warranty</a>
+                </div>
+            </div>
+<div class="footer-bottom">
+                <p>&copy; 2026 Peppy Taps Pty Ltd. ABN 92 657 337 945. Registered Design No: 202410381</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/shopify-cart.js?v=2"></script>
+    <script src="../js/main.js?v=7"></script>
+    <!-- Cookie banner disabled for build — flip back on by un-commenting: <script src="../js/cookie-banner.js?v=1"></script> -->
+    <!-- Warranty registration form behaviour: extracted to external file for CSP. -->
+    <script src="../js/warranty-registration.js?v=1"></script>
+</body>
+</html>

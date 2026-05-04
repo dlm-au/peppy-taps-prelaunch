@@ -1,0 +1,52 @@
+# Peppy Taps — robots.txt
+# https://www.peppytaps.com.au/robots.txt
+#
+# Allows all well-behaved crawlers to index the site, with a few
+# sensible exclusions. The sitemap directive at the bottom helps
+# search engines discover every public page.
+
+User-agent: *
+Allow: /
+# Source-control / dev folders — should never be served, but defence in depth
+Disallow: /.git
+Disallow: /.claude
+# Don't index the 404 page itself
+Disallow: /404.html
+# Internal asset folders — no SEO value, save crawl budget
+Disallow: /js/
+Disallow: /css/
+# Test / preview / backup pages — also carry meta noindex; robots-blocked
+# here as defence in depth so they don't burn crawl budget.
+Disallow: /pages/testing
+Disallow: /pages/home-v1
+Disallow: /pages/home-v2
+Disallow: /pages/stockists-test
+Disallow: /pages/stockists-v2
+Disallow: /pages/stockists-v3
+Disallow: /pages/stockists-v4
+
+# Block common AI scraper bots that train models on content.
+# Remove these blocks if you'd like your content used for AI training.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+# Sitemap
+Sitemap: https://www.peppytaps.com.au/sitemap.xml

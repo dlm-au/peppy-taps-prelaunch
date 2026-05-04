@@ -1,0 +1,8 @@
+{
+  "generated_at": "2026-05-04T00:00:00Z",
+  "generated_human": "4 May 2026",
+  "rows": 312,
+  "source": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTI8TIYHCgrS6yianNDGlC-NOUnJm3OLVtGdRc-f_t9ZgYPssidnKmqu0i6qXfBoPN4MCW7xy5R7979/pub?gid=2126768489&single=true&output=csv",
+  "source_tab": "Public",
+  "notes": "Fallback snapshot for the stockist locator. Used when the live Google Sheets CSV is unreachable. ALWAYS refresh from the Public tab URL above (gid=2126768489) — never from the Stockists tab, which contains the internal `notes` column. Refresh: `curl -sSL '<URL>' -o stockists-snapshot.csv` then bump generated_at and generated_human here."
+}

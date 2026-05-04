@@ -1,0 +1,3 @@
+name,address,city,state,postcode,country,phone,email,website,has_showroom,tags,lat,lon,notes
+Sample Tradelink Store,123 George St,Sydney,New South Wales,2000,Australia,02 9999 0000,sydney@tradelink.com.au,https://tradelink.com.au,TRUE,tradelink,,,Owner adds new rows here. lat/lon auto-fill via Apps Script.
+Sample Harvey Norman,1341 Dandenong Rd,Chadstone,Victoria,3148,Australia,03 9568 5600,,https://harveynorman.com.au,FALSE,harvey-norman,,,

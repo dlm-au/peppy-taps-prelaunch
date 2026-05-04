@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book and Pay for Your Installation | Peppy Taps</title>
+    <link rel="canonical" href="https://www.peppytaps.com.au/pages/installation">
+    <meta name="description" content="Purchased a Peppy Tap from one of our retail partners? Book and pay for professional installation online. Standard install $499, carried out Monday to Friday by qualified plumbers.">
+    <link rel="icon" type="image/png" href="../img/logo/peppy-logo-black.svg">
+    <meta property="og:title" content="Book Installation | Peppy Taps">
+    <meta property="og:description" content="Book and pay for your Peppy Taps installation online — $499 standard install by qualified plumbers.">
+    <meta property="og:image" content="../img/lifestyle/hero1.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.peppytaps.com.au/pages/installation">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css?v=110">
+    <link rel="stylesheet" href="../css/cart.css">
+    <style>
+        /* ─── Installation page layout ─────────────────────────────── */
+        .inst-page {
+            padding: 120px 0 80px;
+            background: var(--color-bg);
+        }
+        .inst-container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .inst-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .inst-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+        .inst-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--color-text);
+            margin: 0 0 18px;
+            letter-spacing: -0.01em;
+        }
+        .inst-intro {
+            font-size: 1.02rem;
+            color: var(--color-text-secondary);
+            line-height: 1.65;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .inst-intro strong {
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        /* ─── Form card ───────────────────────────────────────────── */
+        .inst-form {
+            display: grid;
+            gap: 28px;
+        }
+
+        .inst-section {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 32px;
+        }
+        .inst-section-head {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 6px;
+        }
+        .inst-section-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            font-size: 0.78rem;
+            font-weight: 600;
+            flex-shrink: 0;
+            transform: translateY(2px);
+        }
+        .inst-section h2 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--color-text);
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+        .inst-section-sub {
+            color: var(--color-text-secondary);
+            font-size: 0.92rem;
+            margin: 0 0 24px 42px;
+            line-height: 1.55;
+        }
+
+        /* ─── Form fields ─────────────────────────────────────────── */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .form-field {
+            margin-bottom: 16px;
+        }
+        .form-field--full { grid-column: 1 / -1; }
+        .form-field:last-child { margin-bottom: 0; }
+
+        .form-field label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+        .form-field label .req {
+            color: #c23b3b;
+            margin-left: 2px;
+        }
+        .form-field input[type="text"],
+        .form-field input[type="email"],
+        .form-field input[type="tel"],
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 12px 14px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            transition: border-color 0.18s, background 0.18s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-field select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%231a1a1a' stroke-width='1.5' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+        }
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--color-text);
+            background: var(--color-surface);
+        }
+        .form-field input.is-invalid,
+        .form-field select.is-invalid {
+            border-color: #c23b3b;
+            background: #fcefef;
+        }
+        .form-field-help {
+            font-size: 0.82rem;
+            color: var(--color-text-secondary);
+            margin-top: 6px;
+            line-height: 1.45;
+        }
+        .form-field-error {
+            font-size: 0.82rem;
+            color: #c23b3b;
+            margin-top: 6px;
+            line-height: 1.45;
+            display: none;
+        }
+        .form-field.has-error .form-field-error { display: block; }
+
+        /* ─── Checkboxes ──────────────────────────────────────────── */
+        .form-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 0 0 12px;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            line-height: 1.5;
+            cursor: pointer;
+            padding: 12px 14px;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            background: var(--color-bg);
+            transition: border-color 0.18s, background 0.18s;
+        }
+        .form-check:last-child { margin-bottom: 0; }
+        .form-check:hover { border-color: var(--color-text-secondary); }
+        .form-check input { margin-top: 4px; cursor: pointer; flex-shrink: 0; }
+        .form-check span { flex: 1; }
+        .form-check small {
+            display: block;
+            color: var(--color-text-secondary);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+        .form-check.is-required-unchecked {
+            border-color: #c23b3b;
+            background: #fcefef;
+        }
+
+        /* ─── File upload ─────────────────────────────────────────── */
+        .file-drop {
+            position: relative;
+            border: 1.5px dashed var(--color-border);
+            border-radius: 8px;
+            padding: 28px 24px;
+            text-align: center;
+            background: var(--color-bg);
+            cursor: pointer;
+            transition: border-color 0.18s, background 0.18s;
+            /* Belt-and-braces: contain anything browsers might paint inside */
+            overflow: hidden;
+        }
+        .file-drop:hover {
+            border-color: var(--color-accent);
+            background: var(--color-surface);
+        }
+        .file-drop.is-invalid {
+            border-color: #c23b3b;
+            background: #fcefef;
+        }
+        .file-drop.has-file {
+            border-style: solid;
+            border-color: #2d7a5a;
+            background: #f0f7f3;
+        }
+        /* Hide the native file input completely. Some browsers (Chrome on
+           macOS especially with `multiple`) still render thumbnail-style
+           chrome for visually-hidden inputs, so we go further than the
+           usual visually-hidden pattern: appearance:none + 0×0 + no painting. */
+        .file-drop input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            opacity: 0;
+            pointer-events: none;
+            -webkit-appearance: none;
+            appearance: none;
+            font-size: 0;
+            line-height: 0;
+            color: transparent;
+            background: transparent;
+        }
+        /* Suppress any UA-default ::-webkit-file-upload-button rendering */
+        .file-drop input[type="file"]::-webkit-file-upload-button,
+        .file-drop input[type="file"]::file-selector-button {
+            display: none;
+        }
+        .file-drop-label {
+            font-size: 0.95rem;
+            color: var(--color-text);
+            font-weight: 500;
+        }
+        .file-drop-hint {
+            font-size: 0.82rem;
+            color: var(--color-text-secondary);
+            margin-top: 4px;
+        }
+        .file-drop-list {
+            margin-top: 12px;
+            font-size: 0.88rem;
+            color: var(--color-text);
+        }
+        /* Hide the list entirely when no chips exist — prevents stray
+           empty inline-blocks from creating visible artifacts. */
+        .file-drop-list:empty { display: none; }
+        .file-drop-list span {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            margin: 2px;
+        }
+
+        /* ─── Schedule pills ──────────────────────────────────────── */
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .pill {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 18px;
+            font-size: 0.92rem;
+            color: var(--color-text);
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+        .pill:hover { border-color: var(--color-text-secondary); }
+        .pill input { position: absolute; opacity: 0; pointer-events: none; }
+        .pill input:checked + span,
+        .pill:has(input:checked) { color: var(--color-bg); }
+        .pill:has(input:checked) {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        /* ─── Inline warnings ─────────────────────────────────────── */
+        .inst-warning {
+            display: none;
+            padding: 14px 18px;
+            background: #fcf3e6;
+            border: 1px solid #e8c896;
+            border-left: 4px solid #c97a1f;
+            border-radius: 4px;
+            font-size: 0.92rem;
+            color: #6b3f0a;
+            margin-top: 12px;
+            line-height: 1.55;
+        }
+        .inst-warning.is-active { display: block; }
+        .inst-warning strong { color: #4a2a05; }
+
+        /* ─── Summary + submit ───────────────────────────────────── */
+        .inst-summary {
+            background: var(--color-dark);
+            color: var(--color-bg);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .inst-summary-text strong {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .inst-summary-text small {
+            font-size: 0.85rem;
+            color: rgba(250, 250, 248, 0.72);
+        }
+        .inst-summary-price {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .inst-submit-row {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 14px;
+        }
+        .inst-submit-row .btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 0.95rem;
+        }
+        .inst-submit-row .btn[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .inst-form-status {
+            font-size: 0.92rem;
+            min-height: 22px;
+            text-align: center;
+        }
+        .inst-form-status[data-tone="error"]   { color: #c23b3b; }
+        .inst-form-status[data-tone="info"]    { color: var(--color-text-secondary); }
+        .inst-form-status[data-tone="success"] { color: #2d7a5a; }
+
+        /* Honeypot */
+        .form-hp {
+            position: absolute !important;
+            left: -10000px !important;
+            top: auto !important;
+            width: 1px !important;
+            height: 1px !important;
+            overflow: hidden !important;
+        }
+
+        /* ─── Success / review states (replace form on submit) ─── */
+        .inst-result {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 56px 40px;
+            text-align: center;
+            display: none;
+        }
+        .inst-result.is-active { display: block; }
+        .inst-result-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--color-accent-light);
+            color: var(--color-accent);
+        }
+        .inst-result h2 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--color-text);
+            margin: 0 0 12px;
+            letter-spacing: -0.01em;
+        }
+        .inst-result p {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 0 0 24px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .inst-result-meta {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .inst-page { padding: 100px 0 64px; }
+            .inst-section { padding: 24px 20px; }
+            .inst-section-sub { margin-left: 0; }
+            .form-row { grid-template-columns: 1fr; }
+            .inst-summary { padding: 24px; }
+            .inst-result { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav" data-fixed-nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="nav-logo-img"></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-links">
+                    <a href="../index.html#collections" class="nav-link">Collections</a>
+                    <a href="configurator.html" class="nav-link">Configure</a>
+                    <a href="../index.html#support" class="nav-link">Support</a>
+                    <a href="../index.html#dealers" class="nav-link">Where to Buy</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="become-a-retailer.html" class="nav-link nav-link--trade">Become a Retailer</a>
+                    <button class="nav-cart" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="inst-page">
+        <div class="inst-container">
+            <div class="inst-header">
+                <p class="inst-eyebrow">Professional installation</p>
+                <h1 class="inst-title">Book and Pay for Your Installation</h1>
+                <p class="inst-intro">Purchased a Peppy Tap from one of our retail partners? Complete the form
+                below and pay for installation online. <strong>Installations are carried out Monday to Friday</strong>
+                by qualified, fully-insured plumbers.</p>
+            </div>
+
+            <!-- ─── Success / review states (hidden until submission) ─ -->
+            <div class="inst-result" id="instResultPaid">
+                <div class="inst-result-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h2>Installation confirmed</h2>
+                <p>Your booking and payment have been received. Your installer will contact you within
+                one business day to schedule the visit.</p>
+                <p class="inst-result-meta">A confirmation has been sent to your email. Reference your
+                Stripe receipt for payment details.</p>
+            </div>
+
+            <div class="inst-result" id="instResultReview">
+                <div class="inst-result-icon" style="background:#eef3f9; color:var(--color-accent);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <h2>Request received</h2>
+                <p>Looks like you're outside our standard installation areas — but we may still be able
+                to help. We'll review your request and contact you within one business day with options
+                or a referral to a trusted local installer.</p>
+                <p class="inst-result-meta">No payment has been taken at this stage.</p>
+            </div>
+
+            <!-- ─── The form ──────────────────────────────────────── -->
+            <form class="inst-form" id="installationForm" novalidate>
+
+                <!-- 1 ─── Customer Details ──────────────────────── -->
+                <section class="inst-section">
+                    <div class="inst-section-head">
+                        <span class="inst-section-num">1</span>
+                        <h2>Customer Details</h2>
+                    </div>
+                    <p class="inst-section-sub">Where the installation will take place.</p>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="if-name">Full Name <span class="req">*</span></label>
+                            <input type="text" id="if-name" name="full_name" required autocomplete="name">
+                            <p class="form-field-error">Please enter your name.</p>
+                        </div>
+                        <div class="form-field">
+                            <label for="if-phone">Phone <span class="req">*</span></label>
+                            <input type="tel" id="if-phone" name="phone" required autocomplete="tel">
+                            <p class="form-field-error">Please enter a contact phone number.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="if-email">Email <span class="req">*</span></label>
+                        <input type="email" id="if-email" name="email" required autocomplete="email">
+                        <p class="form-field-error">Please enter a valid email.</p>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="if-address">Installation Address <span class="req">*</span></label>
+                        <input type="text" id="if-address" name="address" required autocomplete="street-address" placeholder="Street, suburb, state">
+                        <p class="form-field-error">Please enter the installation address.</p>
+                    </div>
+
+                    <div class="form-field" style="max-width:200px;">
+                        <label for="if-postcode">Postcode <span class="req">*</span></label>
+                        <input type="text" id="if-postcode" name="postcode" required autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{4}" maxlength="4">
+                        <p class="form-field-help">If your postcode is outside our service area, we won't take payment
+                        — we'll review your request and follow up with options.</p>
+                        <p class="form-field-error">Please enter a 4-digit Australian postcode.</p>
+                    </div>
+                </section>
+
+                <!-- 2 ─── Proof of Purchase ─────────────────────── -->
+                <section class="inst-section">
+                    <div class="inst-section-head">
+                        <span class="inst-section-num">2</span>
+                        <h2>Proof of Purchase</h2>
+                    </div>
+                    <p class="inst-section-sub">So we can confirm the product and verify warranty eligibility.</p>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="if-retailer">Retailer <span class="req">*</span></label>
+                            <select id="if-retailer" name="retailer" required>
+                                <option value="">Select retailer…</option>
+                                <option value="Harvey Norman">Harvey Norman</option>
+                                <option value="Reece">Reece</option>
+                                <option value="Tradelink">Tradelink</option>
+                                <option value="Independent">Independent showroom</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <p class="form-field-error">Select where you purchased.</p>
+                        </div>
+                        <div class="form-field">
+                            <label for="if-store">Store / Branch</label>
+                            <input type="text" id="if-store" name="store" placeholder="e.g. Harvey Norman Bundall">
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="if-product">Product <span class="req">*</span></label>
+                        <select id="if-product" name="product" required>
+                            <option value="">Select product…</option>
+                            <option value="Signature 5 in 1">Signature 5 in 1</option>
+                            <option value="Signature 4 in 1">Signature 4 in 1</option>
+                            <option value="Signature Pull Out 4 in 1">Signature Pull Out 4 in 1</option>
+                            <option value="Flagship 4 in 1">Flagship 4 in 1</option>
+                            <option value="Flagship Pull Out 4 in 1">Flagship Pull Out 4 in 1</option>
+                        </select>
+                        <p class="form-field-error">Select the product purchased.</p>
+                    </div>
+
+                    <div class="form-field" style="margin-bottom:0;">
+                        <label>Receipt / Proof of Purchase <span class="req">*</span></label>
+                        <label class="file-drop" id="if-receipt-drop" for="if-receipt">
+                            <input type="file" id="if-receipt" name="receipt" accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf" required>
+                            <div class="file-drop-label" id="if-receipt-label">Click or drop your receipt here</div>
+                            <div class="file-drop-hint">JPG, PNG or PDF — up to 10&nbsp;MB</div>
+                            <div class="file-drop-list" id="if-receipt-list"></div>
+                        </label>
+                        <p class="form-field-error" id="if-receipt-error">A copy of your receipt is required.</p>
+                    </div>
+                </section>
+
+                <!-- 3 ─── Installation Check ────────────────────── -->
+                <section class="inst-section">
+                    <div class="inst-section-head">
+                        <span class="inst-section-num">3</span>
+                        <h2>Installation Check</h2>
+                    </div>
+                    <p class="inst-section-sub">Confirm the install location is ready for the plumber.</p>
+
+                    <label class="form-check">
+                        <input type="checkbox" name="check_power" value="yes" required>
+                        <span>10&nbsp;AMP power outlet within <strong>1&nbsp;m</strong> of the install location</span>
+                    </label>
+                    <label class="form-check">
+                        <input type="checkbox" name="check_water" value="yes" required>
+                        <span>Hot &amp; cold mains water connections within <strong>1&nbsp;m</strong> of the install location</span>
+                    </label>
+                    <label class="form-check">
+                        <input type="checkbox" name="check_space" value="yes" required>
+                        <span>Adequate space under the sink for the unit (refer to product spec sheet)</span>
+                    </label>
+                </section>
+
+                <!-- 4 ─── Water Requirement ─────────────────────── -->
+                <section class="inst-section">
+                    <div class="inst-section-head">
+                        <span class="inst-section-num">4</span>
+                        <h2>Water Requirement</h2>
+                    </div>
+                    <p class="inst-section-sub">Required — installations cannot proceed without this.</p>
+
+                    <label class="form-check" id="if-mains-water-check">
+                        <input type="checkbox" name="mains_water" value="yes" required>
+                        <span>Property is connected to <strong>mains water</strong> (not tank water)
+                            <small>We will not install on tank water — doing so voids warranty.</small>
+                        </span>
+                    </label>
+                </section>
+
+                <!-- 5 ─── Benchtop ──────────────────────────────── -->
+                <section class="inst-section">
+                    <div class="inst-section-head">
+                        <span class="inst-section-num">5</span>
+                        <h2>Benchtop</h2>
+                    </div>
+                    <p class="inst-section-sub">Tells the plumber whether they need to drill a tap hole.</p>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="if-tap-hole">Existing 35&nbsp;mm tap hole? <span class="req">*</span></label>
+                            <select id="if-tap-hole" name="tap_hole" required>
+                                <option value="">Select…</option>
+                                <option value="Yes">Yes — standard 35&nbsp;mm hole already cut</option>
+                                <option value="No">No — needs to be cut</option>
+                                <option value="Unsure">Not sure</option>
+                            </select>
+                            <p class="form-field-error">Please answer.</p>
+                        </div>
+                        <div class="form-field">
+                            <label for="if-benchtop">Benchtop material <span class="req">*</span></label>
+                            <select id="if-benchtop" name="benchtop_material" required>
+                                <option value="">Select material…</option>
+                                <option value="Laminate">Laminate</option>
+                                <option value="Timber">Timber</option>
+                                <option value="Stainless steel">Stainless steel</option>
+                                <option value="Stone">Stone (engineered or natural)</option>
+                                <option value="Concrete">Concrete</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <p class="form-field-error">Please select your benchtop material.</p>
+                        </div>
+                    </div>
+
+                    <div class="inst-warning" id="if-stone-warning">
+                        <strong>Heads up:</strong> we cannot drill into stone. If your benchtop is stone and there
+                        isn't an existing 35&nbsp;mm hole, you'll need to engage a stonemason separately before our
+                        installer can proceed. Continue your booking and we'll coordinate timing once the hole is cut.
+                    </div>
+                </section>
+
+                <!-- 6 ─── Clearance ─────────────────────────────── -->
+                <section class="inst-section">
+                    <div class="inst-section-head">
+                        <span class="inst-section-num">6</span>
+                        <h2>Clearance</h2>
+                    </div>
+                    <p class="inst-section-sub">Some kitchens have overhead cabinetry that limits handle movement.</p>
+
+                    <label class="form-check">
+                        <input type="checkbox" name="clearance_confirmed" value="yes" required>
+                        <span>I've confirmed there is sufficient clearance above the tap for the handle to operate
+                            freely — no overhead cabinetry, splash-back, or window sill obstructions.</span>
+                    </label>
+                </section>
+
+                <!-- 7 ─── Photos (optional) ─────────────────────── -->
+                <section class="inst-section">
+                    <div class="inst-section-head">
+                        <span class="inst-section-num">7</span>
+                        <h2>Photos <small style="font-size:0.8rem; color:var(--color-text-secondary); font-weight:400; letter-spacing:0; text-transform:none;">(optional but helpful)</small></h2>
+                    </div>
+                    <p class="inst-section-sub">Photos of the existing tap, under-sink area, and benchtop help the
+                    installer prepare and avoid surprises on the day.</p>
+
+                    <label class="file-drop" for="if-photos">
+                        <input type="file" id="if-photos" name="photos" accept="image/*" multiple>
+                        <div class="file-drop-label">Click or drop photos here</div>
+                        <div class="file-drop-hint">Up to 5 photos, JPG or PNG</div>
+                        <div class="file-drop-list" id="if-photos-list"></div>
+                    </label>
+                </section>
+
+                <!-- 8 ─── Scheduling ────────────────────────────── -->
+                <section class="inst-section">
+                    <div class="inst-section-head">
+                        <span class="inst-section-num">8</span>
+                        <h2>Scheduling</h2>
+                    </div>
+                    <p class="inst-section-sub">Your installer will contact you to confirm a time that works.</p>
+
+                    <div class="form-field">
+                        <label>Preferred days</label>
+                        <div class="pill-group">
+                            <label class="pill"><input type="radio" name="schedule_day" value="Weekdays" checked><span>Weekdays</span></label>
+                            <label class="pill"><input type="radio" name="schedule_day" value="Flexible"><span>I'm flexible</span></label>
+                        </div>
+                    </div>
+
+                    <div class="form-field" style="margin-bottom:0;">
+                        <label>Preferred time of day</label>
+                        <div class="pill-group">
+                            <label class="pill"><input type="radio" name="schedule_time" value="Morning"><span>Morning</span></label>
+                            <label class="pill"><input type="radio" name="schedule_time" value="Afternoon"><span>Afternoon</span></label>
+                            <label class="pill"><input type="radio" name="schedule_time" value="Flexible" checked><span>I'm flexible</span></label>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 9 ─── Final Acknowledgement ─────────────────── -->
+                <section class="inst-section">
+                    <div class="inst-section-head">
+                        <span class="inst-section-num">9</span>
+                        <h2>Acknowledgement</h2>
+                    </div>
+                    <p class="inst-section-sub">Required — please read carefully before paying.</p>
+
+                    <label class="form-check">
+                        <input type="checkbox" name="acknowledgement" value="yes" required>
+                        <span>I understand and accept that:
+                            <small>
+                                • The $499 fee covers a <strong>standard installation only</strong>.<br>
+                                • Any additional work required (e.g. plumbing modifications, hole cutting, electrical) is paid <strong>directly to the plumber</strong> on the day.<br>
+                                • Peppy Taps is not responsible for additional works outside the scope of standard installation.<br>
+                                • Installation is carried out by <strong>independent third-party plumbers</strong>.<br>
+                                • Peppy Taps is not responsible for the workmanship or outcomes of the installation.<br>
+                                • Any claims, disputes or warranty matters relating to the install must be handled directly with the plumber.
+                            </small>
+                        </span>
+                    </label>
+                </section>
+
+                <!-- ─── Summary + submit ─────────────────────── -->
+                <div class="inst-summary">
+                    <div class="inst-summary-text">
+                        <strong>Professional Installation</strong>
+                        <small>Standard install, GST inclusive — paid securely via Stripe</small>
+                    </div>
+                    <div class="inst-summary-price">$499</div>
+                </div>
+
+                <div class="inst-submit-row">
+                    <button type="submit" class="btn btn--primary" id="instSubmit">Continue to payment</button>
+                    <p class="inst-form-status" id="instFormStatus" role="status" aria-live="polite"></p>
+                </div>
+
+                <!-- Honeypot — bots fill this; humans don't see it -->
+                <div class="form-hp" aria-hidden="true">
+                    <label>Don't fill this out
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+                    </label>
+                </div>
+
+                <input type="hidden" name="_subject" id="instSubject" value="New installation request — Peppy Taps">
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="footer-logo-img"></a>
+                    <p class="footer-tagline">Where great design meets everyday ease. Convenience, sustainability and aesthetics — all in one tap.</p>
+                    <div class="footer-contact">
+                        <p><a href="tel:0391220716"><strong>03 9122 0716</strong></a></p>
+                        <p><a href="mailto:enquiries@peppytaps.com.au">enquiries@peppytaps.com.au</a></p>
+                        <p>Mon-Fri 9:00am - 5:00pm AEST</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/peppy_taps?igsh=MWZ6cnQ4NjhzbG8ycw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+                        <a href="https://www.facebook.com/share/1DsyMeRPXq/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <a href="product.html">Signature 5 in 1</a>
+                    <a href="signature-4in1.html">Signature 4 in 1</a>
+                    <a href="signature-pullout.html">Signature Pull Out 4 in 1</a>
+                    <a href="flagship-4in1.html">Flagship 4 in 1</a>
+                    <a href="flagship-pullout.html">Flagship Pull Out 4 in 1</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="installation-videos.html">Installation Videos</a>
+                    <a href="#">Performance Data Sheets</a>
+                    <a href="https://cdn.shopify.com/s/files/1/0601/8010/3213/files/Peppy_Taps_Brochure_d8ff4309-aee3-4751-a33b-5e633e140252.pdf?v=1774414558" target="_blank" rel="noopener">Product Brochure</a>
+                    <a href="faqs.html">FAQs</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="about.html">About Peppy Taps</a>
+                    <a href="where-to-buy.html">Where to Buy</a>
+                    <a href="become-a-retailer.html">Become a Retailer</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="warranty.html">Warranty</a>
+                </div>
+            </div>
+<div class="footer-bottom">
+                <p>&copy; 2026 Peppy Taps. All rights reserved. Registered Design No: 202410381</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/shopify-cart.js?v=2"></script>
+    <script src="../js/main.js?v=7"></script>
+    <!-- Cookie banner disabled for build — flip back on by un-commenting: <script src="../js/cookie-banner.js?v=1"></script> -->
+    <script src="../js/installation.js?v=4"></script>
+</body>
+</html>

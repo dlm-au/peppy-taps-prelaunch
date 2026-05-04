@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Your System | Peppy Taps</title>
+    <link rel="canonical" href="https://www.peppytaps.com.au/pages/configurator">
+    <meta name="description" content="Build your perfect Peppy Taps system. Choose your collection, water functions, finish and tap style in four simple steps.">
+    <link rel="icon" type="image/png" href="../img/logo/peppy-logo-black.svg">
+    <meta property="og:title" content="Configure Your System | Peppy Taps">
+    <meta property="og:description" content="Build your perfect Peppy Taps system. Choose your collection, water functions, finish and tap style in four simple steps.">
+    <meta property="og:image" content="../img/lifestyle/hero1.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.peppytaps.com.au/pages/configurator">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Configure Your System | Peppy Taps">
+    <meta name="twitter:description" content="Build your perfect Peppy Taps system. Choose your collection, water functions, finish and tap style in four simple steps.">
+    <meta name="twitter:image" content="../img/lifestyle/hero1.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css?v=110">
+    <link rel="stylesheet" href="../css/configurator.css?v=2">
+    <link rel="stylesheet" href="../css/cart.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav" data-fixed-nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="nav-logo-img"></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-links">
+                    <a href="../index.html#collections" class="nav-link">Collections</a>
+                    <a href="configurator.html" class="nav-link">Configure</a>
+                    <a href="../index.html#support" class="nav-link">Support</a>
+                    <a href="../index.html#dealers" class="nav-link">Where to Buy</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="become-a-retailer.html" class="nav-link nav-link--trade">Become a Retailer</a>
+                    <button class="nav-cart" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Configurator -->
+    <section class="configurator">
+        <div class="container">
+            <div class="config-header">
+                <p class="section-eyebrow">Product Configurator</p>
+                <h1 class="section-title">Build Your<br>Perfect Tap</h1>
+                <p class="section-subtitle">Four simple steps to configure your ideal Peppy Taps system. Every selection updates your build summary and price in real time.</p>
+            </div>
+
+            <!-- Progress -->
+            <div class="config-progress">
+                <div class="config-progress-bar">
+                    <div class="config-progress-fill" id="progressFill"></div>
+                </div>
+                <div class="config-steps-nav">
+                    <button class="config-step-dot active" data-step="1"><span>1</span> Water Functions</button>
+                    <button class="config-step-dot" data-step="2"><span>2</span> Collection</button>
+                    <button class="config-step-dot" data-step="3"><span>3</span> Tap Style</button>
+                    <button class="config-step-dot" data-step="4"><span>4</span> Finish</button>
+                </div>
+            </div>
+
+            <div class="config-layout">
+                <!-- Steps -->
+                <div class="config-steps">
+
+                    <!-- Step 1: Water Functions -->
+                    <div class="config-step active" id="step-1">
+                        <h2 class="config-step-title">What water do you need?</h2>
+                        <p class="config-step-desc">All options include standard hot &amp; cold mains water. Choose your filtered water functions.</p>
+                        <div class="config-options config-options--water">
+                            <label class="config-card" data-value="5in1">
+                                <input type="radio" name="water" value="5in1">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-card-icon">
+                                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                                            <path d="M24 6c-6 9-12 15-12 24a12 12 0 0024 0c0-9-6-15-12-24z"/>
+                                            <circle cx="20" cy="30" r="1.5"/><circle cx="28" cy="28" r="1.5"/><circle cx="24" cy="34" r="1.5"/>
+                                            <path d="M18 26h4"/>
+                                        </svg>
+                                    </div>
+                                    <h3>5 in 1</h3>
+                                    <p>Filtered boiling (98°C) + filtered chilled + chilled soda + hot &amp; cold mains. The complete system.</p>
+                                    <span class="config-card-price">From $4,999</span>
+                                </div>
+                            </label>
+                            <label class="config-card" data-value="4in1-chilled">
+                                <input type="radio" name="water" value="4in1-chilled">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-card-icon">
+                                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                                            <path d="M24 6c-6 9-12 15-12 24a12 12 0 0024 0c0-9-6-15-12-24z"/>
+                                            <path d="M18 28h12M20 32h8"/>
+                                        </svg>
+                                    </div>
+                                    <h3>4 in 1 — Boiling &amp; Chilled</h3>
+                                    <p>Filtered boiling (98°C) + filtered chilled (4–14°C) + hot &amp; cold mains.</p>
+                                    <span class="config-card-price">From $3,499</span>
+                                    <span class="config-card-tag">Pull Out Option</span>
+                                </div>
+                            </label>
+                            <label class="config-card" data-value="4in1-ambient">
+                                <input type="radio" name="water" value="4in1-ambient">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-card-icon">
+                                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                                            <path d="M24 6c-6 9-12 15-12 24a12 12 0 0024 0c0-9-6-15-12-24z"/>
+                                            <path d="M20 30c0-2 2-4 4-6"/>
+                                        </svg>
+                                    </div>
+                                    <h3>4 in 1 — Boiling &amp; Ambient</h3>
+                                    <p>Filtered boiling (98°C) + filtered ambient (room temp) + hot &amp; cold mains.</p>
+                                    <span class="config-card-price">From $2,499</span>
+                                    <span class="config-card-tag">Pull Out Option</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Collection -->
+                    <div class="config-step" id="step-2">
+                        <h2 class="config-step-title">Choose your collection</h2>
+                        <p class="config-step-desc">Our Signature Collection features a touch-control panel. The Flagship Collection offers streamlined simplicity.</p>
+                        <div class="config-options">
+                            <label class="config-card" data-value="signature">
+                                <input type="radio" name="collection" value="signature">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-card-icon">
+                                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                                            <rect x="10" y="8" width="28" height="32" rx="2"/>
+                                            <circle cx="24" cy="20" r="6"/>
+                                            <path d="M16 32h16M20 36h8"/>
+                                        </svg>
+                                    </div>
+                                    <h3>Signature Collection</h3>
+                                    <p>Premium touch-control taps with integrated digital panel. 8 adjustable temperature settings. Available in 4-in-1 and 5-in-1.</p>
+                                    <span class="config-card-tag">Pull Out Option</span>
+                                    <span class="config-card-badge">Touch Control</span>
+                                </div>
+                            </label>
+                            <label class="config-card" data-value="flagship" id="flagshipOption">
+                                <input type="radio" name="collection" value="flagship">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-card-icon">
+                                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2">
+                                            <rect x="12" y="10" width="24" height="28" rx="2"/>
+                                            <path d="M18 18h12M18 24h12M18 30h8"/>
+                                        </svg>
+                                    </div>
+                                    <h3>Flagship Collection</h3>
+                                    <p>Streamlined design for easy access. Clean lines and effortless function. Available in 4-in-1 only.</p>
+                                    <span class="config-unavailable-label"></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Tap Style -->
+                    <div class="config-step" id="step-3">
+                        <h2 class="config-step-title">Standard or Pull Out?</h2>
+                        <p class="config-step-desc">Choose between a fixed spout or a retractable pull-out hose for added versatility.</p>
+                        <div class="config-options">
+                            <label class="config-card" data-value="standard">
+                                <input type="radio" name="style" value="standard">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-card-visual">
+                                        <img src="../img/products/flagship-chrome-transparent.png" alt="Standard tap style" class="config-style-img">
+                                    </div>
+                                    <h3>Standard</h3>
+                                    <p>Classic fixed spout design. Clean, minimal silhouette.</p>
+                                </div>
+                            </label>
+                            <label class="config-card" data-value="pullout">
+                                <input type="radio" name="style" value="pullout">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-card-visual">
+                                        <img src="../img/products/pullout-chrome-transparent.png" alt="Pull Out tap style" class="config-style-img">
+                                    </div>
+                                    <h3>Pull Out</h3>
+                                    <p>Retractable hose for flexible rinsing and filling. Added versatility for busy kitchens.</p>
+                                    <span class="config-card-price" id="pulloutUpgrade">+$500</span>
+                                    <span class="config-unavailable-label"></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Finish -->
+                    <div class="config-step" id="step-4">
+                        <h2 class="config-step-title">Select your finish</h2>
+                        <p class="config-step-desc">All five finishes are available across every collection and style.</p>
+                        <div class="config-options config-options--finishes">
+                            <label class="config-card config-card--finish" data-value="chrome">
+                                <input type="radio" name="finish" value="chrome">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-finish-swatch" style="background: linear-gradient(135deg, #e8e8e8, #c0c0c0, #e0e0e0);"></div>
+                                    <h3>Chrome</h3>
+                                    <p>Mirror-polished. Timeless.</p>
+                                    <span class="config-finish-delta"></span>
+                                </div>
+                            </label>
+                            <label class="config-card config-card--finish" data-value="matte-black">
+                                <input type="radio" name="finish" value="matte-black">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-finish-swatch" style="background: linear-gradient(135deg, #2a2a2a, #1a1a1a, #333);"></div>
+                                    <h3>Matte Black</h3>
+                                    <p>Bold. Contemporary.</p>
+                                    <span class="config-finish-delta"></span>
+                                    <span class="config-card-badge">Trending</span>
+                                </div>
+                            </label>
+                            <label class="config-card config-card--finish" data-value="brushed-brass-gold">
+                                <input type="radio" name="finish" value="brushed-brass-gold">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-finish-swatch" style="background: linear-gradient(135deg, #c4a265, #d4b87a, #b8944f);"></div>
+                                    <h3>Brushed Brass Gold</h3>
+                                    <p>Warm. Luxurious.</p>
+                                    <span class="config-finish-delta"></span>
+                                </div>
+                            </label>
+                            <label class="config-card config-card--finish" data-value="gun-metal-grey">
+                                <input type="radio" name="finish" value="gun-metal-grey">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-finish-swatch" style="background: linear-gradient(135deg, #555a5e, #3d4245, #6a6e72);"></div>
+                                    <h3>Gun Metal Grey</h3>
+                                    <p>Industrial. Refined.</p>
+                                    <span class="config-finish-delta"></span>
+                                </div>
+                            </label>
+                            <label class="config-card config-card--finish" data-value="brushed-nickel">
+                                <input type="radio" name="finish" value="brushed-nickel">
+                                <div class="config-card-inner">
+                                    <span class="config-card-check"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 10l4 4 8-8"/></svg></span>
+                                    <div class="config-finish-swatch" style="background: linear-gradient(135deg, #c5c0b8, #a8a29e, #d0cbc5);"></div>
+                                    <h3>Brushed Nickel</h3>
+                                    <p>Subtle. Understated.</p>
+                                    <span class="config-finish-delta"></span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Completion State (shown after all steps complete) -->
+                <div class="config-completion" id="configCompletion" style="display:none;">
+                    <div class="config-completion-inner">
+                        <div class="config-completion-icon">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="24" r="20"/><path d="M14 24l6 6 14-14"/></svg>
+                        </div>
+                        <h2 class="config-completion-title">Your build is ready</h2>
+                        <div class="config-completion-product">
+                            <img id="completionImage" src="" alt="Your configured tap" class="config-completion-img" style="display:none;">
+                            <div class="config-completion-details">
+                                <h3 id="completionProductName"></h3>
+                                <p id="completionFinish"></p>
+                                <span class="config-completion-price" id="completionPrice"></span>
+                            </div>
+                        </div>
+                        <div class="config-completion-actions">
+                            <a href="#" class="btn btn--primary" id="completionPdpLink">View Full Product Details</a>
+                            <a href="../index.html#dealers" class="btn btn--secondary" id="completionFindRetailer">Find a Retailer</a>
+                            <button class="btn btn--outline config-edit-btn" id="editBuild">Edit Build</button>
+                        </div>
+                        <p class="config-summary-note">Prices in AUD, RRP including GST. Also available at Harvey Norman, Reece and Tradelink.</p>
+                    </div>
+                </div>
+
+                <!-- Summary Sidebar -->
+                <div class="config-summary">
+                    <div class="config-summary-inner" id="configSummary">
+                        <h3 class="config-summary-title">Your Build</h3>
+                        <div class="config-summary-preview">
+                            <div class="config-summary-tap" id="summaryTapPreview">
+                                <div class="summary-tap-placeholder">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1">
+                                        <path d="M24 8c-4 6-8 10-8 16a8 8 0 0016 0c0-6-4-10-8-16z"/>
+                                    </svg>
+                                    <span>Configure to preview</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="config-summary-items">
+                            <div class="config-summary-item">
+                                <span class="config-summary-label">Water Functions</span>
+                                <span class="config-summary-value" id="summaryWater">Not selected</span>
+                            </div>
+                            <div class="config-summary-item">
+                                <span class="config-summary-label">Collection</span>
+                                <span class="config-summary-value" id="summaryCollection">Not selected</span>
+                            </div>
+                            <div class="config-summary-item">
+                                <span class="config-summary-label">Tap Style</span>
+                                <span class="config-summary-value" id="summaryStyle">Not selected</span>
+                            </div>
+                            <div class="config-summary-item">
+                                <span class="config-summary-label">Finish</span>
+                                <span class="config-summary-value" id="summaryFinish">Not selected</span>
+                            </div>
+                        </div>
+                        <div class="config-summary-total">
+                            <span>Total Price</span>
+                            <span class="config-total-price" id="totalPrice">—</span>
+                        </div>
+                        <div class="config-summary-actions">
+                            <a href="../index.html#dealers" class="btn btn--secondary" id="configFindRetailerSidebar">Find a Retailer</a>
+                        </div>
+                        <p class="config-summary-note">Prices in AUD, RRP including GST. Also available at Harvey Norman, Reece and Tradelink.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="config-nav-buttons">
+                <button class="btn btn--secondary config-prev" id="prevStep" disabled>Previous</button>
+                <button class="btn btn--primary config-next" id="nextStep">Next Step</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="footer-logo-img"></a>
+                    <p class="footer-tagline">Where great design meets everyday ease. Convenience, sustainability and aesthetics — all in one tap.</p>
+                    <div class="footer-contact">
+                        <p><a href="tel:0391220716"><strong>03 9122 0716</strong></a></p>
+                        <p><a href="mailto:sales@peppytaps.com.au">sales@peppytaps.com.au</a></p>
+                        <p>Mon-Fri 9:00am - 5:00pm AEST</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/peppy_taps?igsh=MWZ6cnQ4NjhzbG8ycw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+                        <a href="https://www.facebook.com/share/1DsyMeRPXq/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <a href="product.html">Signature 5 in 1</a>
+                    <a href="signature-4in1.html">Signature 4 in 1</a>
+                    <a href="signature-pullout.html">Signature Pull Out 4 in 1</a>
+                    <a href="flagship-4in1.html">Flagship 4 in 1</a>
+                    <a href="flagship-pullout.html">Flagship Pull Out 4 in 1</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="installation-videos.html">Installation Videos</a>
+                    <a href="#">Performance Data Sheets</a>
+                    <a href="https://cdn.shopify.com/s/files/1/0601/8010/3213/files/Peppy_Taps_Brochure_d8ff4309-aee3-4751-a33b-5e633e140252.pdf?v=1774414558" target="_blank" rel="noopener">Product Brochure</a>
+                    <a href="faqs.html">FAQs</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="about.html">About Peppy Taps</a>
+                    <a href="where-to-buy.html">Where to Buy</a>
+                    <a href="become-a-retailer.html">Become a Retailer</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="warranty.html">Warranty</a>
+                </div>
+            </div>
+<div class="footer-bottom">
+                <p>&copy; 2026 Peppy Taps. All rights reserved. Registered Design No: 202410381</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopify Buy SDK disabled until store is provisioned; cart runs in demo mode -->
+    <!-- <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script> -->
+    <script src="../js/shopify-cart.js?v=2"></script>
+    <script src="../js/main.js?v=3"></script>
+    <!-- Cookie banner disabled for build — flip back on by un-commenting: <script src="../js/cookie-banner.js?v=1"></script> -->    <script src="../js/configurator.js?v=6"></script>
+</body>
+</html>

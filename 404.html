@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Peppy Taps</title>
+    <meta name="description" content="The page you're looking for couldn't be found. Browse our premium tapware collections or head back to the Peppy Taps homepage.">
+    <link rel="icon" type="image/png" href="img/logo/peppy-logo-black.png">
+    <meta property="og:title" content="Page Not Found | Peppy Taps">
+    <meta property="og:description" content="The page you're looking for couldn't be found. Browse our premium tapware collections or head back to the Peppy Taps homepage.">
+    <meta property="og:image" content="img/lifestyle/hero1.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.peppytaps.com.au/404">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Page Not Found | Peppy Taps">
+    <meta name="twitter:description" content="The page you're looking for couldn't be found. Browse our premium tapware collections or head back to the Peppy Taps homepage.">
+    <meta name="twitter:image" content="img/lifestyle/hero1.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=110">
+    <link rel="stylesheet" href="css/cart.css">
+    <style>
+        .error-page {
+            min-height: calc(100vh - var(--nav-height));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+        }
+        .error-content {
+            max-width: 560px;
+        }
+        .error-code {
+            font-family: var(--font-display);
+            font-size: clamp(6rem, 15vw, 10rem);
+            font-weight: 400;
+            line-height: 1;
+            color: var(--color-border);
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+        .error-heading {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+        .error-message {
+            font-size: 1.05rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+        .error-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+        .error-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .error-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            transition: color 0.3s var(--ease-out);
+            position: relative;
+        }
+        .error-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-accent);
+            transition: width 0.3s var(--ease-out);
+        }
+        .error-links a:hover {
+            color: var(--color-text);
+        }
+        .error-links a:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav" data-fixed-nav>
+        <div class="nav-inner">
+            <a href="/" class="nav-logo"><img src="img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="nav-logo-img"></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-links">
+                    <div class="nav-dropdown">
+                        <a href="index.html#collections" class="nav-link">Collections</a>
+                        <div class="nav-dropdown-menu">
+                            <a href="#" class="dropdown-item">Signature Collection</a>
+                            <a href="#" class="dropdown-item">Flagship Collection</a>
+                            <a href="#" class="dropdown-item">Pull Out Range</a>
+                            <a href="#" class="dropdown-item">Filters &amp; Spare Parts</a>
+                        </div>
+                    </div>
+                    <a href="pages/configurator.html" class="nav-link">Configure</a>
+                    <a href="index.html#support" class="nav-link">Support</a>
+                    <a href="index.html#dealers" class="nav-link">Where to Buy</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="#" class="nav-link nav-link--trade">Become a Retailer</a>
+                    <button class="nav-cart" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 404 Content -->
+    <main class="error-page">
+        <div class="error-content">
+            <div class="error-code">404</div>
+            <h1 class="error-heading">This page seems to have sprung a leak</h1>
+            <p class="error-message">The page you're looking for has been moved, removed, or never existed. Let's get you back on track.</p>
+            <div class="error-actions">
+                <a href="/" class="btn btn--primary">Back to Home</a>
+                <div class="error-links">
+                    <a href="index.html#collections">Collections</a>
+                    <a href="pages/configurator.html">Configure</a>
+                    <a href="index.html#support">Support</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo"><img src="img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="footer-logo-img"></a>
+                    <p class="footer-tagline">Where great design meets everyday ease. Convenience, sustainability and aesthetics — all in one tap.</p>
+                    <div class="footer-contact">
+                        <p><a href="tel:0391220716"><strong>03 9122 0716</strong></a></p>
+                        <p><a href="mailto:sales@peppytaps.com.au">sales@peppytaps.com.au</a></p>
+                        <p>Mon-Fri 9:00am - 5:00pm AEST</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/peppy_taps?igsh=MWZ6cnQ4NjhzbG8ycw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+                        <a href="https://www.facebook.com/share/1DsyMeRPXq/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <a href="pages/product.html">Signature 5 in 1</a>
+                    <a href="pages/signature-4in1.html">Signature 4 in 1</a>
+                    <a href="pages/signature-pullout.html">Signature Pull Out 4 in 1</a>
+                    <a href="pages/flagship-4in1.html">Flagship 4 in 1</a>
+                    <a href="pages/flagship-pullout.html">Flagship Pull Out 4 in 1</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="pages/installation-videos.html">Installation Videos</a>
+                    <a href="#">Performance Data Sheets</a>
+                    <a href="https://cdn.shopify.com/s/files/1/0601/8010/3213/files/Peppy_Taps_Brochure_d8ff4309-aee3-4751-a33b-5e633e140252.pdf?v=1774414558" target="_blank" rel="noopener">Product Brochure</a>
+                    <a href="#">FAQs</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="pages/about.html">About Peppy Taps</a>
+                    <a href="#">Where to Buy</a>
+                    <a href="#">Become a Retailer</a>
+                    <a href="pages/contact.html">Contact</a>
+                    <a href="pages/warranty.html">Warranty</a>
+                </div>
+            </div>
+<div class="footer-bottom">
+                <p>&copy; 2026 Peppy Taps. All rights reserved. Registered Design No: 202410381</p>
+                <div class="footer-legal">
+                    <a href="pages/privacy.html">Privacy Policy</a>
+                    <a href="pages/terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopify Buy SDK disabled until store is provisioned; cart runs in demo mode -->
+    <!-- <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script> -->
+    <script src="js/shopify-cart.js?v=2"></script>
+    <script src="js/main.js?v=3"></script>
+    <!-- Cookie banner disabled for build — flip back on by un-commenting: <script src="js/cookie-banner.js?v=1"></script> -->
+</body>
+</html>

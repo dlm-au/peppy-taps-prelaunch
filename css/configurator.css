@@ -1,0 +1,635 @@
+/* ============================================
+   Configurator Page Styles
+   ============================================ */
+
+.configurator {
+    padding: calc(var(--nav-height) + 40px) 0 80px;
+}
+
+.config-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.config-header .section-subtitle {
+    margin: 0 auto;
+}
+
+/* --- Progress Bar --- */
+.config-progress {
+    margin-bottom: 48px;
+}
+.config-progress-bar {
+    height: 2px;
+    background: var(--color-border);
+    border-radius: 1px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+.config-progress-fill {
+    height: 100%;
+    background: var(--color-text);
+    border-radius: 1px;
+    width: 25%;
+    transition: width 0.5s var(--ease-out);
+}
+.config-steps-nav {
+    display: flex;
+    justify-content: space-between;
+}
+.config-step-dot {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    transition: color 0.3s;
+    padding: 8px 0;
+}
+.config-step-dot span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    font-size: 0.7rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+.config-step-dot.active {
+    color: var(--color-text);
+}
+.config-step-dot.active span {
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-color: var(--color-text);
+}
+.config-step-dot.completed span {
+    background: var(--color-accent);
+    color: #fff;
+    border-color: var(--color-accent);
+}
+.config-step-dot.completed {
+    color: var(--color-accent);
+}
+
+/* --- Layout --- */
+.config-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    align-items: start;
+}
+
+/* --- Steps --- */
+.config-step {
+    display: none;
+}
+.config-step.active {
+    display: block;
+    animation: fadeUp 0.5s var(--ease-out);
+}
+.config-step-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+.config-step-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 32px;
+}
+
+/* --- Option Cards --- */
+.config-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+.config-options--finishes {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.config-card {
+    cursor: pointer;
+    display: block;
+}
+.config-card input { display: none; }
+.config-card-inner {
+    padding: 24px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    transition: all 0.3s var(--ease-out);
+    height: 100%;
+    position: relative;
+}
+.config-card:hover .config-card-inner {
+    border-color: var(--color-text-muted);
+}
+.config-card input:checked + .config-card-inner {
+    border-color: var(--color-accent);
+    background: var(--color-bg);
+    box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+/* Selection checkmark */
+.config-card-check {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s var(--ease-out);
+    z-index: 2;
+}
+.config-card-check svg {
+    width: 14px;
+    height: 14px;
+    color: #fff;
+}
+.config-card input:checked + .config-card-inner .config-card-check {
+    opacity: 1;
+    transform: scale(1);
+}
+/* Move badge left when checkmark is visible */
+.config-card input:checked + .config-card-inner .config-card-badge {
+    right: 44px;
+}
+
+.config-card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    color: var(--color-accent);
+}
+.config-card-icon svg { width: 100%; height: 100%; }
+
+.config-card h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.config-card p {
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+.config-card-price {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-accent);
+}
+/* Subtle info tag below price */
+.config-card-tag {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 10px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+}
+
+.config-card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 3px 10px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: var(--radius);
+    transition: right 0.3s var(--ease-out);
+}
+
+/* Unavailable cards */
+.config-card--unavailable {
+    opacity: 0.35;
+    pointer-events: none;
+    position: relative;
+}
+.config-unavailable-label {
+    display: block;
+    font-size: 0.75rem;
+    color: #b45309;
+    font-weight: 500;
+    margin-top: 8px;
+    line-height: 1.4;
+}
+.config-unavailable-label:empty {
+    display: none;
+}
+/* Show label even when card is faded */
+.config-card--unavailable .config-unavailable-label {
+    opacity: 1;
+}
+
+.config-card-specs {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-border-light);
+}
+.config-card-specs small {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2px;
+}
+
+/* Tap Previews */
+.config-card-visual {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+.config-style-img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+.config-tap-preview {
+    position: relative;
+    width: 60px;
+    height: 90px;
+}
+.ctp-body {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    background: linear-gradient(90deg, #ccc, #e0e0e0, #ccc);
+    border-radius: 5px 5px 0 0;
+    transition: all 0.3s;
+}
+.ctp-spout {
+    position: absolute;
+    background: linear-gradient(180deg, #d8d8d8, #c0c0c0);
+    transition: all 0.3s;
+}
+.ctp-base {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 6px;
+    background: linear-gradient(90deg, #bbb, #d8d8d8, #bbb);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+.ctp-sensor {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #8bb;
+    transition: all 0.3s;
+}
+
+/* Arc style */
+.config-tap--arc .ctp-body { height: 65px; }
+.config-tap--arc .ctp-spout {
+    top: 8px;
+    left: calc(50% + 3px);
+    width: 24px;
+    height: 8px;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Sena style */
+.config-tap--sena .ctp-body { height: 60px; width: 12px; border-radius: 6px 6px 0 0; }
+.config-tap--sena .ctp-sensor { top: 30px; left: calc(50% + 8px); }
+
+/* Zenith style */
+.config-tap--zenith .ctp-body { height: 70px; width: 14px; border-radius: 3px 3px 0 0; }
+.config-tap--zenith .ctp-spout {
+    top: 4px;
+    left: calc(50% + 4px);
+    width: 18px;
+    height: 10px;
+    border-radius: 0 2px 2px 0;
+}
+
+/* Flux style */
+.config-tap--flux .ctp-body { height: 58px; width: 8px; border-radius: 2px 2px 0 0; }
+.config-tap--flux .ctp-spout {
+    top: 12px;
+    left: calc(50% + 2px);
+    width: 20px;
+    height: 6px;
+    border-radius: 0 1px 1px 0;
+}
+
+/* Finish cards */
+.config-card--finish .config-card-inner {
+    text-align: center;
+    padding: 20px 16px;
+}
+.config-finish-swatch {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    border: 1px solid var(--color-border);
+}
+
+/* Finish price delta */
+.config-finish-delta {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 4px;
+    min-height: 18px;
+}
+.config-finish-delta:empty {
+    display: none;
+}
+.config-finish-delta--included {
+    color: var(--color-text-muted);
+}
+.config-finish-delta--premium {
+    color: var(--color-accent);
+}
+
+/* --- Summary Sidebar --- */
+.config-summary {
+    position: sticky;
+    top: calc(var(--nav-height) + 24px);
+}
+.config-summary-inner {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 28px;
+    background: var(--color-surface);
+}
+.config-summary-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.config-summary-preview {
+    margin-bottom: 24px;
+    display: none;
+}
+.config-summary-preview.has-image {
+    display: block;
+}
+.config-summary-tap {
+    aspect-ratio: 4/3;
+    background: linear-gradient(180deg, #f8f6f3, #f0ede8);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.summary-tap-placeholder {
+    text-align: center;
+    color: var(--color-text-muted);
+}
+.summary-tap-placeholder svg {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 8px;
+    opacity: 0.4;
+}
+.summary-tap-placeholder span {
+    font-size: 0.78rem;
+}
+/* Real product image in summary */
+.summary-tap-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 16px;
+    animation: fadeUp 0.4s var(--ease-out);
+}
+
+.config-summary-items {
+    margin-bottom: 20px;
+}
+.config-summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border-light);
+    font-size: 0.85rem;
+}
+.config-summary-label {
+    color: var(--color-text-secondary);
+}
+.config-summary-value {
+    font-weight: 500;
+    text-align: right;
+    color: var(--color-text-muted);
+}
+.config-summary-value.selected {
+    color: var(--color-text);
+}
+
+.config-summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+.config-total-price {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-accent);
+}
+
+.config-summary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+.config-summary-actions .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+.config-summary-note {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* --- Completion State --- */
+.config-completion {
+    animation: fadeUp 0.5s var(--ease-out);
+}
+.config-completion-inner {
+    text-align: center;
+    padding: 40px 0;
+}
+.config-completion-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 20px;
+    color: #16a34a;
+}
+.config-completion-icon svg {
+    width: 100%;
+    height: 100%;
+}
+.config-completion-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 32px;
+}
+.config-completion-product {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    max-width: 480px;
+    margin: 0 auto 40px;
+    text-align: left;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 24px;
+}
+.config-completion-img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.config-completion-details h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+.config-completion-details p {
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 12px;
+}
+.config-completion-price {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--color-accent);
+}
+.config-completion-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 320px;
+    margin: 0 auto 24px;
+}
+.config-completion-actions .btn {
+    width: 100%;
+    justify-content: center;
+}
+.config-edit-btn {
+    background: transparent !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text-secondary) !important;
+}
+.config-edit-btn:hover {
+    border-color: var(--color-text-muted) !important;
+    color: var(--color-text) !important;
+}
+
+/* --- Nav Buttons --- */
+.config-nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border-light);
+}
+.config-prev:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .config-layout {
+        grid-template-columns: 1fr;
+    }
+    .config-summary {
+        position: static;
+        order: 2; /* Below steps on tablet/mobile */
+    }
+    .config-steps {
+        order: 1;
+    }
+    .config-completion {
+        order: 1;
+    }
+    .config-options--finishes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .config-steps-nav {
+        gap: 4px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+    }
+    .config-steps-nav::-webkit-scrollbar {
+        display: none;
+    }
+    .config-step-dot {
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 0.72rem;
+        gap: 5px;
+        padding: 6px 8px 6px 0;
+    }
+    .config-options {
+        grid-template-columns: 1fr;
+    }
+    .config-options--finishes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .config-completion-product {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    .config-completion-img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .config-options--finishes {
+        grid-template-columns: 1fr;
+    }
+}

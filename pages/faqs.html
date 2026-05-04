@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions | Peppy Taps</title>
+    <link rel="canonical" href="https://www.peppytaps.com.au/pages/faqs">
+    <meta name="description" content="Answers to common questions about Peppy Taps — boiling water temperature, installation, filters, warranty, finishes and buying. Australian-designed multi-function kitchen taps.">
+    <link rel="icon" type="image/png" href="../img/logo/peppy-logo-black.svg">
+    <meta property="og:title" content="Frequently Asked Questions | Peppy Taps">
+    <meta property="og:description" content="Answers to common questions about Peppy Taps boiling water systems — installation, filters, warranty and more.">
+    <meta property="og:image" content="../img/lifestyle/hero1.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.peppytaps.com.au/pages/faqs">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css?v=110">
+    <link rel="stylesheet" href="../css/cart.css">
+
+    <!-- ─── FAQPage JSON-LD (Google rich results) ─────────────────
+         Mirrors the on-page Q&A so search engines can surface the
+         answers directly in SERPs. Keep this in sync with the visible
+         content below — outdated or different copy can get the rich
+         result down-ranked or removed. -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "How hot is the boiling water?",
+              "acceptedAnswer": { "@type": "Answer", "text": "All Peppy Taps deliver filtered water at 98°C — hot enough for tea, coffee and cooking, while staying just below true boiling point for added safety. Eight adjustable temperature settings let you dial it down to 75°C." } },
+            { "@type": "Question", "name": "Do I need a plumber to install a Peppy Tap?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes — installation must be carried out by a licensed plumber. A standard install takes 2–3 hours and requires hot and cold mains water within 1 m and a 10-amp power outlet within 1 m of the install location. We also offer a $499 professional installation booking through our website." } },
+            { "@type": "Question", "name": "How often do I need to replace the filter?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Every 12 months for optimal water quality. Replacement 2CB5-S filter cartridges are $179 and are available from any Peppy Taps retailer or directly from us. Replacement is a 5-minute job — no plumber required." } },
+            { "@type": "Question", "name": "What's the difference between the Signature and Flagship collections?",
+              "acceptedAnswer": { "@type": "Answer", "text": "The Signature Collection features touch-control technology with an integrated digital panel and is the only collection that offers a 5-in-1 model with chilled sparkling water. The Flagship Collection delivers the same engineered reliability in a cleaner, lever-controlled form. Both are available in five premium finishes." } },
+            { "@type": "Question", "name": "What's the warranty on a Peppy Tap?",
+              "acceptedAnswer": { "@type": "Answer", "text": "2 years for residential use and 12 months for commercial use, covering parts and labour for manufacturing defects. Warranty registration is free and is recommended at point of purchase." } },
+            { "@type": "Question", "name": "Where can I buy a Peppy Tap?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Peppy Taps are stocked nationally at Harvey Norman, Reece, Tradelink and selected independent kitchen and plumbing showrooms. Use our stockist locator to find your nearest retailer." } }
+        ]
+    }
+    </script>
+
+    <style>
+        /* ─── FAQs page ────────────────────────────────────────────── */
+        .faq-page {
+            padding: 120px 0 80px;
+            background: var(--color-bg);
+        }
+        .faq-container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .faq-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .faq-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+        .faq-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 400;
+            line-height: 1.1;
+            color: var(--color-text);
+            margin: 0 0 22px;
+            letter-spacing: -0.015em;
+        }
+        .faq-intro {
+            font-size: 1.05rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* TOC — anchor jump links to each section */
+        .faq-toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 64px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .faq-toc a {
+            display: inline-flex;
+            align-items: center;
+            padding: 9px 18px;
+            font-size: 0.88rem;
+            color: var(--color-text);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            text-decoration: none;
+            transition: border-color 0.18s, background 0.18s;
+        }
+        .faq-toc a:hover {
+            border-color: var(--color-accent);
+            background: var(--color-bg);
+        }
+
+        /* Section heading per topic */
+        .faq-section {
+            margin-bottom: 56px;
+            scroll-margin-top: 90px; /* offset for sticky nav when anchor-jumping */
+        }
+        .faq-section:last-of-type { margin-bottom: 32px; }
+        .faq-section-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--color-text);
+            margin: 0 0 8px;
+            letter-spacing: -0.01em;
+        }
+        .faq-section-sub {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            margin: 0 0 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+
+        /* Each Q + A — fully expanded, no collapse */
+        .faq-item {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        .faq-item:last-child { border-bottom: 0; }
+        .faq-item h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--color-text);
+            margin: 0 0 12px;
+            letter-spacing: -0.005em;
+            line-height: 1.35;
+        }
+        .faq-item p {
+            font-size: 0.98rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin: 0 0 12px;
+        }
+        .faq-item p:last-child { margin-bottom: 0; }
+        .faq-item a {
+            color: var(--color-accent);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.18s;
+        }
+        .faq-item a:hover { border-bottom-color: var(--color-accent); }
+
+        /* Bottom CTA — "didn't find what you were looking for" */
+        .faq-cta {
+            background: var(--color-dark);
+            color: var(--color-bg);
+            border-radius: var(--radius);
+            padding: 48px 40px;
+            text-align: center;
+            margin-top: 56px;
+        }
+        .faq-cta h2 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--color-bg);
+            margin: 0 0 12px;
+            letter-spacing: -0.01em;
+        }
+        .faq-cta p {
+            color: rgba(250, 250, 248, 0.78);
+            font-size: 0.98rem;
+            margin: 0 auto 24px;
+            max-width: 540px;
+            line-height: 1.6;
+        }
+        .faq-cta-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .faq-cta .btn--primary {
+            background: var(--color-bg);
+            color: var(--color-dark);
+            border-color: var(--color-bg);
+        }
+        .faq-cta .btn--primary:hover { background: transparent; color: var(--color-bg); }
+        .faq-cta .btn--secondary {
+            background: transparent;
+            color: var(--color-bg);
+            border-color: rgba(250, 250, 248, 0.5);
+        }
+        .faq-cta .btn--secondary:hover { background: rgba(250, 250, 248, 0.08); border-color: var(--color-bg); }
+
+        @media (max-width: 768px) {
+            .faq-page { padding: 100px 0 64px; }
+            .faq-toc { gap: 6px; margin-bottom: 48px; padding-bottom: 24px; }
+            .faq-toc a { padding: 8px 14px; font-size: 0.82rem; }
+            .faq-cta { padding: 36px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav scrolled" id="nav" data-fixed-nav>
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="nav-logo-img"></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-links">
+                    <a href="../index.html#collections" class="nav-link">Collections</a>
+                    <a href="configurator.html" class="nav-link">Configure</a>
+                    <a href="../index.html#support" class="nav-link">Support</a>
+                    <a href="../index.html#dealers" class="nav-link">Where to Buy</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="become-a-retailer.html" class="nav-link nav-link--trade">Become a Retailer</a>
+                    <button class="nav-cart" aria-label="Cart">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="faq-page">
+        <div class="faq-container">
+
+            <!-- ─── Header ──────────────────────────────────────── -->
+            <div class="faq-header">
+                <p class="faq-eyebrow">Help &amp; support</p>
+                <h1 class="faq-title">Frequently asked questions</h1>
+                <p class="faq-intro">Everything you need to know about Peppy Taps — from how the system
+                works to installation, filters, warranty and where to buy.</p>
+            </div>
+
+            <!-- ─── Table of contents (anchor jumps) ─────────────── -->
+            <nav class="faq-toc" aria-label="FAQ topics">
+                <a href="#products">About the products</a>
+                <a href="#installation">Installation &amp; set-up</a>
+                <a href="#filters">Filters &amp; water quality</a>
+                <a href="#warranty">Warranty &amp; support</a>
+                <a href="#buying">Buying &amp; finishes</a>
+            </nav>
+
+            <!-- ═══ 1 ─── ABOUT THE PRODUCTS ═════════════════════ -->
+            <section class="faq-section" id="products">
+                <h2 class="faq-section-title">About the products</h2>
+                <p class="faq-section-sub">How Peppy Taps work and which model is right for you.</p>
+
+                <article class="faq-item">
+                    <h3>How hot is the boiling water?</h3>
+                    <p>All Peppy Taps deliver filtered water at <strong>98&nbsp;°C</strong> — hot enough
+                    for tea, coffee and cooking, while staying just below true boiling point for added
+                    safety. The integrated touch-control panel on the Signature Collection lets you dial
+                    the temperature down through eight settings from 75&nbsp;°C up to 98&nbsp;°C, so you
+                    can get the right brew temperature for green tea, French press or full boil.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>How does the chilled water work? What temperature is it?</h3>
+                    <p>Filtered chilled water is delivered between <strong>4&nbsp;°C and 14&nbsp;°C</strong>
+                    via a built-in cooling unit that sits under your sink. There's no need for a fridge or
+                    a separate water cooler — just push the chilled control on the tap.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>How does the sparkling water work?</h3>
+                    <p>Chilled sparkling water is available on the <a href="product.html">Signature
+                    5&nbsp;in&nbsp;1</a> only. It's produced by injecting food-grade CO₂ into the chilled
+                    water stream from a refillable cylinder housed in the under-sink unit. CO₂ cylinders
+                    are widely available and easily swapped — no specialist install required.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>What's the difference between the Signature and Flagship collections?</h3>
+                    <p>The <strong>Signature Collection</strong> uses touch-control technology with an
+                    integrated digital panel — it's also the only collection that offers a 5-in-1 model
+                    with chilled sparkling water on demand.</p>
+                    <p>The <strong>Flagship Collection</strong> delivers the same engineered reliability
+                    in a cleaner, lever-controlled form, designed for kitchens where the tap should
+                    disappear into the design. Both collections are available in all five finishes.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>What's the difference between Ambient and Chilled?</h3>
+                    <p><strong>Ambient</strong> is filtered water at room temperature — straight from the
+                    mains, through the filter, no cooling. <strong>Chilled</strong> is filtered water
+                    that's also been cooled to between 4&nbsp;°C and 14&nbsp;°C by the under-sink unit.
+                    Some 4-in-1 models give you the choice of one or the other; the
+                    Signature&nbsp;5-in-1 includes both.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Why would I choose the pull-out option?</h3>
+                    <p>The pull-out hose extends about 60&nbsp;cm from the spout, making it easier to
+                    rinse vegetables, fill tall pots, and clean the sink itself. The Signature and
+                    Flagship Pull&nbsp;Out 4-in-1 models offer this convenience without compromising on
+                    boiling, chilled or filtered functions.</p>
+                </article>
+            </section>
+
+            <!-- ═══ 2 ─── INSTALLATION & SET-UP ═════════════════ -->
+            <section class="faq-section" id="installation">
+                <h2 class="faq-section-title">Installation &amp; set-up</h2>
+                <p class="faq-section-sub">What you need to know before booking a plumber.</p>
+
+                <article class="faq-item">
+                    <h3>Do I need a plumber to install my Peppy Tap?</h3>
+                    <p>Yes — installation must be carried out by a <strong>licensed plumber</strong>.
+                    The under-sink unit needs to be connected to mains water, fitted with the supplied
+                    filter, and connected to a power outlet. A standard install takes 2–3 hours.</p>
+                    <p>If you've purchased a Peppy Tap from one of our retail partners and need an
+                    installer, you can <a href="installation.html">book and pay for professional
+                    installation</a> through our website for a flat $499.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>What does my plumber need on installation day?</h3>
+                    <p>To install a Peppy Tap, the install location must have:</p>
+                    <p>• A <strong>10&nbsp;amp power outlet</strong> within 1&nbsp;m of the install location<br>
+                    • <strong>Hot and cold mains water</strong> connections within 1&nbsp;m<br>
+                    • Adequate <strong>space under the sink</strong> for the under-bench unit (refer to your model's spec sheet for exact dimensions)<br>
+                    • A <strong>35&nbsp;mm tap hole</strong> in the benchtop (or one drilled by a tradesperson — note that we cannot drill into stone)</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Can a Peppy Tap be installed in a stone benchtop?</h3>
+                    <p>Yes, provided the existing tap hole is the standard 35&nbsp;mm diameter (or has
+                    been pre-cut by your stonemason). <strong>We do not drill into stone</strong> on
+                    install day — if your stone benchtop doesn't already have a hole, you'll need to
+                    arrange this with your stonemason before our installer arrives.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Does Peppy Taps work on tank water?</h3>
+                    <p>No — Peppy Taps are designed for use with <strong>mains water only</strong>. Tank
+                    water sediment, mineral content and bacteria load are outside the design parameters
+                    of the filter and pump system, and installing on tank water voids your warranty. If
+                    you're on tank water and want to discuss options, please <a href="contact.html">get
+                    in touch</a>.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Do you offer installation?</h3>
+                    <p>Yes — you can book and pay for a professional install directly through our
+                    website. <a href="installation.html">Book installation here</a>. The flat $499 fee
+                    covers a standard install carried out Monday–Friday by a qualified, fully-insured
+                    plumber.</p>
+                </article>
+            </section>
+
+            <!-- ═══ 3 ─── FILTERS & WATER QUALITY ═══════════════ -->
+            <section class="faq-section" id="filters">
+                <h2 class="faq-section-title">Filters &amp; water quality</h2>
+                <p class="faq-section-sub">Keeping your water tasting great year after year.</p>
+
+                <article class="faq-item">
+                    <h3>How often do I need to replace the filter?</h3>
+                    <p>Every <strong>12 months</strong> for optimal water quality and flow rate. The
+                    filter removes chlorine, sediment and a wide range of common contaminants — over
+                    time these reduce flow and affect taste, so an annual swap keeps things at their
+                    best.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Where can I buy replacement filters?</h3>
+                    <p>Replacement <strong>2CB5-S</strong> filter cartridges are $179 and are available
+                    from any Peppy Taps retailer (Harvey&nbsp;Norman, Reece, Tradelink) or directly from
+                    us. <a href="filter-cartridge.html">View the filter cartridge</a>.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>How easy is it to replace the filter?</h3>
+                    <p>It's a 5-minute job — no plumber required. The filter housing is accessed under
+                    the sink, the old cartridge twists out and the new one twists in. Step-by-step
+                    instructions are included with every replacement.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Does the filter remove fluoride or other specific contaminants?</h3>
+                    <p>The 2CB5-S removes chlorine, chloramines, sediment, scale, lead, microplastics
+                    and a wide range of common impurities while preserving healthy minerals. It does
+                    <strong>not</strong> remove fluoride. If you have specific water-quality concerns
+                    — bore water, hard water, or unusual mains supply — please <a href="contact.html">get
+                    in touch</a> and we'll talk you through your options.</p>
+                </article>
+            </section>
+
+            <!-- ═══ 4 ─── WARRANTY & SUPPORT ════════════════════ -->
+            <section class="faq-section" id="warranty">
+                <h2 class="faq-section-title">Warranty &amp; support</h2>
+                <p class="faq-section-sub">What's covered, for how long, and how to make a claim.</p>
+
+                <article class="faq-item">
+                    <h3>What's the warranty on a Peppy Tap?</h3>
+                    <p><strong>2 years for residential use</strong> and <strong>12 months for
+                    commercial use</strong>, covering parts and labour for manufacturing defects. Full
+                    terms and exclusions are on our <a href="warranty.html">warranty page</a>.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>How do I register my warranty?</h3>
+                    <p>Warranty registration is free and takes 2 minutes. <a
+                    href="warranty-registration.html">Register your warranty here</a> — you'll need your
+                    proof of purchase and the serial number from your tap.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>How do I make a warranty claim?</h3>
+                    <p>Get in touch with our customer service team — by phone on
+                    <a href="tel:0391220716">03 9122 0716</a> or via the <a href="contact.html">contact
+                    form</a>. We'll walk you through the claim process and arrange parts, service or
+                    replacement as needed.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Can I get help if my tap is out of warranty?</h3>
+                    <p>Yes — our customer service team is here to help whether your tap is in or out of
+                    warranty. We can arrange spare parts, paid service calls and ongoing support. Get in
+                    touch on <a href="tel:0391220716">03 9122 0716</a>.</p>
+                </article>
+            </section>
+
+            <!-- ═══ 5 ─── BUYING & FINISHES ═════════════════════ -->
+            <section class="faq-section" id="buying">
+                <h2 class="faq-section-title">Buying &amp; finishes</h2>
+                <p class="faq-section-sub">Where to see, choose and order Peppy Taps.</p>
+
+                <article class="faq-item">
+                    <h3>Where can I buy a Peppy Tap?</h3>
+                    <p>Peppy Taps are stocked nationally at <strong>Harvey Norman, Reece,
+                    Tradelink</strong> and selected independent kitchen and plumbing showrooms. Use our
+                    <a href="../index.html#dealers">stockist locator</a> to find your nearest retailer.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>What finishes are available?</h3>
+                    <p>All Peppy Taps are available in five premium finishes: <strong>Chrome, Matte
+                    Black, Gunmetal, Brushed Nickel,</strong> and <strong>Brushed Brass</strong>. The
+                    finish is consistent across the spout, base and (where applicable) the touch
+                    panel.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>How much does a Peppy Tap cost?</h3>
+                    <p>Pricing depends on the model and finish:</p>
+                    <p>• <strong>Flagship 4-in-1</strong> — from $2,499<br>
+                    • <strong>Signature 4-in-1</strong> — from $2,999<br>
+                    • <strong>Flagship Pull Out 4-in-1</strong> — from $2,999<br>
+                    • <strong>Signature Pull Out 4-in-1</strong> — from $3,499<br>
+                    • <strong>Signature 5-in-1</strong> (with sparkling) — from $4,999</p>
+                    <p>Use our <a href="configurator.html">configurator</a> to see exact pricing for your
+                    chosen model and finish.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>Can I see one in person before I buy?</h3>
+                    <p>Yes — most of our retail partners have working displays so you can taste the
+                    filtered water and see all five finishes side by side. Stock and displays vary by
+                    store, so we recommend calling ahead. <a href="../index.html#dealers">Find your
+                    nearest stockist</a>.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3>I'm a kitchen showroom or retailer — how do I stock Peppy Taps?</h3>
+                    <p>We're always interested in talking to new retail partners.
+                    <a href="become-a-retailer.html">Apply to become a retailer</a> and we'll be in
+                    touch within 2 business days.</p>
+                </article>
+            </section>
+
+            <!-- ─── Bottom CTA ─────────────────────────────────── -->
+            <section class="faq-cta">
+                <h2>Still have questions?</h2>
+                <p>Our team is here to help — for product advice, installation guidance, or anything
+                else, just get in touch.</p>
+                <div class="faq-cta-actions">
+                    <a href="tel:0391220716" class="btn btn--secondary">Call 03 9122 0716</a>
+                    <a href="contact.html" class="btn btn--primary">Send a message</a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="footer-logo"><img src="../img/logo/peppy-logo-white.svg?v=2" alt="Peppy Taps" class="footer-logo-img"></a>
+                    <p class="footer-tagline">Where great design meets everyday ease. Convenience, sustainability and aesthetics — all in one tap.</p>
+                    <div class="footer-contact">
+                        <p><a href="tel:0391220716"><strong>03 9122 0716</strong></a></p>
+                        <p><a href="mailto:enquiries@peppytaps.com.au">enquiries@peppytaps.com.au</a></p>
+                        <p>Mon-Fri 9:00am - 5:00pm AEST</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/peppy_taps?igsh=MWZ6cnQ4NjhzbG8ycw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+                        <a href="https://www.facebook.com/share/1DsyMeRPXq/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Collections</h4>
+                    <a href="product.html">Signature 5 in 1</a>
+                    <a href="signature-4in1.html">Signature 4 in 1</a>
+                    <a href="signature-pullout.html">Signature Pull Out 4 in 1</a>
+                    <a href="flagship-4in1.html">Flagship 4 in 1</a>
+                    <a href="flagship-pullout.html">Flagship Pull Out 4 in 1</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="installation-videos.html">Installation Videos</a>
+                    <a href="#">Performance Data Sheets</a>
+                    <a href="https://cdn.shopify.com/s/files/1/0601/8010/3213/files/Peppy_Taps_Brochure_d8ff4309-aee3-4751-a33b-5e633e140252.pdf?v=1774414558" target="_blank" rel="noopener">Product Brochure</a>
+                    <a href="faqs.html">FAQs</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="about.html">About Peppy Taps</a>
+                    <a href="where-to-buy.html">Where to Buy</a>
+                    <a href="become-a-retailer.html">Become a Retailer</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="warranty.html">Warranty</a>
+                </div>
+            </div>
+<div class="footer-bottom">
+                <p>&copy; 2026 Peppy Taps. All rights reserved. Registered Design No: 202410381</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/shopify-cart.js?v=2"></script>
+    <script src="../js/main.js?v=7"></script>
+    <!-- Cookie banner disabled for build — flip back on by un-commenting: <script src="../js/cookie-banner.js?v=1"></script> -->
+</body>
+</html>
