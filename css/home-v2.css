@@ -20,6 +20,15 @@
         max-height: 260px !important;
     }
 }
+/* The site-wide mobile rule `.page-home main { text-align: center }`
+   (styles.css ~L2329) tidily centres collapsed single-column content
+   on mobile, but it cascades into the stockist result list too —
+   centring addresses, the SHOWROOM pill, etc. The list is its own
+   self-contained UI; force start-aligned. */
+.page-home-v2 #stockistResults,
+.page-home-v2 .st-locator {
+    text-align: start;
+}
 
 /* ─── Anchor jumps respect the fixed nav ──────────────
    The nav is position:fixed and ~80px tall on desktop, ~64px on
