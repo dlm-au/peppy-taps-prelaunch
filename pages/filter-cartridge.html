@@ -25,6 +25,26 @@
     <style>
         /* Filter cartridge is portrait — give it more padding so it sits well in the hero gallery */
         .pdp-filter-img { padding: 8% 18%; }
+
+        /* Two-button purchase row. Inherits .pdp-actions which flips to
+           flex-direction: column at the mobile breakpoint (product.css), so
+           we set flex-basis:auto to avoid the column-axis flex-basis being
+           interpreted as a fixed button height. */
+        .pdp-actions--filter {
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .pdp-actions--filter .btn {
+            flex: 1 1 auto;
+            min-width: 220px;
+            justify-content: center;
+        }
+        .pdp-subscription-note {
+            font-size: 0.78rem;
+            color: var(--color-text-muted, #6b6b6b);
+            margin: 0 0 24px;
+            line-height: 1.5;
+        }
     </style>
 </head>
 <body data-product-name="2CB5-S Filter Cartridge" data-product-key="filter-2cb5s" data-base-price="179">
@@ -141,6 +161,16 @@
                         </div>
                     </div>
 
+                    <!-- Actions — primary purchase decision sits above compatibilities so
+                         it's reachable above the fold on smaller screens. Two flows: one-off
+                         purchase (Stripe Buy Link) or 12-month recurring subscription
+                         (separate Stripe Subscription Link). Both wired in filter-cartridge.js. -->
+                    <div class="pdp-actions pdp-actions--filter">
+                        <button id="addToCartFilter" class="btn btn--primary">Buy Now — $179</button>
+                        <button id="subscribeFilter" class="btn btn--secondary">Subscribe Yearly — $179</button>
+                    </div>
+                    <p class="pdp-subscription-note">Subscription auto-delivers every 12 months. Cancel anytime.</p>
+
                     <!-- Compatible Systems -->
                     <div class="pdp-option">
                         <label class="pdp-option-label">Compatible Systems</label>
@@ -151,11 +181,6 @@
                             <li>Peppy Taps Flagship 4 in 1</li>
                             <li>Peppy Taps Flagship Pull Out 4 in 1</li>
                         </ul>
-                    </div>
-
-                    <!-- Actions -->
-                    <div class="pdp-actions">
-                        <button id="addToCartFilter" class="btn btn--primary">Buy Now — $179</button>
                     </div>
 
                     <div class="pdp-meta">
@@ -469,6 +494,6 @@
     <script src="../js/main.js?v=3"></script>
     <!-- Cookie banner disabled for build — flip back on by un-commenting: <script src="../js/cookie-banner.js?v=1"></script> -->    <script src="../js/product.js?v=11"></script>
     <!-- Filter cartridge add-to-cart: extracted to external file for CSP. -->
-    <script src="../js/filter-cartridge.js?v=2"></script>
+    <script src="../js/filter-cartridge.js?v=3"></script>
 </body>
 </html>
