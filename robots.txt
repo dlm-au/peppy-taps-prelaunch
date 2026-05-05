@@ -20,6 +20,7 @@ Disallow: /css/
 Disallow: /pages/testing
 Disallow: /pages/home-v1
 Disallow: /pages/home-v2
+Disallow: /pages/home-v3
 Disallow: /pages/stockists-test
 Disallow: /pages/stockists-v2
 Disallow: /pages/stockists-v3
