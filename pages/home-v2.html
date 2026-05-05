@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="Premium 5-in-1 boiling, chilled and sparkling water taps for Australian kitchens. Filtered, certified, available in 5 finishes. Find your nearest stockist.">
     <meta name="twitter:image" content="https://www.peppytaps.com.au/img/lifestyle/hero1.jpg">
     <link rel="stylesheet" href="../css/styles.css?v=112">
-    <link rel="stylesheet" href="../css/home-v2.css?v=17">
+    <link rel="stylesheet" href="../css/home-v2.css?v=18">
     <link rel="stylesheet" href="../css/cart.css">
 
     <!-- Stockist locator (Leaflet + cluster, vendored locally) — shared with /pages/where-to-buy.html -->
@@ -326,71 +326,17 @@
                 <p class="section-subtitle">Start with the core 4-in-1 system, then compare touch control, pull-out functionality and sparkling water options.</p>
             </div>
 
-            <!-- Decision section, not a spec matrix. Three calm cards, ordered
-                 simply (Flagship → Signature 4 → Signature 5), with only
-                 positive differentiators. No "Best for" prefix — each card
-                 leads with a single declarative one-liner. Equal visual
-                 weight; no recommendation badges. -->
-            <div class="comparison-cards">
-                <article class="comparison-card">
-                    <div class="comparison-card-head">
-                        <div class="comparison-card-head-text">
-                            <h3 class="comparison-card-name">Flagship 4-in-1</h3>
-                            <span class="comparison-card-price">From $2,499</span>
-                        </div>
-                        <img class="comparison-card-thumb" src="../img/products/flagship-chrome.png" alt="Flagship 4-in-1 in chrome" loading="lazy">
-                    </div>
-                    <p class="comparison-card-bestfor">Streamlined lever-control design with boiling, filtered chilled or ambient, and hot/cold mains.</p>
-                    <ul class="comparison-card-chips">
-                        <li class="comparison-card-chip">Boiling</li>
-                        <li class="comparison-card-chip">Chilled or Ambient</li>
-                        <li class="comparison-card-chip">Lever Control</li>
-                        <li class="comparison-card-chip">Pull-out option</li>
-                    </ul>
-                    <a href="flagship-4in1.html" class="comparison-card-cta">View product <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-                </article>
-                <article class="comparison-card">
-                    <div class="comparison-card-head">
-                        <div class="comparison-card-head-text">
-                            <h3 class="comparison-card-name">Signature 4-in-1</h3>
-                            <span class="comparison-card-price">From $2,999</span>
-                        </div>
-                        <img class="comparison-card-thumb" src="../img/products/sig4in1-chrome.png" alt="Signature 4-in-1 in chrome" loading="lazy">
-                    </div>
-                    <p class="comparison-card-bestfor">Touch-control 4-in-1 system with chilled or ambient filtered water and optional pull-out mixer.</p>
-                    <ul class="comparison-card-chips">
-                        <li class="comparison-card-chip">Boiling</li>
-                        <li class="comparison-card-chip">Chilled or Ambient</li>
-                        <li class="comparison-card-chip">Touch Control</li>
-                        <li class="comparison-card-chip">Pull-out option</li>
-                    </ul>
-                    <a href="signature-4in1.html" class="comparison-card-cta">View product <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-                </article>
-                <article class="comparison-card">
-                    <div class="comparison-card-head">
-                        <div class="comparison-card-head-text">
-                            <h3 class="comparison-card-name">Signature 5-in-1</h3>
-                            <span class="comparison-card-price">From $4,999</span>
-                        </div>
-                        <img class="comparison-card-thumb" src="../img/products/sig5in1-chrome.png" alt="Signature 5-in-1 in chrome" loading="lazy">
-                    </div>
-                    <p class="comparison-card-bestfor">Touch-control system adding chilled sparkling water to the full kitchen tap setup.</p>
-                    <ul class="comparison-card-chips">
-                        <li class="comparison-card-chip">Boiling</li>
-                        <li class="comparison-card-chip">Chilled</li>
-                        <li class="comparison-card-chip">Sparkling</li>
-                        <li class="comparison-card-chip">Touch Control</li>
-                    </ul>
-                    <a href="product.html" class="comparison-card-cta">View product <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-                </article>
-            </div>
             <div class="comparison-wrapper" data-animate="scale">
-                <!-- Column order matches the mobile cards above (and the
-                     buying ladder used in the products section): Flagship
-                     → Signature 4-in-1 → Signature 5-in-1. The previous
-                     `.comparison-popular` / `.comparison-popular-col`
-                     classes have been dropped — table is intentionally
-                     neutral, no recommendation emphasis. -->
+                <!-- Single side-by-side table on every viewport. Earlier we
+                     swapped to stacked chip cards on mobile; that pattern
+                     was rolled back after testing in favour of the
+                     consistent table experience (the wrapper has
+                     overflow-x:auto so it scrolls horizontally on narrow
+                     viewports). Column order: Flagship → Signature 4-in-1
+                     → Signature 5-in-1, matching the buying ladder used in
+                     the products section. .comparison-popular column-
+                     emphasis classes were dropped earlier — table is
+                     intentionally neutral, no recommendation emphasis. -->
                 <table class="comparison-table">
                     <thead>
                         <tr>

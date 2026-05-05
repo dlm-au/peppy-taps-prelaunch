@@ -223,131 +223,18 @@
        larger than its row-2 peers. Removed for visual consistency. */
 }
 
-/* ─── Comparison: stacked cards instead of horizontal table ─
-   The desktop table works fine; on mobile it overflows the
-   viewport and gets clipped (last column literally hidden).
-   v2 hides the table on narrow widths and renders the same
-   data as a vertical stack, one card per product. */
-.page-home-v2 .comparison-cards {
-    display: none;
-    flex-direction: column;
-    /* Bumped 14 → 24 so the three cards read as a calm guided ladder
-       rather than a tight stack. Pair with the larger margin-bottom
-       below the section. */
-    gap: 24px;
-    margin-bottom: 32px;
-}
-.page-home-v2 .comparison-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius);
-    padding: 20px 18px;
-    box-shadow: 0 2px 6px rgba(15, 25, 45, 0.04);
-}
-/* Cards intentionally kept neutral — no "Most Popular" / recommended
-   styling. The .is-popular class + ::before pseudo-element have been
-   removed; each card carries equal visual weight so the buying guide
-   feels like a calm, scannable comparison rather than a sales push. */
-.page-home-v2 .comparison-card-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 14px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--color-border-light);
-}
-.page-home-v2 .comparison-card-head-text {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    min-width: 0;
-}
-.page-home-v2 .comparison-card-name {
-    font-family: var(--font-display);
-    font-size: 1.15rem;
-    font-weight: 500;
-    color: var(--color-text);
-    margin: 0;
-    line-height: 1.2;
-}
-.page-home-v2 .comparison-card-price {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-accent);
-}
-.page-home-v2 .comparison-card-thumb {
-    width: 56px;
-    height: 72px;
-    object-fit: contain;
-    flex-shrink: 0;
-    /* Visually anchor the product to its card without fighting for attention
-       with the headline. Subtle background helps the chrome on chrome. */
-    background: rgba(15, 25, 45, 0.03);
-    border-radius: 6px;
-    padding: 4px;
-}
-/* "Best for…" tagline. */
-.page-home-v2 .comparison-card-bestfor {
-    font-size: 0.88rem;
-    color: var(--color-text);
-    line-height: 1.5;
-    margin: 0 0 14px;
-}
-.page-home-v2 .comparison-card-bestfor strong {
-    font-weight: 600;
-    color: var(--color-accent);
-}
-/* Feature chips — communicate features-by-inclusion (no "No X"
-   strike-through rows). Compact pills wrap onto multiple lines. */
-.page-home-v2 .comparison-card-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-.page-home-v2 .comparison-card-chip {
-    font-size: 0.74rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    padding: 5px 10px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border-light);
-    border-radius: 999px;
-    color: var(--color-text);
-    line-height: 1.2;
-}
-/* Full-width "View product" CTA at the bottom. */
-.page-home-v2 .comparison-card-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 18px;
-    padding: 12px 18px;
-    background: var(--color-accent);
-    color: #fff;
-    border-radius: var(--radius);
-    font-size: 0.84rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-    transition: background 0.15s;
-}
-.page-home-v2 .comparison-card-cta:hover {
-    background: #14283f;
-}
-
-@media (max-width: 768px) {
-    .page-home-v2 .comparison-wrapper {
-        display: none;        /* hide the table */
-    }
-    .page-home-v2 .comparison-cards {
-        display: flex;        /* show the stacked cards */
-    }
-}
+/* ─── Comparison ────────────────────────────────────────
+   We previously rendered the comparison as stacked chip
+   cards on mobile (.comparison-cards / .comparison-card*)
+   and the original side-by-side .comparison-wrapper > table
+   on desktop. After live testing both treatments the cards
+   were rolled back in favour of the table on every viewport.
+   The wrapper has overflow-x:auto in styles.css so the
+   table scrolls horizontally on narrow viewports. All the
+   .comparison-card* CSS (chip cards, thumbs, head-text,
+   bestfor tagline, full-width CTA) is gone — markup was
+   removed too. If you ever bring stacked cards back, lift
+   the rules from git history (commit 8cc1054 onward). */
 
 /* ─── Sticky mobile bottom CTA bar ──────────────────────
    Two-button bar that appears at the bottom of the
