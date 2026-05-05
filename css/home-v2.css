@@ -216,15 +216,11 @@
     .page-home-v2 .products-grid .product-card:first-child .product-card-image {
         aspect-ratio: 4/3;
     }
-    .page-home-v2 .products-grid .product-card:first-child .product-card-name {
-        font-size: 1.2rem;
-    }
-    .page-home-v2 .products-grid .product-card:first-child .product-card-desc {
-        font-size: 0.88rem;
-    }
-    .page-home-v2 .products-grid .product-card:first-child .product-card-price {
-        font-size: 1rem;
-    }
+    /* The featured first card keeps its layout prominence (full-width row
+       + larger 4:3 image area) but typography stays uniform with the
+       other cards in the grid — earlier overrides bumped the name/desc/
+       price to 1.2/0.88/1rem which made the first card's title visibly
+       larger than its row-2 peers. Removed for visual consistency. */
 }
 
 /* ─── Comparison: stacked cards instead of horizontal table ─
