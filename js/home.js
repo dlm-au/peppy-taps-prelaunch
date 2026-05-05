@@ -24,7 +24,7 @@
     const bar = document.getElementById('mobileStickyCta');
     if (!bar) return;
     const showAfter = Math.min(window.innerHeight * 0.6, 480);
-    let stockistInView = false;
+    let inHidingSection = false;
 
     const isCookieBannerVisible = () => {
         const banner = document.querySelector('.cookie-banner');
@@ -39,7 +39,7 @@
         const shown = y > showAfter
             && !nearBottom
             && !isCookieBannerVisible()
-            && !stockistInView;
+            && !inHidingSection;
         bar.classList.toggle('is-shown', shown);
         bar.setAttribute('aria-hidden', shown ? 'false' : 'true');
         // `inert` (well-supported in 2026) removes the bar's links from
@@ -68,16 +68,23 @@
         attributes: false,
     });
 
-    // Hide the sticky CTA while #dealers (stockist locator) is in the
-    // viewport. IntersectionObserver fires when ≥10% of the section is
-    // showing — generous enough to feel responsive without toggling on
-    // micro-scrolls. Falls back to always-shown if IO isn't supported.
-    const stockistSection = document.getElementById('dealers');
-    if (stockistSection && 'IntersectionObserver' in window) {
-        new IntersectionObserver((entries) => {
-            stockistInView = entries[0].isIntersecting;
+    // Hide the sticky CTA while either #dealers (stockist locator) or
+    // #comparison (compare section) is in the viewport. The bar's two
+    // actions ARE those sections — floating it above them is redundant
+    // and on the locator it visually conflicts with the Leaflet map.
+    // IntersectionObserver fires when ≥10% of the section is showing,
+    // generous enough to feel responsive without micro-scroll churn.
+    const sectionsToHideIn = ['dealers', 'comparison']
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+    if (sectionsToHideIn.length && 'IntersectionObserver' in window) {
+        const visibility = new Map();
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => visibility.set(e.target, e.isIntersecting));
+            inHidingSection = Array.from(visibility.values()).some(Boolean);
             evaluate();
-        }, { threshold: 0.1 }).observe(stockistSection);
+        }, { threshold: 0.1 });
+        sectionsToHideIn.forEach((el) => io.observe(el));
     }
 
     evaluate();

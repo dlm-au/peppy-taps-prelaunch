@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="Premium 5-in-1 boiling, chilled and sparkling water taps for Australian kitchens. Filtered, certified, available in 5 finishes. Find your nearest stockist.">
     <meta name="twitter:image" content="https://www.peppytaps.com.au/img/lifestyle/hero1.jpg">
     <link rel="stylesheet" href="css/styles.css?v=111">
-    <link rel="stylesheet" href="css/home-v2.css?v=14">
+    <link rel="stylesheet" href="css/home-v2.css?v=15">
     <link rel="stylesheet" href="css/cart.css">
 
     <!-- Stockist locator (Leaflet + cluster, vendored locally) — shared with /pages/where-to-buy.html -->
@@ -319,60 +319,66 @@
         <div class="container">
             <div class="section-header" data-animate>
                 <p class="section-eyebrow">Compare</p>
-                <h2 class="section-title">Find Your Perfect<br>Configuration</h2>
-                <p class="section-subtitle">Compare features across our three core product lines to find the system that best suits your kitchen and lifestyle.</p>
+                <h2 class="section-title">Which Peppy Tap Is Right For You?</h2>
+                <p class="section-subtitle">Compare the core differences between our 4-in-1 and 5-in-1 systems, then choose the tap that suits your kitchen, lifestyle and budget.</p>
             </div>
-            
+
             <!-- Mobile-friendly stacked comparison (CSS hides this above 768px,
-                 hides the table below 768px). v2 polish: each card now opens
-                 with a "Best for…" line, lists only the 4-5 top differentiators
-                 (full feature matrix lives in the desktop table), and ends with
-                 a direct "View product" CTA. -->
+                 hides the table below 768px). Cards are intentionally neutral —
+                 no "Most Popular" / recommendation badges. Each card carries
+                 a small product thumbnail, a neutral "Best for…" line, feature
+                 chips (inclusion-only — no "No X" rows), and a full-width
+                 "View product" CTA. -->
             <div class="comparison-cards">
                 <article class="comparison-card">
                     <div class="comparison-card-head">
-                        <h3 class="comparison-card-name">Signature 5-in-1</h3>
-                        <span class="comparison-card-price">From $4,999</span>
+                        <div class="comparison-card-head-text">
+                            <h3 class="comparison-card-name">Signature 5-in-1</h3>
+                            <span class="comparison-card-price">From $4,999</span>
+                        </div>
+                        <img class="comparison-card-thumb" src="img/products/sig5in1-chrome.png" alt="Signature 5-in-1 in chrome" loading="lazy">
                     </div>
-                    <p class="comparison-card-bestfor"><strong>Best for:</strong> Households who want the full experience — boiling, chilled, and chilled sparkling, all from one tap.</p>
-                    <ul class="comparison-card-features">
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Filtered Boiling (98&deg;C)</li>
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Filtered Chilled</li>
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Chilled Sparkling Soda</li>
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Touch-Control Panel</li>
-                        <li class="is-absent"><svg class="dash-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>No Pull-Out Option</li>
+                    <p class="comparison-card-bestfor"><strong>Best for:</strong> kitchens that want boiling, chilled and sparkling water from one tap.</p>
+                    <ul class="comparison-card-chips">
+                        <li class="comparison-card-chip">Boiling</li>
+                        <li class="comparison-card-chip">Chilled</li>
+                        <li class="comparison-card-chip">Sparkling</li>
+                        <li class="comparison-card-chip">Touch control</li>
                     </ul>
-                    <a href="pages/product.html" class="comparison-card-cta">View Signature 5-in-1 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <a href="pages/product.html" class="comparison-card-cta">View product <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
                 </article>
                 <article class="comparison-card">
                     <div class="comparison-card-head">
-                        <h3 class="comparison-card-name">Signature 4-in-1</h3>
-                        <span class="comparison-card-price">From $2,999</span>
+                        <div class="comparison-card-head-text">
+                            <h3 class="comparison-card-name">Signature 4-in-1</h3>
+                            <span class="comparison-card-price">From $2,999</span>
+                        </div>
+                        <img class="comparison-card-thumb" src="img/products/sig4in1-chrome.png" alt="Signature 4-in-1 in chrome" loading="lazy">
                     </div>
-                    <p class="comparison-card-bestfor"><strong>Best for:</strong> Versatile families who want premium control with maximum flexibility &mdash; pick chilled or ambient.</p>
-                    <ul class="comparison-card-features">
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Filtered Boiling (98&deg;C)</li>
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Chilled or Ambient (your choice)</li>
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Touch-Control Panel</li>
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Pull-Out Option Available</li>
-                        <li class="is-absent"><svg class="dash-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>No Sparkling</li>
+                    <p class="comparison-card-bestfor"><strong>Best for:</strong> kitchens that want touch control with a choice of chilled or ambient filtered water.</p>
+                    <ul class="comparison-card-chips">
+                        <li class="comparison-card-chip">Boiling</li>
+                        <li class="comparison-card-chip">Chilled or Ambient</li>
+                        <li class="comparison-card-chip">Touch control</li>
+                        <li class="comparison-card-chip">Pull-out option</li>
                     </ul>
-                    <a href="pages/signature-4in1.html" class="comparison-card-cta">View Signature 4-in-1 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <a href="pages/signature-4in1.html" class="comparison-card-cta">View product <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
                 </article>
                 <article class="comparison-card">
                     <div class="comparison-card-head">
-                        <h3 class="comparison-card-name">Flagship 4-in-1</h3>
-                        <span class="comparison-card-price">From $2,499</span>
+                        <div class="comparison-card-head-text">
+                            <h3 class="comparison-card-name">Flagship 4-in-1</h3>
+                            <span class="comparison-card-price">From $2,499</span>
+                        </div>
+                        <img class="comparison-card-thumb" src="img/products/flagship-chrome.png" alt="Flagship 4-in-1 in chrome" loading="lazy">
                     </div>
-                    <p class="comparison-card-bestfor"><strong>Best for:</strong> Clean, lever-controlled design at a sharper price point. The streamlined essentials.</p>
-                    <ul class="comparison-card-features">
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Filtered Boiling (98&deg;C)</li>
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Chilled or Ambient (your choice)</li>
-                        <li><svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Pull-Out (Ambient option)</li>
-                        <li class="is-absent"><svg class="dash-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>No Touch-Control Panel</li>
-                        <li class="is-absent"><svg class="dash-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>No Sparkling</li>
+                    <p class="comparison-card-bestfor"><strong>Best for:</strong> kitchens that want a streamlined lever-control design at a sharper price point.</p>
+                    <ul class="comparison-card-chips">
+                        <li class="comparison-card-chip">Boiling</li>
+                        <li class="comparison-card-chip">Chilled or Ambient</li>
+                        <li class="comparison-card-chip">Pull-out option</li>
                     </ul>
-                    <a href="pages/flagship-4in1.html" class="comparison-card-cta">View Flagship 4-in-1 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <a href="pages/flagship-4in1.html" class="comparison-card-cta">View product <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
                 </article>
             </div>
             <div class="comparison-wrapper" data-animate="scale">
@@ -1089,6 +1095,6 @@
     <script src="js/stockists-v4.js?v=4"></script>
     <!-- Home page interactive components: extracted from inline
          scripts so the site-wide CSP can drop script-src 'unsafe-inline'. -->
-    <script src="js/home.js?v=3"></script>
+    <script src="js/home.js?v=4"></script>
 </body>
 </html>

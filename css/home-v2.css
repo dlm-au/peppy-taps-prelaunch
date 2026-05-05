@@ -245,33 +245,24 @@
     padding: 20px 18px;
     box-shadow: 0 2px 6px rgba(15, 25, 45, 0.04);
 }
-.page-home-v2 .comparison-card.is-popular {
-    border-color: var(--color-accent);
-    box-shadow: 0 6px 18px rgba(29, 58, 95, 0.10);
-    position: relative;
-}
-.page-home-v2 .comparison-card.is-popular::before {
-    content: 'Most Popular';
-    position: absolute;
-    top: -10px;
-    left: 18px;
-    background: var(--color-accent);
-    color: #fff;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 999px;
-}
+/* Cards intentionally kept neutral — no "Most Popular" / recommended
+   styling. The .is-popular class + ::before pseudo-element have been
+   removed; each card carries equal visual weight so the buying guide
+   feels like a calm, scannable comparison rather than a sales push. */
 .page-home-v2 .comparison-card-head {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: 12px;
     margin-bottom: 14px;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--color-border-light);
+}
+.page-home-v2 .comparison-card-head-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
 }
 .page-home-v2 .comparison-card-name {
     font-family: var(--font-display);
@@ -279,45 +270,27 @@
     font-weight: 500;
     color: var(--color-text);
     margin: 0;
+    line-height: 1.2;
 }
 .page-home-v2 .comparison-card-price {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--color-accent);
 }
-.page-home-v2 .comparison-card-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.page-home-v2 .comparison-card-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 0.88rem;
-    color: var(--color-text-secondary);
-    line-height: 1.4;
-}
-.page-home-v2 .comparison-card-features li.is-absent {
-    opacity: 0.45;
-    text-decoration: line-through;
-}
-.page-home-v2 .comparison-card-features svg {
+.page-home-v2 .comparison-card-thumb {
+    width: 56px;
+    height: 72px;
+    object-fit: contain;
     flex-shrink: 0;
-    margin-top: 1px;
+    /* Visually anchor the product to its card without fighting for attention
+       with the headline. Subtle background helps the chrome on chrome. */
+    background: rgba(15, 25, 45, 0.03);
+    border-radius: 6px;
+    padding: 4px;
 }
-.page-home-v2 .comparison-card-features .check-icon {
-    color: var(--color-accent);
-}
-.page-home-v2 .comparison-card-features .dash-icon {
-    color: var(--color-text-muted);
-}
-/* "Best for…" tagline at the top of each comparison card. */
+/* "Best for…" tagline. */
 .page-home-v2 .comparison-card-bestfor {
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     color: var(--color-text);
     line-height: 1.5;
     margin: 0 0 14px;
@@ -326,13 +299,35 @@
     font-weight: 600;
     color: var(--color-accent);
 }
-/* "View product" CTA at the bottom of each comparison card. */
+/* Feature chips — communicate features-by-inclusion (no "No X"
+   strike-through rows). Compact pills wrap onto multiple lines. */
+.page-home-v2 .comparison-card-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.page-home-v2 .comparison-card-chip {
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    padding: 5px 10px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: 999px;
+    color: var(--color-text);
+    line-height: 1.2;
+}
+/* Full-width "View product" CTA at the bottom. */
 .page-home-v2 .comparison-card-cta {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    margin-top: 16px;
-    padding: 10px 16px;
+    margin-top: 18px;
+    padding: 12px 18px;
     background: var(--color-accent);
     color: #fff;
     border-radius: var(--radius);
@@ -340,14 +335,10 @@
     font-weight: 600;
     letter-spacing: 0.04em;
     text-decoration: none;
-    transition: background 0.15s, gap 0.2s var(--ease-out);
+    transition: background 0.15s;
 }
 .page-home-v2 .comparison-card-cta:hover {
     background: #14283f;
-    gap: 12px;
-}
-.page-home-v2 .comparison-card.is-popular .comparison-card-cta {
-    background: var(--color-accent);
 }
 
 @media (max-width: 768px) {
