@@ -11,7 +11,7 @@
    Storefront API and render per-product Buy / Subscribe buttons. */
 
 const FILTER_STRIPE_BUY_URL       = 'https://buy.stripe.com/aFa7sNb8Z2nG5WA4mMfEk01';
-const FILTER_STRIPE_SUBSCRIBE_URL = 'https://buy.stripe.com/14A9AV6SJ7l0et65qQfEk02';
+const FILTER_STRIPE_SUBSCRIBE_URL = 'https://buy.stripe.com/14A9AV6SJ7I0et65qQfEk02';
 
 function wireRedirect(buttonId, url) {
     const btn = document.getElementById(buttonId);
