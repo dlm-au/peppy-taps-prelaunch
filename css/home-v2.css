@@ -197,10 +197,11 @@
 }
 
 /* ─── Featured + grid hybrid for mobile ─────────────────
-   The 2-up product grid feels cramped at narrow widths
-   for $3-5k items. v2 promotes the FIRST card in each
-   collection block to a full-width hero card on mobile,
-   followed by the rest as standard 2-up. Desktop layout
+   On mobile every card stays at the same size in a uniform
+   2-up grid. We previously promoted the FIRST card of each
+   collection to a full-width "featured" row, but that made
+   the rest of the cards look secondary — owner asked for
+   equal visual weight across the whole grid. Desktop layout
    is unchanged. */
 @media (max-width: 600px) {
     .page-home-v2 .products-grid {
@@ -210,17 +211,6 @@
     .page-home-v2 .products-grid--3 {
         grid-template-columns: repeat(2, 1fr);
     }
-    .page-home-v2 .products-grid .product-card:first-child {
-        grid-column: 1 / -1;
-    }
-    .page-home-v2 .products-grid .product-card:first-child .product-card-image {
-        aspect-ratio: 4/3;
-    }
-    /* The featured first card keeps its layout prominence (full-width row
-       + larger 4:3 image area) but typography stays uniform with the
-       other cards in the grid — earlier overrides bumped the name/desc/
-       price to 1.2/0.88/1rem which made the first card's title visibly
-       larger than its row-2 peers. Removed for visual consistency. */
 }
 
 /* ─── Comparison ────────────────────────────────────────
