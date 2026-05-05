@@ -1839,10 +1839,23 @@ input { font-family: inherit; }
     text-align: left;
 }
 /* .comparison-popular / .comparison-popular-col / .comparison-popular-badge
-   removed May 2026 — comparison cards & desktop table are intentionally
-   neutral now (no "Most Popular" recommendation). Markup classes were
-   stripped earlier; these rules are gone too to prevent future drift
-   if the classes ever get re-introduced by accident. */
+   removed May 2026 — table is intentionally neutral, no "Most Popular"
+   recommendation. The middle product column does get a very subtle
+   navy tint via nth-child below, but that's purely visual chunking
+   (so the three product columns read as separate panels) — not a
+   recommendation cue. The rgba alpha keeps the existing zebra
+   striping showing through on alternate rows. */
+.comparison-table thead th:nth-child(3),
+.comparison-table tbody td:nth-child(3),
+.comparison-table tfoot td:nth-child(3) {
+    background: rgba(29, 58, 95, 0.06);
+}
+.comparison-table thead th:nth-child(3) {
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+.comparison-table tfoot td:nth-child(3) {
+    border-radius: 0 0 var(--radius) var(--radius);
+}
 .comparison-table tbody tr {
     border-bottom: 1px solid var(--color-border-light);
 }
