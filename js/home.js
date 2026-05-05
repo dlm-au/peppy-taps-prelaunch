@@ -42,6 +42,11 @@
             && !stockistInView;
         bar.classList.toggle('is-shown', shown);
         bar.setAttribute('aria-hidden', shown ? 'false' : 'true');
+        // `inert` (well-supported in 2026) removes the bar's links from
+        // the tab order AND blocks click/touch when hidden — pairs with
+        // the CSS pointer-events:none for full keyboard parity.
+        if (shown) bar.removeAttribute('inert');
+        else       bar.setAttribute('inert', '');
     };
 
     window.addEventListener('scroll', evaluate, { passive: true });
