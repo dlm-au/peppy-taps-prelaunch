@@ -1,204 +1,275 @@
 /* ============================================
-   Shopify Buy SDK Integration — Peppy Taps
+   Shopify Storefront Cart API integration — Peppy Taps
    ============================================
 
-   SETUP INSTRUCTIONS:
-   1. In your Shopify Admin, go to Apps > Manage private apps
-      (or Apps > Develop apps > Create an app)
-   2. Create a new app called "Peppy Taps Website"
-   3. Under "Storefront API", enable:
-      - Read products
-      - Read product listings
-      - Read and modify checkouts
-   4. Copy the Storefront Access Token
-   5. Replace SHOPIFY_CONFIG values below
+   Uses the modern Storefront Cart API (cartCreate / cartLinesAdd /
+   cartLinesUpdate / cartLinesRemove) via direct GraphQL fetch, NOT
+   the deprecated Buy SDK or checkout.* APIs.
 
+   On checkout, redirects the user to `cart.checkoutUrl` (a Shopify-
+   hosted checkout URL).
+
+   SETUP — Shopify admin:
+     1. Settings → Apps and sales channels → Develop apps → Create
+        an app called "Peppy Taps Website"
+     2. Configure Storefront API scopes:
+          - unauthenticated_read_product_listings
+          - unauthenticated_read_product_inventory
+          - unauthenticated_write_checkouts
+          - unauthenticated_read_checkouts
+     3. Install app → copy the Storefront API access token (NOT the
+        Admin API token).
+     4. Replace SHOPIFY_CONFIG.storefrontAccessToken below.
+
+   ----------------------------------------
+   Currently we only sell ONE product direct (the 2CB5-S filter
+   cartridge). Taps go through stockists, so their PDP CTAs say
+   "Find a Retailer" and don't add to cart. If you start selling
+   taps direct, add their variant IDs to SHOPIFY_CONFIG.variants
+   and re-introduce Add-to-Cart buttons on the relevant PDPs.
    ============================================ */
 
 const SHOPIFY_CONFIG = {
-    // ============================================
-    // >>> REPLACE THESE WITH YOUR REAL VALUES <<<
-    // ============================================
-    domain: 'peppytaps.com.au',  // Your Shopify domain (myshopify.com or custom)
-    storefrontAccessToken: 'YOUR_STOREFRONT_ACCESS_TOKEN_HERE',
-    // ============================================
+    domain: 'peppytaps.myshopify.com',  // Cart API uses the .myshopify.com subdomain
+    storefrontAccessToken: '17fa7dbd427bde8b6516e2f664e117f5',
+    apiVersion: '2024-10',  // Storefront API version. Bump when migrating.
 
-    // Product variant IDs from Shopify (format: 'gid://shopify/ProductVariant/XXXXXXXXX')
-    // To find these: Shopify Admin > Products > Click product > Click variant > ID is in the URL
-    // Or use the Storefront API to query them
+    // Variant IDs — format: 'gid://shopify/ProductVariant/1234567890'
+    // Find in Shopify admin: Products → click product → click variant →
+    // ID is the number after /variants/ in the URL.
     variants: {
-        // Signature 5 in 1
-        'sig-5in1-chrome':             'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-5in1-matte-black':        'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-5in1-brushed-brass-gold': 'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-5in1-gun-metal-grey':     'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-5in1-brushed-nickel':     'gid://shopify/ProductVariant/REPLACE_ME',
-
-        // Signature 4 in 1 Chilled — Standard
-        'sig-4in1c-standard-chrome':             'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1c-standard-matte-black':        'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1c-standard-brushed-brass-gold': 'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1c-standard-gun-metal-grey':     'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1c-standard-brushed-nickel':     'gid://shopify/ProductVariant/REPLACE_ME',
-
-        // Signature 4 in 1 Chilled — Pull Out
-        'sig-4in1c-pullout-chrome':             'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1c-pullout-matte-black':        'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1c-pullout-brushed-brass-gold': 'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1c-pullout-gun-metal-grey':     'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1c-pullout-brushed-nickel':     'gid://shopify/ProductVariant/REPLACE_ME',
-
-        // Signature 4 in 1 Ambient — Standard
-        'sig-4in1a-standard-chrome':             'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1a-standard-matte-black':        'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1a-standard-brushed-brass-gold': 'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1a-standard-gun-metal-grey':     'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1a-standard-brushed-nickel':     'gid://shopify/ProductVariant/REPLACE_ME',
-
-        // Signature 4 in 1 Ambient — Pull Out
-        'sig-4in1a-pullout-chrome':             'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1a-pullout-matte-black':        'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1a-pullout-brushed-brass-gold': 'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1a-pullout-gun-metal-grey':     'gid://shopify/ProductVariant/REPLACE_ME',
-        'sig-4in1a-pullout-brushed-nickel':     'gid://shopify/ProductVariant/REPLACE_ME',
-
-        // Flagship 4 in 1 Chilled — Standard
-        'flag-4in1c-standard-chrome':             'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1c-standard-matte-black':        'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1c-standard-brushed-brass-gold': 'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1c-standard-gun-metal-grey':     'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1c-standard-brushed-nickel':     'gid://shopify/ProductVariant/REPLACE_ME',
-
-        // Flagship 4 in 1 Ambient — Standard
-        'flag-4in1a-standard-chrome':             'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1a-standard-matte-black':        'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1a-standard-brushed-brass-gold': 'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1a-standard-gun-metal-grey':     'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1a-standard-brushed-nickel':     'gid://shopify/ProductVariant/REPLACE_ME',
-
-        // Flagship 4 in 1 Ambient — Pull Out
-        'flag-4in1a-pullout-chrome':             'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1a-pullout-matte-black':        'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1a-pullout-brushed-brass-gold': 'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1a-pullout-gun-metal-grey':     'gid://shopify/ProductVariant/REPLACE_ME',
-        'flag-4in1a-pullout-brushed-nickel':     'gid://shopify/ProductVariant/REPLACE_ME',
-
-        // Filter Cartridge
         'filter-2cb5s': 'gid://shopify/ProductVariant/REPLACE_ME'
     }
 };
 
+// Derived: GraphQL endpoint
+const SHOPIFY_GQL_URL = `https://${SHOPIFY_CONFIG.domain}/api/${SHOPIFY_CONFIG.apiVersion}/graphql.json`;
+
 
 /* ----------------------------------------
-   Cart State
+   Cart state
    ---------------------------------------- */
-let shopifyClient = null;
-let shopifyCheckout = null;
-let cartItems = [];
+let cartId = null;          // Shopify Cart ID (gid://shopify/Cart/...)
+let checkoutUrl = null;     // Persisted from cart payload — used on Checkout click
+let cartItems = [];          // Normalised line items for the drawer UI
 let cartOpen = false;
+let demoMode = false;       // True when token isn't configured — UI works, no real cart
+
 
 /* ----------------------------------------
-   Initialize Shopify Buy SDK
+   GraphQL helper
    ---------------------------------------- */
-function initShopify() {
-    if (typeof ShopifyBuy === 'undefined') {
-        console.warn('Shopify Buy SDK not loaded. Cart will run in demo mode.');
-        initDemoMode();
-        return;
+async function shopifyGql(query, variables) {
+    const res = await fetch(SHOPIFY_GQL_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Storefront-Access-Token': SHOPIFY_CONFIG.storefrontAccessToken,
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({ query, variables }),
+    });
+    if (!res.ok) {
+        throw new Error(`Shopify GraphQL HTTP ${res.status}`);
+    }
+    const json = await res.json();
+    if (json.errors && json.errors.length) {
+        throw new Error('Shopify GraphQL errors: ' + JSON.stringify(json.errors));
+    }
+    return json.data;
+}
+
+
+/* ----------------------------------------
+   GraphQL operations
+   ---------------------------------------- */
+const CART_FRAGMENT = `
+    id
+    checkoutUrl
+    totalQuantity
+    cost {
+        subtotalAmount { amount currencyCode }
+    }
+    lines(first: 100) {
+        edges {
+            node {
+                id
+                quantity
+                merchandise {
+                    ... on ProductVariant {
+                        id
+                        title
+                        price { amount currencyCode }
+                        image { url altText }
+                        product { title handle }
+                    }
+                }
+            }
+        }
+    }
+`;
+
+async function gqlCartCreate(lines) {
+    const query = `
+        mutation cartCreate($input: CartInput) {
+            cartCreate(input: $input) {
+                cart { ${CART_FRAGMENT} }
+                userErrors { field message }
+            }
+        }`;
+    const data = await shopifyGql(query, { input: { lines } });
+    const ue = data.cartCreate.userErrors;
+    if (ue.length) throw new Error('cartCreate userErrors: ' + JSON.stringify(ue));
+    return data.cartCreate.cart;
+}
+
+async function gqlCartFetch(id) {
+    const query = `query getCart($id: ID!) { cart(id: $id) { ${CART_FRAGMENT} } }`;
+    const data = await shopifyGql(query, { id });
+    return data.cart;  // Null if cart no longer exists / expired
+}
+
+async function gqlCartLinesAdd(id, lines) {
+    const query = `
+        mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+            cartLinesAdd(cartId: $cartId, lines: $lines) {
+                cart { ${CART_FRAGMENT} }
+                userErrors { field message }
+            }
+        }`;
+    const data = await shopifyGql(query, { cartId: id, lines });
+    const ue = data.cartLinesAdd.userErrors;
+    if (ue.length) throw new Error('cartLinesAdd userErrors: ' + JSON.stringify(ue));
+    return data.cartLinesAdd.cart;
+}
+
+async function gqlCartLinesUpdate(id, lines) {
+    const query = `
+        mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+            cartLinesUpdate(cartId: $cartId, lines: $lines) {
+                cart { ${CART_FRAGMENT} }
+                userErrors { field message }
+            }
+        }`;
+    const data = await shopifyGql(query, { cartId: id, lines });
+    const ue = data.cartLinesUpdate.userErrors;
+    if (ue.length) throw new Error('cartLinesUpdate userErrors: ' + JSON.stringify(ue));
+    return data.cartLinesUpdate.cart;
+}
+
+async function gqlCartLinesRemove(id, lineIds) {
+    const query = `
+        mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+            cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+                cart { ${CART_FRAGMENT} }
+                userErrors { field message }
+            }
+        }`;
+    const data = await shopifyGql(query, { cartId: id, lineIds });
+    const ue = data.cartLinesRemove.userErrors;
+    if (ue.length) throw new Error('cartLinesRemove userErrors: ' + JSON.stringify(ue));
+    return data.cartLinesRemove.cart;
+}
+
+
+/* ----------------------------------------
+   Cart-state sync helpers
+   ---------------------------------------- */
+function syncFromCart(cart) {
+    cartId = cart.id;
+    checkoutUrl = cart.checkoutUrl;
+    cartItems = cart.lines.edges.map(({ node }) => ({
+        id: node.id,                                     // CartLine ID (gid://shopify/CartLine/...)
+        variantId: node.merchandise.id,
+        title: node.merchandise.product.title,
+        variant: node.merchandise.title,                 // e.g. "Standard" or "Default Title"
+        price: parseFloat(node.merchandise.price.amount),
+        quantity: node.quantity,
+        image: node.merchandise.image ? node.merchandise.image.url : null,
+    }));
+    localStorage.setItem('peppy_cart_id', cartId);
+    updateCartUI();
+}
+
+async function ensureCart() {
+    // If we already have a live cart in memory, use it.
+    if (cartId) return;
+
+    // Try to restore a cart from a previous session.
+    const saved = localStorage.getItem('peppy_cart_id');
+    if (saved) {
+        try {
+            const cart = await gqlCartFetch(saved);
+            if (cart) { syncFromCart(cart); return; }
+        } catch (_) { /* fall through to create */ }
     }
 
+    // No cart yet — defer creation until the first Add to Cart.
+    // (cartCreate accepts lines on creation, so we save a round-trip.)
+}
+
+
+/* ----------------------------------------
+   Init
+   ---------------------------------------- */
+async function initShopify() {
     if (SHOPIFY_CONFIG.storefrontAccessToken === 'YOUR_STOREFRONT_ACCESS_TOKEN_HERE') {
         console.warn('Shopify Storefront Access Token not configured. Cart will run in demo mode.');
         initDemoMode();
         return;
     }
-
-    shopifyClient = ShopifyBuy.buildClient({
-        domain: SHOPIFY_CONFIG.domain,
-        storefrontAccessToken: SHOPIFY_CONFIG.storefrontAccessToken,
-    });
-
-    // Create a new checkout session (or restore from localStorage)
-    const existingCheckoutId = localStorage.getItem('peppy_checkout_id');
-
-    if (existingCheckoutId) {
-        shopifyClient.checkout.fetch(existingCheckoutId).then(checkout => {
-            if (checkout && !checkout.completedAt) {
-                shopifyCheckout = checkout;
-                syncCartFromCheckout();
-            } else {
-                createNewCheckout();
-            }
-        }).catch(() => createNewCheckout());
-    } else {
-        createNewCheckout();
+    try {
+        await ensureCart();
+    } catch (err) {
+        console.warn('Shopify cart init failed, falling back to demo mode:', err);
+        initDemoMode();
     }
 }
-
-function createNewCheckout() {
-    shopifyClient.checkout.create().then(checkout => {
-        shopifyCheckout = checkout;
-        localStorage.setItem('peppy_checkout_id', checkout.id);
-    });
-}
-
-function syncCartFromCheckout() {
-    cartItems = shopifyCheckout.lineItems.map(item => ({
-        id: item.id,
-        variantId: item.variant.id,
-        title: item.title,
-        variant: item.variant.title,
-        price: parseFloat(item.variant.price.amount),
-        quantity: item.quantity,
-        image: item.variant.image ? item.variant.image.src : null
-    }));
-    updateCartUI();
-}
-
-
-/* ----------------------------------------
-   Demo Mode (when Shopify not connected)
-   ---------------------------------------- */
-let demoMode = false;
 
 function initDemoMode() {
     demoMode = true;
-    // Restore cart from localStorage in demo mode
     const saved = localStorage.getItem('peppy_cart_demo');
     if (saved) {
-        try { cartItems = JSON.parse(saved); } catch(e) { cartItems = []; }
+        try { cartItems = JSON.parse(saved); } catch (_) { cartItems = []; }
     }
     updateCartUI();
 }
 
 
 /* ----------------------------------------
-   Add to Cart
+   Public API: Add to Cart
    ---------------------------------------- */
-function addToCart(variantKey, productTitle, variantTitle, price, imageUrl) {
+async function addToCart(variantKey, productTitle, variantTitle, price, imageUrl) {
     if (demoMode) {
         addToCartDemo(variantKey, productTitle, variantTitle, price, imageUrl);
         return;
     }
 
     const variantId = SHOPIFY_CONFIG.variants[variantKey];
-    if (!variantId || variantId === 'gid://shopify/ProductVariant/REPLACE_ME') {
-        console.warn('Variant ID not configured for:', variantKey);
+    if (!variantId || variantId.endsWith('REPLACE_ME')) {
+        console.warn('Variant ID not configured for:', variantKey, '— using demo flow');
         addToCartDemo(variantKey, productTitle, variantTitle, price, imageUrl);
         return;
     }
 
-    const lineItemsToAdd = [{ variantId: variantId, quantity: 1 }];
-
-    shopifyClient.checkout.addLineItems(shopifyCheckout.id, lineItemsToAdd).then(checkout => {
-        shopifyCheckout = checkout;
-        syncCartFromCheckout();
+    const line = { merchandiseId: variantId, quantity: 1 };
+    try {
+        let cart;
+        if (!cartId) {
+            cart = await gqlCartCreate([line]);
+        } else {
+            cart = await gqlCartLinesAdd(cartId, [line]);
+        }
+        syncFromCart(cart);
         openCart();
-    });
+    } catch (err) {
+        console.error('Add to cart failed:', err);
+        // Fall back so user still gets *something*
+        addToCartDemo(variantKey, productTitle, variantTitle, price, imageUrl);
+    }
 }
 
 function addToCartDemo(variantKey, productTitle, variantTitle, price, imageUrl) {
-    // Check if item already in cart
     const existing = cartItems.find(item => item.variantId === variantKey);
     if (existing) {
         existing.quantity += 1;
@@ -210,7 +281,7 @@ function addToCartDemo(variantKey, productTitle, variantTitle, price, imageUrl) 
             variant: variantTitle,
             price: price,
             quantity: 1,
-            image: imageUrl
+            image: imageUrl,
         });
     }
     localStorage.setItem('peppy_cart_demo', JSON.stringify(cartItems));
@@ -220,32 +291,33 @@ function addToCartDemo(variantKey, productTitle, variantTitle, price, imageUrl) 
 
 
 /* ----------------------------------------
-   Remove from Cart
+   Public API: Remove from Cart
    ---------------------------------------- */
-function removeFromCart(itemId) {
+async function removeFromCart(itemId) {
     if (demoMode) {
         cartItems = cartItems.filter(item => item.id !== itemId);
         localStorage.setItem('peppy_cart_demo', JSON.stringify(cartItems));
         updateCartUI();
         return;
     }
-
-    shopifyClient.checkout.removeLineItems(shopifyCheckout.id, [itemId]).then(checkout => {
-        shopifyCheckout = checkout;
-        syncCartFromCheckout();
-    });
+    if (!cartId) return;
+    try {
+        const cart = await gqlCartLinesRemove(cartId, [itemId]);
+        syncFromCart(cart);
+    } catch (err) {
+        console.error('Remove from cart failed:', err);
+    }
 }
 
 
 /* ----------------------------------------
-   Update Quantity
+   Public API: Update quantity
    ---------------------------------------- */
-function updateQuantity(itemId, newQty) {
+async function updateQuantity(itemId, newQty) {
     if (newQty < 1) {
         removeFromCart(itemId);
         return;
     }
-
     if (demoMode) {
         const item = cartItems.find(i => i.id === itemId);
         if (item) item.quantity = newQty;
@@ -253,12 +325,13 @@ function updateQuantity(itemId, newQty) {
         updateCartUI();
         return;
     }
-
-    const lineItemsToUpdate = [{ id: itemId, quantity: newQty }];
-    shopifyClient.checkout.updateLineItems(shopifyCheckout.id, lineItemsToUpdate).then(checkout => {
-        shopifyCheckout = checkout;
-        syncCartFromCheckout();
-    });
+    if (!cartId) return;
+    try {
+        const cart = await gqlCartLinesUpdate(cartId, [{ id: itemId, quantity: newQty }]);
+        syncFromCart(cart);
+    } catch (err) {
+        console.error('Update quantity failed:', err);
+    }
 }
 
 
@@ -267,13 +340,11 @@ function updateQuantity(itemId, newQty) {
    ---------------------------------------- */
 function goToCheckout() {
     if (demoMode) {
-        // Online checkout not yet provisioned — show inline notice instead of redirecting
         showCheckoutNotice();
         return;
     }
-
-    if (shopifyCheckout && shopifyCheckout.webUrl) {
-        window.location.href = shopifyCheckout.webUrl;
+    if (checkoutUrl) {
+        window.location.href = checkoutUrl;
     }
 }
 
@@ -296,7 +367,6 @@ function showCheckoutNotice() {
    Cart UI — Drawer
    ---------------------------------------- */
 function createCartDrawer() {
-    // Don't create if already exists
     if (document.getElementById('cartDrawer')) return;
 
     const drawer = document.createElement('div');
@@ -321,7 +391,7 @@ function createCartDrawer() {
                     <span>Subtotal</span>
                     <span id="cartSubtotal">$0</span>
                 </div>
-                <p class="cart-drawer-note">Shipping & GST included in RRP</p>
+                <p class="cart-drawer-note">Shipping & GST calculated at checkout</p>
                 <button class="btn btn--primary cart-checkout-btn" id="cartCheckoutBtn">Checkout</button>
                 <button class="btn btn--secondary cart-continue-btn" id="cartContinueBtn">Continue Shopping</button>
             </div>
@@ -329,7 +399,6 @@ function createCartDrawer() {
     `;
     document.body.appendChild(drawer);
 
-    // Event listeners
     document.getElementById('cartOverlay').addEventListener('click', closeCart);
     document.getElementById('cartClose').addEventListener('click', closeCart);
     document.getElementById('cartCheckoutBtn').addEventListener('click', goToCheckout);
@@ -362,19 +431,18 @@ function updateCartUI() {
         badge.style.display = total > 0 ? '' : '';
     });
 
-    // Update drawer items
     const itemsContainer = document.getElementById('cartDrawerItems');
     const footerEl = document.getElementById('cartDrawerFooter');
     if (!itemsContainer) return;
 
     if (cartItems.length === 0) {
         itemsContainer.textContent = '';
-        var emptyDiv = document.createElement('div');
+        const emptyDiv = document.createElement('div');
         emptyDiv.className = 'cart-drawer-empty';
         emptyDiv.innerHTML = '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>';
-        var emptyP = document.createElement('p');
+        const emptyP = document.createElement('p');
         emptyP.textContent = 'Your cart is empty';
-        var emptySpan = document.createElement('span');
+        const emptySpan = document.createElement('span');
         emptySpan.textContent = 'Add some products to get started';
         emptyDiv.appendChild(emptyP);
         emptyDiv.appendChild(emptySpan);
@@ -386,21 +454,21 @@ function updateCartUI() {
     if (footerEl) footerEl.style.display = '';
 
     itemsContainer.textContent = '';
-    cartItems.forEach(function(item) {
-        var itemEl = document.createElement('div');
+    cartItems.forEach(function (item) {
+        const itemEl = document.createElement('div');
         itemEl.className = 'cart-drawer-item';
         itemEl.dataset.id = item.id;
 
         // Image
-        var imageDiv = document.createElement('div');
+        const imageDiv = document.createElement('div');
         imageDiv.className = 'cart-item-image';
         if (item.image) {
-            var img = document.createElement('img');
+            const img = document.createElement('img');
             img.src = item.image;
             img.alt = item.title;
             imageDiv.appendChild(img);
         } else {
-            var placeholder = document.createElement('div');
+            const placeholder = document.createElement('div');
             placeholder.className = 'cart-item-placeholder';
             placeholder.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2c-4 6-8 10-8 16a8 8 0 0016 0c0-6-4-10-8-16z"/></svg>';
             imageDiv.appendChild(placeholder);
@@ -408,52 +476,52 @@ function updateCartUI() {
         itemEl.appendChild(imageDiv);
 
         // Details
-        var detailsDiv = document.createElement('div');
+        const detailsDiv = document.createElement('div');
         detailsDiv.className = 'cart-item-details';
-        var titleEl = document.createElement('h4');
+        const titleEl = document.createElement('h4');
         titleEl.className = 'cart-item-title';
         titleEl.textContent = item.title;
-        var variantEl = document.createElement('p');
+        const variantEl = document.createElement('p');
         variantEl.className = 'cart-item-variant';
         variantEl.textContent = item.variant;
-        var priceEl = document.createElement('p');
+        const priceEl = document.createElement('p');
         priceEl.className = 'cart-item-price';
         priceEl.textContent = '$' + item.price.toLocaleString();
         detailsDiv.appendChild(titleEl);
         detailsDiv.appendChild(variantEl);
         detailsDiv.appendChild(priceEl);
 
-        // Quantity controls — using addEventListener instead of inline onclick
-        var qtyDiv = document.createElement('div');
+        // Quantity controls
+        const qtyDiv = document.createElement('div');
         qtyDiv.className = 'cart-item-qty';
-        var minusBtn = document.createElement('button');
+        const minusBtn = document.createElement('button');
         minusBtn.className = 'cart-qty-btn';
         minusBtn.textContent = '-';
-        minusBtn.addEventListener('click', function() { updateQuantity(item.id, item.quantity - 1); });
-        var qtySpan = document.createElement('span');
+        minusBtn.addEventListener('click', function () { updateQuantity(item.id, item.quantity - 1); });
+        const qtySpan = document.createElement('span');
         qtySpan.textContent = item.quantity;
-        var plusBtn = document.createElement('button');
+        const plusBtn = document.createElement('button');
         plusBtn.className = 'cart-qty-btn';
         plusBtn.textContent = '+';
-        plusBtn.addEventListener('click', function() { updateQuantity(item.id, item.quantity + 1); });
+        plusBtn.addEventListener('click', function () { updateQuantity(item.id, item.quantity + 1); });
         qtyDiv.appendChild(minusBtn);
         qtyDiv.appendChild(qtySpan);
         qtyDiv.appendChild(plusBtn);
         detailsDiv.appendChild(qtyDiv);
         itemEl.appendChild(detailsDiv);
 
-        // Remove button — using addEventListener instead of inline onclick
-        var removeBtn = document.createElement('button');
+        // Remove button
+        const removeBtn = document.createElement('button');
         removeBtn.className = 'cart-item-remove';
         removeBtn.setAttribute('aria-label', 'Remove item');
         removeBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>';
-        removeBtn.addEventListener('click', function() { removeFromCart(item.id); });
+        removeBtn.addEventListener('click', function () { removeFromCart(item.id); });
         itemEl.appendChild(removeBtn);
 
         itemsContainer.appendChild(itemEl);
     });
 
-    // Update subtotal
+    // Subtotal
     const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const subtotalEl = document.getElementById('cartSubtotal');
     if (subtotalEl) subtotalEl.textContent = '$' + subtotal.toLocaleString();

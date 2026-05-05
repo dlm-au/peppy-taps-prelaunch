@@ -295,6 +295,12 @@ input { font-family: inherit; }
 }
 
 .nav-cart {
+    /* Hidden site-wide as of May 2026 — direct sales (filter cartridge,
+       installation) now go through Stripe Buy Links rather than a
+       Shopify Cart, so a global cart icon has no useful state. The
+       button markup stays in nav for now in case a Spare Parts listing
+       reintroduces a real cart later. */
+    display: none;
     color: rgba(255,255,255,0.85);
     position: relative;
     transition: color 0.3s;
