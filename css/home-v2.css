@@ -211,6 +211,20 @@
     .page-home-v2 .products-grid--3 {
         grid-template-columns: repeat(2, 1fr);
     }
+    /* When a collection has an odd number of products (e.g. Signature
+       with 3 items), the last card lands alone on its own row in a
+       2-column grid and would naturally hug the left edge. Span it
+       across both columns and centre it at one-column width so the
+       leftover card sits visually balanced under the row above.
+       The :nth-child(odd):last-child selector only matches when the
+       LAST card is in an odd position — i.e. only when there's an
+       orphan to deal with. Even-count collections (e.g. Flagship
+       with 2) silently skip this rule. */
+    .page-home-v2 .products-grid .product-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: calc((100% - 12px) / 2);
+    }
 }
 
 /* ─── Comparison ────────────────────────────────────────
