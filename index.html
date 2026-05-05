@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="Premium 5-in-1 boiling, chilled and sparkling water taps for Australian kitchens. Filtered, certified, available in 5 finishes. Find your nearest stockist.">
     <meta name="twitter:image" content="https://www.peppytaps.com.au/img/lifestyle/hero1.jpg">
     <link rel="stylesheet" href="css/styles.css?v=111">
-    <link rel="stylesheet" href="css/home-v2.css?v=10">
+    <link rel="stylesheet" href="css/home-v2.css?v=11">
     <link rel="stylesheet" href="css/cart.css">
 
     <!-- Stockist locator (Leaflet + cluster, vendored locally) — shared with /pages/where-to-buy.html -->
@@ -1051,7 +1051,13 @@
          "Find a stockist" a permanent home and a quick "Compare" shortcut
          for the choosing-a-tap moment. Hidden on desktop via CSS. -->
     <div class="mobile-sticky-cta" id="mobileStickyCta" aria-hidden="true">
-        <a href="#dealers" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--primary">Find a Stockist</a>
+        <a href="#dealers" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2C7.5 2 4 5.5 4 10c0 5.5 8 12 8 12s8-6.5 8-12c0-4.5-3.5-8-8-8z"/>
+                <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Find Stockist
+        </a>
         <a href="#comparison" class="mobile-sticky-cta-btn mobile-sticky-cta-btn--secondary">Compare</a>
     </div>
 
@@ -1077,6 +1083,6 @@
     <script src="js/stockists-v4.js?v=4"></script>
     <!-- Home page interactive components: extracted from inline
          scripts so the site-wide CSP can drop script-src 'unsafe-inline'. -->
-    <script src="js/home.js?v=1"></script>
+    <script src="js/home.js?v=2"></script>
 </body>
 </html>

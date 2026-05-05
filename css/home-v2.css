@@ -358,59 +358,75 @@
     display: none;
 }
 @media (max-width: 768px) {
+    /* Floating pill — feels lighter and more premium than a full-width
+       dark dock. Cream background, soft shadow, side margins, safe-area
+       aware bottom padding. Hides itself when inside the stockist
+       locator (set in home.js) so it doesn't conflict with the map. */
     .page-home-v2 .mobile-sticky-cta {
         display: flex;
         position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 200;
-        gap: 8px;
-        padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
-        background: rgba(8, 18, 38, 0.96);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        border-top: 1px solid rgba(240, 226, 197, 0.18);
-        transform: translateY(100%);
-        transition: transform 0.3s var(--ease-out);
+        left: 16px;
+        right: 16px;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        z-index: 600;  /* Above Leaflet map (default ~400) */
+        align-items: center;
+        gap: 4px;
+        padding: 6px;
+        background: var(--color-cream-light, #faf7f0);
+        border-radius: 999px;
+        box-shadow: 0 12px 32px rgba(8, 18, 38, 0.18),
+                    0 2px 8px rgba(8, 18, 38, 0.10);
+        opacity: 0;
+        transform: translateY(calc(100% + 24px));
+        transition: opacity 0.2s, transform 0.3s var(--ease-out);
+        pointer-events: none;
     }
     .page-home-v2 .mobile-sticky-cta.is-shown {
+        opacity: 1;
         transform: translateY(0);
+        pointer-events: auto;
     }
     .page-home-v2 .mobile-sticky-cta-btn {
-        flex: 1;
-        text-align: center;
-        padding: 12px 14px;
-        border-radius: 6px;
+        text-decoration: none;
         font-family: var(--font-sans);
         font-size: 0.86rem;
         font-weight: 600;
-        letter-spacing: 0.04em;
-        text-decoration: none;
-        transition: background 0.15s, transform 0.1s;
+        letter-spacing: 0.02em;
+        transition: background 0.15s, color 0.15s;
     }
     .page-home-v2 .mobile-sticky-cta-btn--primary {
-        background: var(--color-accent-light);
-        color: var(--color-accent);
-        flex: 1.4;
+        flex: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 18px;
+        border-radius: 999px;
+        background: var(--color-dark, #1d3a5f);
+        color: #fff;
     }
     .page-home-v2 .mobile-sticky-cta-btn--primary:hover,
     .page-home-v2 .mobile-sticky-cta-btn--primary:active {
-        background: #fff;
+        background: var(--color-dark-hover, #14283f);
+    }
+    .page-home-v2 .mobile-sticky-cta-btn--primary svg {
+        flex-shrink: 0;
     }
     .page-home-v2 .mobile-sticky-cta-btn--secondary {
+        padding: 12px 18px;
         background: transparent;
-        color: rgba(240, 226, 197, 0.92);
-        border: 1px solid rgba(240, 226, 197, 0.45);
+        color: var(--color-dark, #1d3a5f);
+        font-weight: 500;
     }
     .page-home-v2 .mobile-sticky-cta-btn--secondary:hover,
     .page-home-v2 .mobile-sticky-cta-btn--secondary:active {
-        background: rgba(240, 226, 197, 0.10);
+        color: var(--color-dark-hover, #14283f);
     }
-    /* Pad the bottom of the page so the sticky bar doesn't
-       cover the footer when scrolled to the very bottom. */
+    /* Pad the bottom of the page so the sticky tray doesn't cover
+       the footer when scrolled to the very bottom. Bumped from 80px
+       to 96px to account for the new tray's 12px bottom margin. */
     .page-home-v2 .footer {
-        padding-bottom: 80px;
+        padding-bottom: 96px;
     }
 }
 

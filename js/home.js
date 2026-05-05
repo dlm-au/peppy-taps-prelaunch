@@ -16,11 +16,15 @@
    the first viewport so it doesn't compete with hero CTAs at first
    paint. Stays hidden while the cookie banner is on screen (would
    collide with it visually). Re-hides near the page bottom so the
-   footer isn't covered. */
+   footer isn't covered. Also hides while the visitor is inside the
+   stockist locator section — the bar's primary action is "go to
+   stockists", so floating it above the map is both redundant and
+   visually conflicts with the Leaflet UI. */
 (function() {
     const bar = document.getElementById('mobileStickyCta');
     if (!bar) return;
     const showAfter = Math.min(window.innerHeight * 0.6, 480);
+    let stockistInView = false;
 
     const isCookieBannerVisible = () => {
         const banner = document.querySelector('.cookie-banner');
@@ -32,7 +36,10 @@
     const evaluate = () => {
         const y = window.scrollY;
         const nearBottom = (y + window.innerHeight) > document.documentElement.scrollHeight - 80;
-        const shown = y > showAfter && !nearBottom && !isCookieBannerVisible();
+        const shown = y > showAfter
+            && !nearBottom
+            && !isCookieBannerVisible()
+            && !stockistInView;
         bar.classList.toggle('is-shown', shown);
         bar.setAttribute('aria-hidden', shown ? 'false' : 'true');
     };
@@ -55,6 +62,18 @@
         subtree: false,
         attributes: false,
     });
+
+    // Hide the sticky CTA while #dealers (stockist locator) is in the
+    // viewport. IntersectionObserver fires when ≥10% of the section is
+    // showing — generous enough to feel responsive without toggling on
+    // micro-scrolls. Falls back to always-shown if IO isn't supported.
+    const stockistSection = document.getElementById('dealers');
+    if (stockistSection && 'IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+            stockistInView = entries[0].isIntersecting;
+            evaluate();
+        }, { threshold: 0.1 }).observe(stockistSection);
+    }
 
     evaluate();
 })();
