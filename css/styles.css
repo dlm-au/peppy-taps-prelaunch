@@ -394,7 +394,15 @@ input { font-family: inherit; }
 /* --- Hero --- */
 .hero {
     position: relative;
+    /* Two-line height so iOS Safari doesn't re-flow the hero when its
+       address bar collapses on the first scroll. 100vh is the legacy
+       fallback for browsers that don't support dvh; 100dvh is the
+       dynamic-viewport unit that matches the *current* visible
+       viewport — when Safari's URL bar shrinks the visible viewport
+       grows, but dvh tracks it without a layout jump. Removed the
+       jaggy "first scroll from hero" feel reported during QA. */
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;

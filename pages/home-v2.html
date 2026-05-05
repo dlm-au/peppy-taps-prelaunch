@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Preload the hero background so it starts downloading at parse time
+         instead of waiting for CSS to find it on .hero-video-placeholder.
+         Improves LCP and the perceived smoothness of the first paint. -->
+    <link rel="preload" as="image" href="../img/lifestyle/hero1.jpg" fetchpriority="high">
     <link rel="icon" type="image/png" href="../img/logo/peppy-logo-black.png">
     <meta property="og:title" content="Peppy Taps | Boiling, Chilled &amp; Sparkling Water Taps | Australia">
     <meta property="og:description" content="Premium 5-in-1 boiling, chilled and sparkling water taps for Australian kitchens. Filtered, certified, available in 5 finishes. Find your nearest stockist.">
@@ -19,8 +23,8 @@
     <meta name="twitter:title" content="Peppy Taps | Boiling, Chilled &amp; Sparkling Water Taps | Australia">
     <meta name="twitter:description" content="Premium 5-in-1 boiling, chilled and sparkling water taps for Australian kitchens. Filtered, certified, available in 5 finishes. Find your nearest stockist.">
     <meta name="twitter:image" content="https://www.peppytaps.com.au/img/lifestyle/hero1.jpg">
-    <link rel="stylesheet" href="../css/styles.css?v=114">
-    <link rel="stylesheet" href="../css/home-v2.css?v=18">
+    <link rel="stylesheet" href="../css/styles.css?v=115">
+    <link rel="stylesheet" href="../css/home-v2.css?v=19">
     <link rel="stylesheet" href="../css/cart.css">
 
     <!-- Stockist locator (Leaflet + cluster, vendored locally) — shared with /pages/where-to-buy.html -->

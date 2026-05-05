@@ -269,6 +269,10 @@
         transform: translateY(calc(100% + 24px));
         transition: opacity 0.2s, transform 0.3s var(--ease-out);
         pointer-events: none;
+        /* Promote to its own GPU layer so the slide-up transform
+           composites cleanly without re-painting the surrounding
+           page content on each scroll-trigger evaluation. */
+        will-change: transform, opacity;
     }
     .page-home-v2 .mobile-sticky-cta.is-shown {
         opacity: 1;
