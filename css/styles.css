@@ -1087,7 +1087,10 @@ input { font-family: inherit; }
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 1;
+    /* No aspect-ratio constraint — the filter cartridge image is portrait;
+       forcing the container to a square added a lot of empty navy padding
+       around it. The grid uses align-items:center so both columns still
+       line up vertically when this column hugs the image. */
 }
 .consumable-render {
     width: 200px;
