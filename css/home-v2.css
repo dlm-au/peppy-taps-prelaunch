@@ -235,7 +235,10 @@
 .page-home-v2 .comparison-cards {
     display: none;
     flex-direction: column;
-    gap: 14px;
+    /* Bumped 14 → 24 so the three cards read as a calm guided ladder
+       rather than a tight stack. Pair with the larger margin-bottom
+       below the section. */
+    gap: 24px;
     margin-bottom: 32px;
 }
 .page-home-v2 .comparison-card {
